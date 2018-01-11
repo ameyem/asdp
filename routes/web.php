@@ -17,6 +17,8 @@ Route::resource('AssignTasks','AssignTasksController');
 Route::resource('Profile','ProfileController');
 Route::resource('viewprofile','ViewprofileController');
 Route::resource('UserTasks','UserTasksController');
+Route::resource('Conversations','ConversationsController');
+
 
 
 Route::get('/uploadfile','UploadFileController@index');
@@ -32,9 +34,9 @@ Route::get('/userprofile', function () {
     return view('userprofile');
 });
 
-Route::get('/usertasks', function () {
-    return view('usertasks');
-});
+// Route::get('/usertasks', function () {
+//     return view('usertasks');
+// });
 
 
 

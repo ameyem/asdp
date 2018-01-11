@@ -64,7 +64,7 @@
             {!! Form::submit('Delete', ['class' => 'btn btn-danger']) !!} 
             {!! Form::close() !!}
         </td>
-        <td><a href='{{ asset("uploads/$task->uploads") }}'>{{ $task->uploads}}</a></td>
+        <td><a href="{{ $task->uploads }}" download="{{ $task->uploads }}">{{ $task->uploads}}</a></td>
     </tr>
     @endforeach
     </table>

@@ -10,6 +10,14 @@ use Auth;
 use App\User;
 use Illuminate\Http\Request;
 
+
+
+use Illuminate\Http\UploadedFile;
+
+use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Foundation\Testing\WithoutMiddleware;
+
+
 class UserTasksController extends Controller
 {
     /**
@@ -17,14 +25,18 @@ class UserTasksController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     { 
         $assign_tasks = DB::table('assign_tasks')
                             ->join('admin_tasks','assign_tasks.task_id', '=', 'admin_tasks.id')
                             ->select('assign_tasks.*','admin_tasks.worktitle','admin_tasks.workdescription','admin_tasks.whatinitforme','admin_tasks.usercredits','admin_tasks.uploads')
-                            ->where( 'assign_tasks.user_id',Auth::user()->id)->get();    
-        return view('UserTasks.index',compact('assign_tasks'));
+                            ->where('assign_tasks.user_id',Auth::user()->id)->get();
+                                
+                            return view('UserTasks.index',compact('assign_tasks'));
+                                
     }
+
+    
 
     /**
      * Show the form for creating a new resource.
@@ -36,6 +48,8 @@ class UserTasksController extends Controller
         //
     }
 
+
+
     /**
      * Store a newly created resource in storage.
      *
@@ -44,7 +58,34 @@ class UserTasksController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'assigntask_id' => 'required',
+            'request_for' => 'required',
+            'message' => 'required',
+            'uploads' => 'required',
+        ]);
+
+        $product = new UserTasks($request->file());
+     
+        if($file = $request->hasFile('uploads')) {
+           
+           $file = $request->file('uploads');           
+           $fileName = $file->getClientOriginalName();
+           $destinationPath = public_path().'/uploads/';
+           $file->move($destinationPath,$fileName);
+
+           $file = public_path().'/uploads/'.$fileName;
+
+            $requestData = $request->all();
+            $requestData['uploads'] = $file;
+            // $product->uploads = $file;
+      
+         
+        }
+     
+        UserTasks::create($requestData);
+        return redirect()->route('UserTasks.index')
+                        ->with('success','AdminTasks created successfully');
     }
 
     /**
@@ -53,9 +94,16 @@ class UserTasksController extends Controller
      * @param  \App\UserTasks  $userTasks
      * @return \Illuminate\Http\Response
      */
-    public function show(UserTasks $userTasks)
+    public function show($id)
     {
-        //
+        $user_tasks = DB::table('user_tasks')
+        ->join('assign_tasks','user_tasks.assigntask_id', '=', 'assign_tasks.id')
+        ->where( 'assign_tasks.id',$id)
+        ->select('user_tasks.*')->get();
+        $assign_tasks = AssignTasks::find($id);
+        // echo($id);
+        return view('UserTasks.create',compact('user_tasks','assign_tasks',$id));
+    
     }
 
     /**

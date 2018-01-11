@@ -5,12 +5,6 @@
  <h1>{{Auth::user()->id }}</h1>
 <h2>{{Auth::user()->email }}</h2>  -->
 
-
-
-
-
-
-
     <div class="row">
         <div class="col-md-10">
             <div class="panel panel-default">
@@ -24,10 +18,11 @@
                         <div class="row">
                             <div class="col-lg-3">
                                 <div class="panel panel-primary text-center no-boder">
+                                <a style="text-decoration:none;" href="{{ route('AdminTasks.index') }}">
                                     <div class="alert alert-success">                                     
                                         <i class="fa fa-pencil-square-o fa-3x"></i>
-                                        <h3><a style="text-decoration:none;" href="{{ route('AdminTasks.index') }}">Admin Tasks</a> </h3>
-                                    </div>
+                                        <h3>Admin Tasks</h3>
+                                    </div></a> 
                                     <div class="panel-footer">
                                         <span class="panel-eyecandy-title">Total Tasks:
                                         </span>
@@ -36,11 +31,12 @@
                             </div>
                             <div class="col-lg-3">
                                 <div class="panel panel-primary text-center no-boder">
+                                <a style="text-decoration:none;" href="{{ route('AssignTasks.index') }}">
                                     <div class="alert alert-info">
                                         <i class="fa fa-cogs fa-3x"></i>
                                        
-                                        <h3><a style="text-decoration:none;" href="{{ route('AssignTasks.index') }}">Assign Tasks</a></h3>
-                                    </div>
+                                        <h3>Assign Tasks</h3>
+                                    </div></a>
                                     <div class="panel-footer">
                                         <span class="panel-eyecandy-title">Total Users:
                                         </span>
@@ -49,10 +45,11 @@
                             </div>
                             <div class="col-lg-3">
                                 <div class="panel panel-primary text-center no-boder">
+                                <a style="text-decoration:none;" href="{{ route('Profile.index') }}">
                                     <div class="alert alert-success">
                                         <i class="fa fa fa-floppy-o fa-3x"></i>
-                                        <h3><a style="text-decoration:none;" href="{{ route('Profile.index') }}">Profile</a></h3>
-                                    </div>
+                                        <h3>Profile</h3>
+                                    </div></a>
                                     <div class="panel-footer">
                                         <span class="panel-eyecandy-title">New Data Uploaded
                                         </span>
@@ -61,10 +58,11 @@
                             </div>
                             <div class="col-lg-3">
                                 <div class="panel panel-primary text-center no-boder">
+                                <a style="text-decoration:none;" href="{{ route('Conversations.index') }}">
                                     <div class="alert alert-info">
                                         <i class="fa fa-users fa-3x"></i>
-                                        <h3><a style="text-decoration:none;" href=/usertasks>Admin Conversations</a></h3>
-                                    </div>
+                                        <h3>Conversations</h3>
+                                    </div></a>
                                     <div class="panel-footer">
                                         <span class="panel-eyecandy-title">New Data Uploaded
                                         </span>
@@ -82,10 +80,11 @@
                     <div class="row">
                             <div class="col-lg-3">
                                 <div class="panel panel-primary text-center no-boder">
+                                <a style="text-decoration:none;" href="{{ route('UserTasks.index') }}">
                                     <div class="alert alert-info">                                     
                                         <i class="fa fa-pencil-square-o fa-3x"></i>
-                                        <h3><a style="text-decoration:none;" href="{{ route('UserTasks.index') }}">User Tasks</a> </h3>
-                                    </div>
+                                        <h3>User Tasks </h3>
+                                    </div></a>
                                     <div class="panel-footer">
                                         <span class="panel-eyecandy-title">Total Tasks:
                                         </span>

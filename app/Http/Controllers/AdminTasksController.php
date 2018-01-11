@@ -68,35 +68,21 @@ class AdminTasksController extends Controller
      
         if($file = $request->hasFile('uploads')) {
            
-           $file = $request->file('uploads');
-           
+           $file = $request->file('uploads');           
            $fileName = $file->getClientOriginalName();
            $destinationPath = public_path().'/uploads/';
            $file->move($destinationPath,$fileName);
-        //    $file->replace($destinationPath.$fileName);
 
+           $file = public_path().'/uploads/'.$fileName;
 
-        $file = public_path().'/uploads/'. $fileName;
-           $product->uploads = $file;
-        // $file => $destinationPath[].$fileName[];
+            $requestData = $request->all();
+            $requestData['uploads'] = $file;
+            // $product->uploads = $file;
+      
          
         }
-        // $file = public_path().'/uploads/'. $fileName;
-       
-        //  $file = $destinationPath . $fileName);
-        
      
-        
-      
-       
-        //  $product->save() ;
-        AdminTasks::create($request->all());
-
-        // return view('AdminTasks.test',compact('product','file','fileName'));
-
-
-
-
+        AdminTasks::create($requestData);
         return redirect()->route('AdminTasks.index')
                         ->with('success','AdminTasks created successfully');
      }
@@ -112,6 +98,7 @@ class AdminTasksController extends Controller
     {
         $admin_tasks = AdminTasks::find($id);
         return view('AdminTasks.show',compact('admin_tasks'));
+        // echo($id);
     }
 
 
@@ -170,15 +157,4 @@ class AdminTasksController extends Controller
     }
 
 
-    // public function fileUpload(Request $request)
-
-    // {
-    
-    //     $this->validate($request, [
-    
-    //         'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-    
-    //     ]);
-    //     return redirect()->route('AdminTasks.create');
-    // }
 }

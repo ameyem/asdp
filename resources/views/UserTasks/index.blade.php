@@ -2,12 +2,16 @@
 @section('content')
 
 <h1>hello, welcome to user tasks</h1>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-12">
 
 
 
                 <table class="table table-bordered">
                     <tr>
-                        <!-- <th>No</th>  -->
+                        <th>User ID</th>
+                        <th>Assign Task Id</th> 
                         <th>Work Title</th>
                         <th>Work Description</th>
                         <th>What In IT For Me</th>
@@ -22,8 +26,8 @@
                     @foreach ($assign_tasks as $task)
                     
                     <tr>
-                    <!-- <?php $i = 1; ?>
-                        <td> {{ $i++ }}</td> -->
+                        <td>{{ $task->user_id}}</td>
+                        <td>{{ $task->id }}</td> 
                         <td>{{ $task->worktitle }}</td>
                         <td>{{ $task->workdescription }}</td>
                         <td>{{ $task->whatinitforme }}</td>
@@ -32,12 +36,19 @@
                         <td>{{ $task->reviewer_id}}</td>
                         <td>{{ $task->assigned_date}}</td>
                         <td>{{ $task->completion_date}}</td>
-                        <td>{{ $task->uploads }}</td>
-                        <td></td>
+                        <td><a href="{{ $task->uploads }}" download="{{ $task->uploads }}">{{ $task->uploads }}</a></td>
+                        <td>
+                            <!-- <a class="btn btn-info" href="{{ route('AdminTasks.show',$task->id) }}">Show</a> -->
+                            <!-- <a class="btn btn-primary" href="{{ route('UserTasks.create',9) }}">View Work</a> -->
+                            <a class="btn btn-info" href="{{ route('UserTasks.show',$task->id) }}">View Work</a>
+                        </td>
 
                     </tr>
                     @endforeach
                 </table>
+                </div>
+            </div>
+        </div>
 
               
 
