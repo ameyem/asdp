@@ -18,6 +18,7 @@
                         <th>Request</th>
                         <th>Message</th>
                         <th>Files</th>
+                        <th>Date</th>
                         
                     </tr>
                     @foreach ($user_tasks as $task)
@@ -26,7 +27,8 @@
                         <td>{{ $task->assigntask_id }}</td> 
                         <td>{{ $task->request_for }}</td>
                         <td>{{ $task->message }}</td>
-                        <td>{{ $task->uploads }}</td>
+                        <td><a class="btn btn-info btn-xs" href="{{ $task->uploads }}" download="{{ $task->uploads }}">File Links</a></td>
+                        <td>{{ $task->created_at }}</td>
                     </tr>
                     @endforeach
                 </table>
@@ -42,6 +44,11 @@
         </div>
     @endif
 
+
+    <div class="container-fluid">
+    <div class="row">
+    <div class="col-sm-4"></div>
+    <div class="col-sm-4" style="background-color:lavender;">
 
     {!! Form::open(array('route' => 'UserTasks.store','method' => 'POST','files' => true)) !!}
 
@@ -60,7 +67,8 @@
                 {!! Form::select('request_for', [
                 '1' => ['Review' => 'Review'],
                 '2' => ['Redo' => 'Redo'],
-                '3' => ['Drop' => 'Drop']],
+                '3' => ['Drop' => 'Drop'],
+                '4' => ['Completed' => 'Completed']],
                 array('class' => 'form-control')) !!}
         </div>
     </div>
@@ -80,6 +88,10 @@
         <div class="col-xs-12 col-sm-12 col-md-12 text-center">
                 <button type="submit" class="btn btn-primary">Submit</button>
         </div>
+
+        </div>
+</div>
+</div>
 
 
 @endsection

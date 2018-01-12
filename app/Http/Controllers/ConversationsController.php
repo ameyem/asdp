@@ -4,6 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Conversations;
 use Illuminate\Http\Request;
+use App\UserTasks;
+use App\AdminTasks;
+use App\AssignTasks;
+use DB;
+use Auth;
+use App\User;
+
 
 class ConversationsController extends Controller
 {
@@ -14,7 +21,13 @@ class ConversationsController extends Controller
      */
     public function index()
     {
-        return view('Conversations.index');
+       
+        $assign_tasks = DB::table('assign_tasks')
+        ->join('admin_tasks','assign_tasks.task_id', '=', 'admin_tasks.id')
+        ->select('assign_tasks.*','admin_tasks.worktitle','admin_tasks.workdescription','admin_tasks.whatinitforme','admin_tasks.usercredits','admin_tasks.uploads')
+        ->get();
+            
+        return view('Conversations.index',compact('assign_tasks'));
     }
 
     /**
@@ -35,7 +48,34 @@ class ConversationsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'assigntask_id' => 'required',
+            'request_for' => 'required',
+            'message' => 'required',
+            'uploads' => 'required',
+        ]);
+
+        $product = new UserTasks($request->file());
+     
+        if($file = $request->hasFile('uploads')) {
+           
+           $file = $request->file('uploads');           
+           $fileName = $file->getClientOriginalName();
+           $destinationPath = public_path().'/uploads/';
+           $file->move($destinationPath,$fileName);
+
+           $file = public_path().'/uploads/'.$fileName;
+
+            $requestData = $request->all();
+            $requestData['uploads'] = $file;
+            // $product->uploads = $file;
+      
+         
+        }
+     
+        UserTasks::create($requestData);
+        return redirect()->route('Conversations.index')
+                        ->with('success','AdminTasks created successfully');
     }
 
     /**
@@ -44,9 +84,15 @@ class ConversationsController extends Controller
      * @param  \App\Conversations  $conversations
      * @return \Illuminate\Http\Response
      */
-    public function show(Conversations $conversations)
+    public function show($id)
     {
-        //
+        $user_tasks = DB::table('user_tasks')
+        ->join('assign_tasks','user_tasks.assigntask_id', '=', 'assign_tasks.id')
+        ->where( 'assign_tasks.id',$id)
+        ->select('user_tasks.*')->get();
+        $assign_tasks = AssignTasks::find($id);
+        // echo($id);
+        return view('Conversations.create',compact('user_tasks','assign_tasks',$id));
     }
 
     /**

@@ -8,7 +8,7 @@
                 <h2>New Task Assignment</h2>
             </div>
             <div class="pull-right">
-                <a class="btn btn-primary" href="{{ route('AssignTasks.index') }}"> Back</a>
+                <a class="btn btn-primary btn-xs" href="{{ route('AssignTasks.index') }}"> Back</a>
             </div>
         </div>
     </div>

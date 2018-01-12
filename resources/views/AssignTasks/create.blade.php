@@ -8,7 +8,7 @@
                 <h2>New Task Assignment</h2>
             </div>
             <div class="pull-right">
-                <a class="btn btn-primary" href="{{ route('AssignTasks.index') }}"> Back</a>
+                <a class="btn btn-primary btn-xs" href="{{ route('AdminTasks.index') }}"> Back</a>
             </div>
         </div>
     </div>
@@ -32,16 +32,9 @@
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>Task Name:</strong>
+                {!! Form::text('task_id', $works->id,array('class' => 'form-control')) !!}
                 
-            <select name="task_id" class="form-control">
-            @foreach ($works as $work)
-            <option value="{{$work->id}}">{{$work->id}} . {{$work->worknature}} , {{$work->onskills}} , {{$work->worktitle}} , {{$work->worktitle}} , {{$work->whatinitforme}}</option>                
-            @endforeach
-            </select>
-
-            <!-- <input name="single" type="radio" value="single">
-            {!! Form::text('task_id', null, array('placeholder' => 'Task ID','class' => 'form-control')) !!}  -->
-                
+          
                    
                 
             </div>
@@ -57,14 +50,7 @@
 
 
 
-                <!-- <ul>
-                @foreach ($users as $user)
-                    <li>{{ $user->id }}.{{ $user->name }}</li>
-                    
-                @endforeach
-                </ul>
-                {!! Form::text('user_id', null, array('placeholder' => 'User ID','class' => 'form-control')) !!}
-                 -->
+                
                             
             </div>
         </div>
@@ -88,16 +74,11 @@
                         <option value="{{$user->name}}">{{$user->id}} . {{$user->name}} , {{$user->email}}</option>                
                      @endforeach
                 </select>
-                <!-- {!! Form::text('reviewer_id', null, array('placeholder' => 'Reviewer ID','class' => 'form-control')) !!} -->
+         
                             
             </div>
         </div>
-        <!-- <div class="col-xs-12 col-sm-12 col-md-12">
-            <div class="form-group">
-                <strong>Marks:</strong>
-                {!! Form::text('marks', null, array('placeholder' => 'Marks for this task','class' => 'form-control')) !!}
-            </div>
-        </div> -->
+      
 
 
         <div class="col-xs-12 col-sm-12 col-md-12">

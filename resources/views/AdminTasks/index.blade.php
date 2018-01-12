@@ -38,7 +38,7 @@
             <th>Created_At</th>
             
             <th width="280px">Action</th>
-            <th>Uploads<th>
+            <th>File Link<th>
         </tr>
     @foreach ($admin_tasks as $key => $task)
     <tr>
@@ -56,15 +56,16 @@
 
         
         <td>
-            <a class="btn btn-info" href="{{ route('AdminTasks.show',$task->id) }}">Show</a>
-            <a class="btn btn-primary" href="{{ route('AdminTasks.edit',$task->id) }}">Edit</a>
+            <a class="btn btn-info btn-xs" href="{{ route('AdminTasks.show',$task->id) }}">Show</a>
+            <a class="btn btn-primary btn-xs" href="{{ route('AdminTasks.edit',$task->id) }}">Edit</a>
+            <a class="btn btn-default btn-xs" href="{{ route('AssignTasks.show',$task->id) }}">Assign Task</a>
 
             
             {!! Form::open(['method' => 'DELETE','route' => ['AdminTasks.destroy', $task->id],'style'=>'display:inline']) !!}
-            {!! Form::submit('Delete', ['class' => 'btn btn-danger']) !!} 
+            {!! Form::submit('Delete', ['class' => 'btn btn-danger btn-xs']) !!} 
             {!! Form::close() !!}
         </td>
-        <td><a href="{{ $task->uploads }}" download="{{ $task->uploads }}">{{ $task->uploads}}</a></td>
+        <td><a class="btn btn-info btn-xs" href="{{ $task->uploads }}" download="{{ $task->uploads }}">Download</a></td>
     </tr>
     @endforeach
     </table>

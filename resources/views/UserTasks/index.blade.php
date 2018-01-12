@@ -20,7 +20,7 @@
                         <th>Review By</th>
                         <th>Assigned Date</th>
                         <th>Target Date</th>
-                        <th>Download</th>                    
+                        <th>File Link</th>                    
                         <th width="280px">Action</th>
                     </tr>
                     @foreach ($assign_tasks as $task)
@@ -36,11 +36,11 @@
                         <td>{{ $task->reviewer_id}}</td>
                         <td>{{ $task->assigned_date}}</td>
                         <td>{{ $task->completion_date}}</td>
-                        <td><a href="{{ $task->uploads }}" download="{{ $task->uploads }}">{{ $task->uploads }}</a></td>
+                        <td><a class="btn btn-default btn-xs" href="{{ $task->uploads }}" download="{{ $task->uploads }}">Download</a></td>
                         <td>
                             <!-- <a class="btn btn-info" href="{{ route('AdminTasks.show',$task->id) }}">Show</a> -->
                             <!-- <a class="btn btn-primary" href="{{ route('UserTasks.create',9) }}">View Work</a> -->
-                            <a class="btn btn-info" href="{{ route('UserTasks.show',$task->id) }}">View Work</a>
+                            <a class="btn btn-info btn-xs" href="{{ route('UserTasks.show',$task->id) }}">View Work</a>
                         </td>
 
                     </tr>

@@ -29,10 +29,10 @@ class AssignTasksController extends Controller
      */
     public function create()
     {
-        $users = User::all();
-        // $works = DB::table('admin_tasks')->select('id')->get();
-        $works = AdminTasks::all();
-        return view('AssignTasks.create',compact('users','works'));
+        // $users = User::all();
+        // // $works = DB::table('admin_tasks')->select('id')->get();
+        // $works = AdminTasks::find($id);
+        // return view('AssignTasks.create',compact('users','works'));
     }
 
     /**
@@ -63,9 +63,12 @@ class AssignTasksController extends Controller
      * @param  \App\AssignTasks  $assignTasks
      * @return \Illuminate\Http\Response
      */
-    public function show(AssignTasks $assignTasks)
+    public function show($id)
     {
-        //
+        $users = User::all();
+        // $works = DB::table('admin_tasks')->select('id')->get();
+        $works = AdminTasks::find($id);
+        return view('AssignTasks.create',compact('users','works',$id));
     }
 
     /**
