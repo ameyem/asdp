@@ -18,7 +18,7 @@ class CreateUserTasksTable extends Migration
             $table->number('assigntask_id');
             $table->string('request_for');
             $table->string('message');
-            $table->string('uploads');
+            $table->string('uploads')->nullable();
             $table->timestamps();
         });
     }

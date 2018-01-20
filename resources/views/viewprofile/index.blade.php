@@ -3,7 +3,7 @@
 
 
 <div class="container" style="padding-top: 60px;">
-        <h1 class="page-header">profile</h1>
+        <h1 class="page-header">User Profile</h1>
         <div class="row">
           <!-- left column -->
           <div class="col-md-4 col-sm-6 col-xs-12">
@@ -22,21 +22,21 @@
               <div class="form-group">
                 <label class="col-lg-3 control-label">Name:</label>
                 <div class="col-lg-8">
-                  <input class="form-control" value='{{ $profiles->name }}' placeholder="name" type="text">
+                  <input class="form-control" value='{{ $users->name }}' placeholder="name" type="text">
                 </div>
               </div>
 
               <div class="form-group">
                 <label class="col-lg-3 control-label">Email:</label>
                 <div class="col-lg-8">
-                  <input class="form-control" value='{{ $profiles->email }}' placeholder="email" type="text">
+                  <input class="form-control" value='{{ $users->email }}' placeholder="email" type="text">
                 </div>
               </div>
 
               <div class="form-group">
                 <label class="col-lg-3 control-label">Mobile Number:</label>
                 <div class="col-lg-8">
-                  <input class="form-control" value='{{ $profiles->number }}' placeholder="number" type="text">
+                  <input class="form-control" value='{{ $users->number }}' placeholder="number" type="text">
                 </div>
               </div>
 
@@ -44,7 +44,7 @@
                 <label class="col-lg-3 control-label">Date Of Birth:</label>
                 <div class="col-lg-8">
 
-                  <input class="form-control" value="{{ $profiles->dob }}" placeholder="dob" type="text">
+                  <input class="form-control" value="{{ $users->dob }}" placeholder="dob" type="text">
 
                 </div>
               </div>
@@ -52,47 +52,47 @@
               <div class="form-group">
                 <label class="col-md-3 control-label">Qualification:</label>
                 <div class="col-md-8">
-                  <input class="form-control" value='{{$profiles->qualification}}' placeholder="qualification" type="text">
+                  <input class="form-control" value='{{$users->qualification}}' placeholder="qualification" type="text">
                 </div>
               </div>
 
               <div class="form-group">
                 <label class="col-md-3 control-label">Specialization:</label>
                 <div class="col-md-8">
-                  <input class="form-control" value='{{$profiles->specialization}}' placeholder="specialization" type="text">
+                  <input class="form-control" value='{{$users->specialization}}' placeholder="specialization" type="text">
                 </div>
               </div>
               
               <div class="form-group">
                 <label class="col-md-3 control-label">Marks:</label>
                 <div class="col-md-8">
-                  <input class="form-control" value='{{$profiles->marks}}' placeholder="marks" type="text">
+                  <input class="form-control" value='{{$users->marks}}' placeholder="marks" type="text">
                 </div>
               </div>
 
               <div class="form-group">
                 <label class="col-lg-3 control-label">Passed Out:</label>
                 <div class="col-lg-8">
-                  <input class="form-control" value='{{$profiles->passout}}' placeholder="passout" type="text">
+                  <input class="form-control" value='{{$users->passout}}' placeholder="passout" type="text">
                 </div>
               </div>
 
               <div class="form-group">
                 <label class="col-lg-3 control-label">College Address:</label>
                 <div class="col-lg-8">
-                  <input class="form-control" value='{{$profiles->collegeaddress}}' placeholder="collegeaddress" type="text">
+                  <input class="form-control" value='{{$users->collegeaddress}}' placeholder="collegeaddress" type="text">
                 </div>
               </div>
 
               <div class="form-group">
                 <label class="col-lg-3 control-label">Home Address:</label>
                 <div class="col-lg-8">
-                  <input class="form-control" value='{{$profiles->homeaddress}}' placeholder="homeaddress" type="text">
+                  <input class="form-control" value='{{$users->homeaddress}}' placeholder="homeaddress" type="text">
                 </div>
               </div>
 
                <div class="pull-right">
-                <a class="btn btn-primary" href="{{ route('viewprofile.edit',$profiles->id) }}"> Edit profile</a>
+                <a class="btn btn-primary" href="{{ route('viewprofile.edit',$users->id) }}"> Edit profile</a>
               </div>
               
             </form>

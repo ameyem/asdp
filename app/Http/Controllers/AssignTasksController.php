@@ -94,6 +94,8 @@ class AssignTasksController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $users = User::all();
+        $works = AdminTasks::all();
         $this->validate($request, [
             'task_id' => '',
             'user_id' => '',
@@ -103,8 +105,7 @@ class AssignTasksController extends Controller
             'completion_date' => '',
         ]);
 
-        $users = User::all();
-        $works = AdminTasks::all();
+        
         AssignTasks::find($id)->update($request->all());
         return redirect()->route('AssignTasks.index',compact('users','works'))
                         ->with('success','AssignTasks updated successfully');

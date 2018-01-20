@@ -17,14 +17,14 @@ class CreateProfilesTable extends Migration
             $table->increments('id');
             $table->String('name');
             $table->String('email');
-            $table->String('number');
-            $table->String('dob');
-            $table->String('qualification');
-            $table->String('specialization');
-            $table->String('marks');
-            $table->String('passout');
-            $table->String('collegeaddress');
-            $table->String('homeaddress');
+            $table->String('number')->nullable();  
+            $table->String('dob')->nullable();  
+            $table->String('qualification')->nullable();  
+            $table->String('specialization')->nullable();  
+            $table->String('marks')->nullable();  
+            $table->String('passout')->nullable();  
+            $table->String('collegeaddress')->nullable();  
+            $table->String('homeaddress')->nullable();  
             $table->timestamps();
         });
     }

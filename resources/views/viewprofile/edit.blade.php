@@ -27,7 +27,7 @@
         </div>
     @endif
 
-    {!! Form::model($profiles, ['method' => 'PATCH','route' => ['viewprofile.update', $profiles->id]]) !!}
+    {!! Form::model($users, ['method' => 'PATCH','route' => ['viewprofile.update', $users->id]]) !!}
     <div class="row">
 
     <div class="col-xs-12 col-sm-12 col-md-12">
@@ -99,6 +99,7 @@
             {!! Form::text('homeaddress', null, array('placeholder' => 'Home Address','class' => 'form-control')) !!}
         </div>
     </div>
+    
 
     <div class="col-xs-12 col-sm-12 col-md-12 text-center">
         <button type="submit" class="btn btn-primary">Submit</button>

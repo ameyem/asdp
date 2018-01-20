@@ -19,8 +19,8 @@ class ViewprofileController extends Controller
     public function index(Request $request)
     {  
         // $users = User::find(Auth::user()->id);
-        $profiles = Profile::find(Auth::user()->id);
-        return view('Viewprofile.index',compact('profiles'));
+        $users = User::find(Auth::user()->id);
+        return view('Viewprofile.index',compact('users'));
               
     }
 
@@ -56,7 +56,7 @@ class ViewprofileController extends Controller
         ]);
 
 
-        Profile::create($request->all());
+        User::create($request->all());
         return redirect()->route('viewprofile.index')
                         ->with('success','Profile created successfully');
     }
@@ -69,8 +69,8 @@ class ViewprofileController extends Controller
      */
     public function show(viewprofile $viewprofile)
     {
-        $profiles = Profile::find($id);
-        return view('viewprofile.show',compact('profiles'));
+        $users = User::find($id);
+        return view('viewprofile.show',compact('users'));
     }
 
     /**
@@ -81,8 +81,8 @@ class ViewprofileController extends Controller
      */
     public function edit($id)
     {
-        $profiles = Profile::find($id);
-        return view('viewprofile.edit',compact('profiles'));
+        $users = User::find($id);
+        return view('viewprofile.edit',compact('users'));
     }
 
     /**
@@ -108,7 +108,7 @@ class ViewprofileController extends Controller
         ]);
 
 
-        Profile::find($id)->update($request->all());
+        User::find($id)->update($request->all());
         return redirect()->route('viewprofile.index')
                         ->with('success','Profile updated successfully');
     

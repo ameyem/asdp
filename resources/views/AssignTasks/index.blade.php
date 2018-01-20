@@ -9,9 +9,9 @@
             <div class="pull-left">
                 <h2>Assigned Tasks</h2>
             </div>
-            <!-- <div class="pull-right">
-                <a class="btn btn-success" href="{{ route('AssignTasks.create') }}"> Assign New Task</a>
-            </div> -->
+             <div class="pull-right">
+                <a class="btn btn-success" href="{{ url('/') }}">Back</a>
+            </div> 
         </div>
     </div>
 
@@ -45,7 +45,7 @@
         <td>{{ $task->completion_date}}</td>
         <td>
             <!-- <a class="btn btn-info" href="{{ route('AssignTasks.show',$task->id) }}">Show</a> -->
-            <a class="btn btn-primary btn-xs" href="{{ route('AssignTasks.edit',$task->id) }}">Edit</a>
+            <!-- <a class="btn btn-primary btn-xs" href="{{ route('AssignTasks.edit',$task->id) }}">Edit</a> -->
             {!! Form::open(['method' => 'DELETE','route' => ['AssignTasks.destroy', $task->id],'style'=>'display:inline']) !!}
             {!! Form::submit('Delete', ['class' => 'btn btn-danger']) !!}
             {!! Form::close() !!}

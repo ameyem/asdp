@@ -1,6 +1,16 @@
 @extends('layouts.app')
 @section('content')
-<h1>Hello, Welcome to Conversations</h1>
+
+<div class="row">
+        <div class="col-lg-12 margin-tb">
+            <div class="pull-left">
+                <h2>Hello, Welcome to Conversations</h2>
+            </div>
+             <div class="pull-right">
+                <a class="btn btn-success" href="{{ url('/') }}">Back</a>
+            </div> 
+        </div>
+    </div>
 
 
 <div class="container-fluid">
@@ -37,7 +47,11 @@
                         <td>{{ $task->reviewer_id}}</td>
                         <td>{{ $task->assigned_date}}</td>
                         <td>{{ $task->completion_date}}</td>
+                        @if ($task->uploads)
                         <td><a class="btn btn-default btn-xs" href="{{ $task->uploads }}" download="{{ $task->uploads }}">Downloads</a></td>
+                        @else
+                        <td>Nill</td>
+                        @endif
                         <td>
                             <!-- <a class="btn btn-info" href="{{ route('AdminTasks.show',$task->id) }}">Show</a> -->
                             <!-- <a class="btn btn-primary" href="{{ route('UserTasks.create',9) }}">View Work</a> -->

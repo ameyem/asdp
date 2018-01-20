@@ -17,7 +17,15 @@ class CreateUsersTable extends Migration
             $table->string('name');
             $table->string('email');
             $table->string('password');
-            $table->string('remember_token')->nullable();         
+            $table->string('remember_token')->nullable();
+            $table->string('number')->nullable();
+            $table->string('dob')->nullable();  
+            $table->string('qualification')->nullable();  
+            $table->string('specialization')->nullable();  
+            $table->string('passout')->nullable();  
+            $table->string('collegeaddress')->nullable();  
+            $table->string('homeaddress')->nullable();
+            $table->string('profilepic')->nullable();  
             $table->timestamps();
 
         });

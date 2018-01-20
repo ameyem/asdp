@@ -26,18 +26,3 @@ class Controller extends BaseController
 
 
 
-
-// function create1(Request $req)
-// {
-//     $title = $req->input('title');
-//     $description = $req->input('description');
-//     $information = $req->input('information');
-   
-
-//     $data = array("title"=>$title,"description"=>$description,"information"=>$information);
-    
-//     DB::table('tasks')->insert($data);
-
-//     echo("SUCCESS");
-    
-// }

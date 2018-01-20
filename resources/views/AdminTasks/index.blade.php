@@ -1,15 +1,12 @@
 @extends('layouts.app')
- 
-
-@section('content')
-
-
+ @section('content')
     <div class="row">
         <div class="col-lg-12 margin-tb">
             <div class="pull-left">
                 <h2>Admin Tasks</h2>
             </div>
             <div class="pull-right">
+                <a class="btn btn-success" href="{{ url('/') }}">Back</a>
                 <a class="btn btn-success" href="{{ route('AdminTasks.create') }}"> Create New Task</a>
             </div>
         </div>
@@ -65,7 +62,11 @@
             {!! Form::submit('Delete', ['class' => 'btn btn-danger btn-xs']) !!} 
             {!! Form::close() !!}
         </td>
+        @if ($task->uploads)
         <td><a class="btn btn-info btn-xs" href="{{ $task->uploads }}" download="{{ $task->uploads }}">Download</a></td>
+        @else
+        <td>Nill</td>
+        @endif
     </tr>
     @endforeach
     </table>

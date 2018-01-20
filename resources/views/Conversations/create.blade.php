@@ -27,7 +27,11 @@
                         <td>{{ $task->assigntask_id }}</td> 
                         <td>{{ $task->request_for }}</td>
                         <td>{{ $task->message }}</td>
+                        @if ($task->uploads)
                         <td><a class="btn btn-default btn-xs" href="{{ $task->uploads }}" download="{{ $task->uploads }}">Download</a></td>
+                        @else
+                        <td>Nill</td>
+                        @endif
                         <td>{{ $task->created_at }}</td>
                     </tr>
                     @endforeach

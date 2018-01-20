@@ -52,7 +52,7 @@ class ConversationsController extends Controller
             'assigntask_id' => 'required',
             'request_for' => 'required',
             'message' => 'required',
-            'uploads' => 'required',
+            'uploads' => '',
         ]);
 
         $product = new UserTasks($request->file());
@@ -71,6 +71,8 @@ class ConversationsController extends Controller
             // $product->uploads = $file;
       
          
+        }else{
+            $requestData = $request->all();
         }
      
         UserTasks::create($requestData);

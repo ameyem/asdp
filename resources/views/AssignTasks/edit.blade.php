@@ -37,15 +37,10 @@
             @foreach ($works as $work)
             <option value="{{$work->id}}">{{$work->id}} . {{$work->worknature}} , {{$work->onskills}} , {{$work->worktitle}} , {{$work->worktitle}} , {{$work->whatinitforme}}</option>                
             @endforeach
-            </select>
-
-            <!-- <input name="single" type="radio" value="single">
-            {!! Form::text('task_id', null, array('placeholder' => 'Task ID','class' => 'form-control')) !!}  -->
-                
-                   
-                
+            </select>               
             </div>
         </div>
+
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>User Name</strong>
@@ -53,21 +48,10 @@
                      @foreach ($users as $user)
                         <option value="{{$user->id}}">{{$user->id}} . {{$user->name}} , {{$user->email}}</option>                
                      @endforeach
-                </select>
-
-
-
-                <!-- <ul>
-                @foreach ($users as $user)
-                    <li>{{ $user->id }}.{{ $user->name }}</li>
-                    
-                @endforeach
-                </ul>
-                {!! Form::text('user_id', null, array('placeholder' => 'User ID','class' => 'form-control')) !!}
-                 -->
-                            
+                </select>               
             </div>
         </div>
+
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>Guide Name</strong>
@@ -75,11 +59,10 @@
                      @foreach ($users as $user)
                         <option value="{{$user->name}}">{{$user->id}} . {{$user->name}} , {{$user->email}}</option>                
                      @endforeach
-                </select>
-                <!-- {!! Form::text('guide_id', null, array('placeholder' => 'Guide ID','class' => 'form-control')) !!} -->
-                             
+                </select>                
             </div>
         </div>
+
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>Reviewer Name</strong>
@@ -88,17 +71,9 @@
                         <option value="{{$user->name}}">{{$user->id}} . {{$user->name}} , {{$user->email}}</option>                
                      @endforeach
                 </select>
-                <!-- {!! Form::text('reviewer_id', null, array('placeholder' => 'Reviewer ID','class' => 'form-control')) !!} -->
-                            
             </div>
         </div>
-        <div class="col-xs-12 col-sm-12 col-md-12">
-            <div class="form-group">
-                <strong>Marks:</strong>
-                {!! Form::text('marks', null, array('placeholder' => 'Marks for this task','class' => 'form-control')) !!}
-            </div>
-        </div>
-
+     
 
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group" class="form-control">
@@ -107,6 +82,7 @@
              
             </div>
         </div>
+        
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>Completion Date:</strong>

@@ -62,7 +62,7 @@ class UserTasksController extends Controller
             'assigntask_id' => 'required',
             'request_for' => 'required',
             'message' => 'required',
-            'uploads' => 'required',
+            'uploads' => '',
         ]);
 
         $product = new UserTasks($request->file());
@@ -81,6 +81,8 @@ class UserTasksController extends Controller
             // $product->uploads = $file;
       
          
+        }else{
+            $requestData = $request->all();
         }
      
         UserTasks::create($requestData);
@@ -102,7 +104,7 @@ class UserTasksController extends Controller
         ->select('user_tasks.*')->get();
         $assign_tasks = AssignTasks::find($id);
         // echo($id);
-        return view('UserTasks.create',compact('user_tasks','assign_tasks',$id));
+        return view('UserTasks.show',compact('user_tasks','assign_tasks',$id));
     
     }
 

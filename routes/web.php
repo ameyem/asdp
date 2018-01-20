@@ -21,26 +21,6 @@ Route::resource('Conversations','ConversationsController');
 
 
 
-Route::get('/uploadfile','UploadFileController@index');
-Route::post('/uploadfile','UploadFileController@showUploadFile');
-
-
-
-
-
-
-
-Route::get('/userprofile', function () {
-    return view('userprofile');
-});
-
-// Route::get('/usertasks', function () {
-//     return view('usertasks');
-// });
-
-
-
-
 
 
 // Password Reset Routes...

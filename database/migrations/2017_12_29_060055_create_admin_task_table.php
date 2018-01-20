@@ -23,7 +23,7 @@ class CreateAdminTaskTable extends Migration
             $table->decimal('usercredits');
             $table->decimal('guidecredits');
             $table->decimal('reviewercredits');
-            $table->string('uploads');
+            $table->string('uploads')->nullable(); 
             $table->timestamps();
 
         });

@@ -3,12 +3,12 @@
 
 
     <div class="row">
-        <div class="col-lg-6 margin-tb">
+        <div class="col-lg-12 margin-tb">
             <div class="pull-left">
                 <h2>User Profile</h2>
             </div>
             <div class="pull-right">
-                <a class="btn btn-success" href="{{ route('Profile.create') }}"> Create new User</a>
+                <a class="btn btn-success" href="{{ url('/') }}">Back</a>
             </div> 
         </div>
     </div>
@@ -36,7 +36,7 @@
             <th>Home Address</th>
             <th width="280px">Action</th>
         </tr>
-    @foreach ($profiles as $key => $details)
+    @foreach ($users as $key => $details)
     <tr>
         <td>{{ ++$i }}</td> 
         <td>{{ $details->name }}</td>
@@ -54,16 +54,16 @@
             <a class="btn btn-primary" href="{{ route('Profile.edit',$details->id) }}">Edit</a>
 
             
-            {!! Form::open(['method' => 'DELETE','route' => ['Profile.destroy', $details->id],'style'=>'display:inline']) !!}
+            <!-- {!! Form::open(['method' => 'DELETE','route' => ['Profile.destroy', $details->id],'style'=>'display:inline']) !!}
             {!! Form::submit('Delete', ['class' => 'btn btn-danger']) !!} 
-            {!! Form::close() !!} 
+            {!! Form::close() !!}  -->
         </td>
     </tr>
     @endforeach
     </table>
 
 
-    <!-- {!! $profiles->render() !!} -->
+    
 
 
 @endsection

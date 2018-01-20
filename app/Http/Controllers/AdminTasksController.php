@@ -21,7 +21,7 @@ class AdminTasksController extends Controller
     public function index(Request $request)
     {
         $admin_tasks = AdminTasks::orderBy('id','DESC')->paginate(15);
-        return view('AdminTasks.index',compact('admin_tasks'))
+        return view('AdminTasks.index',compact('admin_tasks','profilepic'))
             ->with('i', ($request->input('page', 1) - 1) * 5);
     }
 
@@ -77,9 +77,9 @@ class AdminTasksController extends Controller
 
             $requestData = $request->all();
             $requestData['uploads'] = $file;
-            // $product->uploads = $file;
-      
-         
+            // $product->uploads = $file;        
+        }else{
+            $requestData = $request->all();
         }
      
         AdminTasks::create($requestData);
@@ -133,7 +133,7 @@ class AdminTasksController extends Controller
             'usercredits' => '',
             'guidecredits' => '',
             'reviewercredits' => '',
-            'uploads' => '',
+           
         ]);
 
 

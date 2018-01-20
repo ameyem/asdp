@@ -10,7 +10,7 @@
                 <h2> Show task</h2>
             </div>
             <div class="pull-right">
-                <a class="btn btn-primary" href="{{ route('Profile.index') }}"> Back</a>
+                <a class="btn btn-primary" href="{{ route('ViewProfile.index') }}"> Back</a>
             </div>
         </div>
     </div>
@@ -20,63 +20,63 @@
     <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>Name:</strong>
-                {!! $profiles->name !!}
+                {!! $users->name !!}
     
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>Email:</strong>
-                {!! $profiles->email !!}                
+                {!! $users->email !!}                
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>Mobile Number:</strong>
-                {!! $profiles->number !!}
+                {!! $users->number !!}
                 
             </div>
         </div>
        <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>Date Of Birth:</strong>
-                {!! $profiles->dob !!}
+                {!! $users->dob !!}
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>Qualification:</strong>
-                {!!$profiles->qualification  !!}
+                {!!$users->qualification  !!}
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>Specialization:</strong>
-                {!!$profiles->specialization  !!}
+                {!!$users->specialization  !!}
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>Marks:</strong>
-                {!!$profiles->marks  !!}
+                {!!$users->marks  !!}
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>Passed Out:</strong>
-                {!!$profiles->passout  !!}
+                {!!$users->passout  !!}
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>College Address:</strong>
-                {!!$profiles->collegeaddress  !!}
+                {!!$users->collegeaddress  !!}
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>Home Address:</strong>
-                {!!$profiles->homeaddress  !!}
+                {!!$users->homeaddress  !!}
             </div>
         </div>
 

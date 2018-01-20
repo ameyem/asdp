@@ -17,8 +17,8 @@ class ProfileController extends Controller
      */
     public function index(Request $request)
     {
-        $profiles = Profile::orderBy('id','DESC')->paginate(5);
-        return view('Profile.index',compact('profiles'))
+        $users = User::orderBy('id','DESC')->paginate(5);
+        return view('Profile.index',compact('users'))
             ->with('i', ($request->input('page', 1) - 1) * 5);
             
     }
@@ -45,18 +45,18 @@ class ProfileController extends Controller
         $this->validate($request, [
             'name' => '',
             'email' => '',
-            'number' => 'required',
-            'dob' => 'required',
-            'qualification' => 'required',
-            'specialization' => 'required',
-            'marks' => 'required',
-            'passout' => 'required',
-            'collegeaddress' => 'required',
-            'homeaddress' => 'required',
+            'number' => '',
+            'dob' => '',
+            'qualification' => '',
+            'specialization' => '',
+            'marks' => '',
+            'passout' => '',
+            'collegeaddress' => '',
+            'homeaddress' => '',
         ]);
 
 
-        Profile::create($request->all());
+        User::create($request->all());
         return redirect()->route('Profile.index')
                         ->with('success','Profile created successfully');
     }
@@ -70,8 +70,8 @@ class ProfileController extends Controller
      */
     public function show($id)
     {
-        $profiles = Profile::find($id);
-        return view('Profile.show',compact('profiles'));
+        $users = User::find($id);
+        return view('Profile.show',compact('users'));
     }
 
     /**
@@ -82,8 +82,8 @@ class ProfileController extends Controller
      */
     public function edit($id)
     {
-        $profiles = Profile::find($id);
-        return view('Profile.edit',compact('profiles'));
+        $users = User::find($id);
+        return view('Profile.edit',compact('users'));
     }
 
     /**
@@ -109,7 +109,7 @@ class ProfileController extends Controller
         ]);
 
 
-        Profile::find($id)->update($request->all());
+        User::find($id)->update($request->all());
         return redirect()->route('Profile.index')
                         ->with('success','Profile updated successfully');
     }
@@ -122,7 +122,7 @@ class ProfileController extends Controller
      */
     public function destroy($id)
     {
-        Profile::find($id)->delete();
+        User::find($id)->delete();
         return redirect()->route('Profile.index')
                         ->with('success','Profile deleted successfully');
     }
