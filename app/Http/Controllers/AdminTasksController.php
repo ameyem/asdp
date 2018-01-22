@@ -133,8 +133,26 @@ class AdminTasksController extends Controller
             'usercredits' => '',
             'guidecredits' => '',
             'reviewercredits' => '',
+            'uploads' => '',
            
         ]);
+        $product = new AdminTasks($request->file());
+     
+        if($file = $request->hasFile('uploads') && $request->file('uploads')->isValid()) {
+           
+           $file = $request->file('uploads');           
+           $fileName = $file->getClientOriginalName();
+           $destinationPath = public_path().'/uploads/';
+           $file->move($destinationPath,$fileName);
+
+           $file = public_path().'/uploads/'.$fileName;
+
+            $requestData = $request->all();
+            $requestData['uploads'] = $file;
+            // $product->uploads = $file;        
+        }else{
+            $requestData = $request->all();
+        }
 
 
         AdminTasks::find($id)->update($request->all());

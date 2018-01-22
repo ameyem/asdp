@@ -12,6 +12,8 @@ $this->patch('change_password', 'Auth\ChangePasswordController@changePassword')-
 
 // Tasks Management Routes... 
 
+
+
 Route::resource('AdminTasks','AdminTasksController');
 Route::resource('AssignTasks','AssignTasksController');
 Route::resource('Profile','ProfileController');

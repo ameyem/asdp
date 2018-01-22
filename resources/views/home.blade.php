@@ -5,7 +5,7 @@
  <h1>{{Auth::user()->id }}</h1>
 <h2>{{Auth::user()->email }}</h2>  -->
 
-    <div class="row">
+<div class="row">
         <div class="col-md-10">
             <div class="panel panel-default">
                 <div class="panel-heading">Welcome to Work Environment</div>
