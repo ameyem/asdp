@@ -31,6 +31,8 @@ class UserTasksController extends Controller
                             ->join('admin_tasks','assign_tasks.task_id', '=', 'admin_tasks.id')
                             ->select('assign_tasks.*','admin_tasks.worktitle','admin_tasks.workdescription','admin_tasks.whatinitforme','admin_tasks.usercredits','admin_tasks.uploads')
                             ->where('assign_tasks.user_id',Auth::user()->id)->get();
+        // $user_tasks = DB::table('user_tasks')
+
                                 
                             return view('UserTasks.index',compact('assign_tasks'));
                                 
@@ -99,10 +101,11 @@ class UserTasksController extends Controller
     public function show($id)
     {
         $user_tasks = DB::table('user_tasks')
-        ->join('assign_tasks','user_tasks.assigntask_id', '=', 'assign_tasks.id')
-        ->where( 'assign_tasks.id',$id)
-        ->select('user_tasks.*')->get();
+        ->join('assign_tasks','user_tasks.assigntask_id', '=', 'assign_tasks.id')   
+        ->select('user_tasks.*')
+        ->where( 'assign_tasks.id',$id)->get();
         $assign_tasks = AssignTasks::find($id);
+        
         // echo($id);
         return view('UserTasks.show',compact('user_tasks','assign_tasks',$id));
     
