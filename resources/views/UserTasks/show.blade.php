@@ -8,7 +8,7 @@
                 <h2>Send Your Task</h2>
             </div>
             <div class="pull-right">
-                <a class="btn btn-primary" href="{{ route('UserTasks.index') }}"> Back</a>
+                <!-- <a class="btn btn-primary" href="{{ route('UserTasks.index') }}"> Back</a> -->
             </div>
         </div>
     </div>
@@ -33,7 +33,7 @@
                         <td>Nill</td>
                         @endif
                         
-                        <td>{{ $task->date }}</td>
+                        <td>{{ $task->created_at }}</td>
                     </tr>
                     @endforeach
                 </table>

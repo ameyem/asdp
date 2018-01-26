@@ -10,7 +10,6 @@ $this->post('logout', 'Auth\LoginController@logout')->name('auth.logout');
 $this->get('change_password', 'Auth\ChangePasswordController@showChangePasswordForm')->name('auth.change_password');
 $this->patch('change_password', 'Auth\ChangePasswordController@changePassword')->name('auth.change_password');
 
-// Tasks Management Routes... 
 
 
 
@@ -18,8 +17,13 @@ Route::resource('AdminTasks','AdminTasksController');
 Route::resource('AssignTasks','AssignTasksController');
 Route::resource('Profile','ProfileController');
 Route::resource('viewprofile','ViewprofileController');
+Route::resource('TaskMigrate','TaskMigrateController');
 Route::resource('UserTasks','UserTasksController');
 Route::resource('Conversations','ConversationsController');
+Route::resource('ConversationsMigrate','ConversationsMigrateController');
+
+
+
 
 
 

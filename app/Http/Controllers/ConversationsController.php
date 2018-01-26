@@ -25,7 +25,7 @@ class ConversationsController extends Controller
         $assign_tasks = DB::table('assign_tasks')
         ->join('admin_tasks','assign_tasks.task_id', '=', 'admin_tasks.id')
         ->select('assign_tasks.*','admin_tasks.worktitle','admin_tasks.workdescription','admin_tasks.whatinitforme','admin_tasks.usercredits','admin_tasks.uploads')
-        ->get();
+        ->orderBy('assign_tasks.id','desc')->get();
             
         return view('Conversations.index',compact('assign_tasks'));
     }
@@ -51,7 +51,7 @@ class ConversationsController extends Controller
         $this->validate($request, [
             'assigntask_id' => 'required',
             'request_for' => 'required',
-            'message' => 'required',
+            'message' => '',
             'uploads' => '',
         ]);
 

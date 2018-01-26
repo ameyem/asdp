@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\UserTasks;
 use App\AdminTasks;
 use App\AssignTasks;
+use App\Index1;
 use DB;
 use Auth;
 use App\User;
@@ -20,26 +21,18 @@ use Illuminate\Foundation\Testing\WithoutMiddleware;
 
 class UserTasksController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index(Request $request)
-    { 
+    {
+        
         $assign_tasks = DB::table('assign_tasks')
-                            ->join('admin_tasks','assign_tasks.task_id', '=', 'admin_tasks.id')
-                            ->select('assign_tasks.*','admin_tasks.worktitle','admin_tasks.workdescription','admin_tasks.whatinitforme','admin_tasks.usercredits','admin_tasks.uploads')
-                            ->where('assign_tasks.user_id',Auth::user()->id)->get();
-        // $user_tasks = DB::table('user_tasks')
+        ->join('admin_tasks','assign_tasks.task_id', '=', 'admin_tasks.id')
+        ->select('assign_tasks.*','admin_tasks.worktitle','admin_tasks.workdescription','admin_tasks.whatinitforme','admin_tasks.usercredits','admin_tasks.uploads')
+        ->where('assign_tasks.user_id',Auth::user()->id)->orderBy('assign_tasks.id','desc')->get();
 
-                                
-                            return view('UserTasks.index',compact('assign_tasks'));
-                                
+            
+        return view('UserTasks.index',compact('assign_tasks'));
     }
-
     
-
     /**
      * Show the form for creating a new resource.
      *
@@ -63,7 +56,7 @@ class UserTasksController extends Controller
         $this->validate($request, [
             'assigntask_id' => 'required',
             'request_for' => 'required',
-            'message' => 'required',
+            'message' => '',
             'uploads' => '',
         ]);
 
@@ -117,9 +110,10 @@ class UserTasksController extends Controller
      * @param  \App\UserTasks  $userTasks
      * @return \Illuminate\Http\Response
      */
-    public function edit(UserTasks $userTasks)
+    public function edit(Request $request)
     {
-        //
+         // 
+        
     }
 
     /**

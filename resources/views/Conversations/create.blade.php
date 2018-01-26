@@ -69,10 +69,10 @@
         <div class="form-group">
             <strong>Request For:</strong>
                 {!! Form::select('request_for', [
-                '1' => ['Review' => 'Review'],
-                '2' => ['Redo' => 'Redo'],
-                '3' => ['Drop' => 'Drop'],
-                '4' => ['Completed' => 'Completed']],
+                '1' => ['review' => 'review'],
+                '2' => ['redo' => 'redo'],
+                '3' => ['drop' => 'drop'],
+                '4' => ['approved' => 'approved']],
                 array('class' => 'form-control')) !!}
         </div>
     </div>

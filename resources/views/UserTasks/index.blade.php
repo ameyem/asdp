@@ -14,10 +14,12 @@
     </div>
     <div class="pull-left">
         <h1>
-        <a class="btn btn-primary btn-lg" href="">Work to get Started</a>
-        <a class="btn btn-info btn-lg" href="">Work For Reviewed</a>
-        <a class="btn btn-warning btn-lg" href="">Work to be Refined</a>
-        <a class="btn btn-success btn-lg" href="">Work Completed</a>
+        <a class="btn btn btn-lg" value='' href="{{ route('UserTasks.index')}}">All Tasks</a>
+        <a class="btn btn-primary btn-lg" href="{{ route('TaskMigrate.index') }}">Work to get Started</a>
+        <a class="btn btn-info btn-lg" value='review' href="{{ route('TaskMigrate.show','review') }}">Work For Reviewed</a>
+        <a class="btn btn-warning btn-lg" value='redo' href="{{ route('TaskMigrate.show','redo') }}">Work to be Refined</a>
+        <a class="btn btn-success btn-lg" value='approved' href="{{ route('TaskMigrate.show','approved') }}">Work Completed</a>
+        <a class="btn btn-danger btn-lg" value='drop' href="{{ route('TaskMigrate.show','drop') }}">Work Dropped</a>
         </h1>
     </div>
 
@@ -40,6 +42,8 @@
                         <th>Target Date</th>
                         <th>File Link</th>                    
                         <th width="280px">Action</th>
+                        
+   
                     </tr>
                     @foreach ($assign_tasks as $task)
                     
@@ -64,6 +68,8 @@
                             <!-- <a class="btn btn-primary" href="{{ route('UserTasks.create',9) }}">View Work</a> -->
                              <a class="btn btn-info btn-xs" href="{{ route('UserTasks.show',$task->id) }}">View Work</a>
                         </td>
+                        
+                       
 
                     </tr>
                     @endforeach
