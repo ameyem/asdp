@@ -1,4 +1,4 @@
-## Laravel Roles Permissions Admin - Spatie version
+## Laravel Roles Permissions Admin -
 
 This is a Laravel 5.4 adminpanel starter project with roles-permissions management based on [Spatie Laravel-permission package](https://github.com/spatie/laravel-permission), [AdminLTE theme](https://adminlte.io/) and [Datatables.net](https://datatables.net).
 
@@ -6,7 +6,7 @@ We've also created almost identical project based on Joseph Silber's Bouncer pac
 
 Part of this project was generated automatically by [QuickAdminPanel system](https://quickadminpanel.com/).
 
-![Larancer screenshot](http://webcoderpro.com/roles-permissions-manager-spatie.png)
+
 
 ## Usage
 
