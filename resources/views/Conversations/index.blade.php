@@ -1,35 +1,36 @@
 @extends('layouts.app')
 @section('content')
-
-<div class="row">
-        <div class="col-lg-12 margin-tb">
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12">
             <div class="pull-left">
-                <h2>Hello, Welcome to Conversations</h2>
+                <h2 style="color:#2471A3">Hello, Welcome to Conversations</h2>
             </div>
              <div class="pull-right">
                 <a class="btn btn-success" href="{{ url('/') }}">Back</a>
-            </div> 
+            </div>
+        </div> 
+        <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12">
+            <div class="pull-left">
+                <h1>
+                    <!-- <a class="btn btn btn-lg" value='' href="{{ route('Conversations.index') }}">All Tasks</a> -->
+                    <a class="btn btn-primary btn-lg" href="{{ route('ConversationsMigrate.index') }}">Work to get Started</a>
+                    <a class="btn btn-info btn-lg" value='review' href="{{ route('ConversationsMigrate.show','review') }}">Work For Reviewed</a>
+                    <a class="btn btn-warning btn-lg" value='redo' href="{{ route('ConversationsMigrate.show','redo') }}">Work to be Refined</a>
+                    <a class="btn btn-success btn-lg" value='approved' href="{{ route('ConversationsMigrate.show','approved') }}">Work Completed</a>
+                    <a class="btn btn-danger btn-lg" value='drop' href="{{ route('ConversationsMigrate.show','drop') }}">Work Dropped</a>
+                </h1>
+            </div>
         </div>
-        <div class="pull-left">
-        <h1>
-        <a class="btn btn btn-lg" value='' href="{{ route('Conversations.index') }}">All Tasks</a>
-        <a class="btn btn-primary btn-lg" href="{{ route('ConversationsMigrate.index') }}">Work to get Started</a>
-        <a class="btn btn-info btn-lg" value='review' href="{{ route('ConversationsMigrate.show','review') }}">Work For Reviewed</a>
-        <a class="btn btn-warning btn-lg" value='redo' href="{{ route('ConversationsMigrate.show','redo') }}">Work to be Refined</a>
-        <a class="btn btn-success btn-lg" value='approved' href="{{ route('ConversationsMigrate.show','approved') }}">Work Completed</a>
-        <a class="btn btn-danger btn-lg" value='drop' href="{{ route('ConversationsMigrate.show','drop') }}">Work Dropped</a>
-        </h1>
     </div>
-    </div>
+</div>
 
 
 <div class="container-fluid">
-        <div class="row">
-            <div class="col-sm-12">
-
-
-
-                <table class="table table-bordered">
+    <div class="row">
+        <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12">
+        <div class="table-responsive">
+            <table class="table table-striped">
                     <tr>
                         <th>User ID</th>
                         <th>Assign Task Id</th> 
@@ -71,9 +72,10 @@
                     </tr>
                     @endforeach
                 </table>
-                </div>
             </div>
         </div>
+    </div>
+</div>
 
 
 

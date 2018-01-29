@@ -1,9 +1,9 @@
 @extends('layouts.app')
 @section('content')
 
-   
-        <div class="row">
-        <div class="col-lg-12 margin-tb">
+<div class="container-fluid">   
+    <div class="row">
+        <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12">
             <div class="pull-left">
                 <h2 style="color:#2471A3">Hello, Welcome to User Tasks</h2>
             </div>
@@ -11,24 +11,29 @@
                 <a class="btn btn-success" href="{{ url('/') }}">Back</a>
             </div>
         </div>
+    
+        <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12">
+            <div class="pull-left">
+                <h1>
+                <!-- <a class="btn btn btn-lg" value='' href="{{ route('UserTasks.index')}}">All Tasks</a> -->
+                <a class="btn btn-primary btn-lg" href="{{ route('TaskMigrate.index') }}">Work to get Started</a>
+                <a class="btn btn-info btn-lg" value='review' href="{{ route('TaskMigrate.show','review') }}">Work For Reviewed</a>
+                <a class="btn btn-warning btn-lg" value='redo' href="{{ route('TaskMigrate.show','redo') }}">Work to be Refined</a>
+                <a class="btn btn-success btn-lg" value='approved' href="{{ route('TaskMigrate.show','approved') }}">Work Completed</a>
+                <a class="btn btn-danger btn-lg" value='drop' href="{{ route('TaskMigrate.show','drop') }}">Work Dropped</a>
+                </h1>
+            </div>
+        </div>
     </div>
-    <div class="pull-left">
-        <h1>
-        <a class="btn btn btn-lg" value='' href="{{ route('UserTasks.index') }}">All Tasks</a>
-        <a class="btn btn-primary btn-lg" href="{{ route('TaskMigrate.index') }}">Work to get Started</a>
-        <a class="btn btn-info btn-lg" value='review' href="{{ route('TaskMigrate.show','review') }}">Work For Reviewed</a>
-        <a class="btn btn-warning btn-lg" value='redo' href="{{ route('TaskMigrate.show','redo') }}">Work to be Refined</a>
-        <a class="btn btn-success btn-lg" value='approved' href="{{ route('TaskMigrate.show','approved') }}">Work Completed</a>
-        <a class="btn btn-danger btn-lg" value='drop' href="{{ route('TaskMigrate.show','drop') }}">Work Dropped</a>
-        </h1>
-    </div>
+</div>
 
 
 
-     <div class="container-fluid">
-        <div class="row">
-            <div class="col-sm-12">
-                <table class="table table-bordered">
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="table-responsive">
+                <table class="table table-striped">
                     <tr style="color:#2471A3">
                         <th>User ID</th>
                         <th>Assign Task Id</th> 
@@ -68,14 +73,12 @@
                             <!-- <a class="btn btn-primary" href="{{ route('UserTasks.create',9) }}">View Work</a> -->
                              <a class="btn btn-info btn-xs" href="{{ route('UserTasks.show',$task->id) }}">View Work</a>
                         </td>
-                        
-                       
-
                     </tr>
                     @endforeach
                 </table>
-                </div>
             </div>
         </div>
+    </div>
+</div>
                  
-            @endsection
+@endsection

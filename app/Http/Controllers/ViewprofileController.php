@@ -18,7 +18,6 @@ class ViewprofileController extends Controller
      */
     public function index(Request $request)
     {  
-        // $users = User::find(Auth::user()->id);
         $users = User::find(Auth::user()->id);
         return view('Viewprofile.index',compact('users'));
               

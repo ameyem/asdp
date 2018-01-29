@@ -22,7 +22,7 @@ class AdminTasksController extends Controller
     {
         $admin_tasks = AdminTasks::orderBy('id','DESC')->paginate(15);
         return view('AdminTasks.index',compact('admin_tasks','profilepic'))
-            ->with('i', ($request->input('page', 1) - 1) * 5);
+            ->with('i', ($request->input('page', 1) - 1) * 15);
     }
 
 

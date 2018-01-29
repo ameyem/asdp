@@ -19,7 +19,7 @@ class AssignTasksController extends Controller
     {
         $assign_tasks = AssignTasks::orderBy('id','DESC')->paginate(15);
         return view('AssignTasks.index',compact('assign_tasks'))
-            ->with('i', ($request->input('page', 1) - 1) * 5);
+            ->with('i', ($request->input('page', 1) - 1) * 15);
     }
 
     /**

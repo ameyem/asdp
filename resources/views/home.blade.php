@@ -1,20 +1,24 @@
+<!-- @inject('request', 'Illuminate\Http\Request') -->
 @extends('layouts.app')
-
 @section('content')
 <!--<h1>{{Auth::user()->name }}</h1>
- <h1>{{Auth::user()->id }}</h1>
+<h1>{{Auth::user()->id }}</h1>
 <h2>{{Auth::user()->email }}</h2>  -->
 
-<div class="row">
+
+<div class="container-fluid">
+    <div class="row">
         <div class="col-md-10">
             <div class="panel panel-default">
-                <div class="panel-heading">Welcome to Work Environment</div>
+                <div style="color:#2471A3" class="panel-heading">Welcome to Work Environment</div>
 
                 <div class="panel-body">
-                    
+                   
+                @if(Auth::check())
+                @if(Auth::user()->id <= 3) 
+                  {{csrf_field()}} 
+                   
                     <!--quick info section -->
-                    
-                    
                         <div class="row">
                             <div class="col-lg-3">
                                 <div class="panel panel-primary text-center no-boder">
@@ -74,9 +78,10 @@
                     
 
                     <!-- Users Tasks info sectiopn -->
+                    @else
 
 
-
+                 
                     <div class="row">
                             <div class="col-lg-3">
                                 <div class="panel panel-primary text-center no-boder">
@@ -90,7 +95,9 @@
                                         </span>
                                     </div>
                                 </div>
-                            </div>
+                                <!-- <h1>{{ route('UserTasks.index') }}</h1>
+                                <h1>{{ route('TaskMigrate.index') }}</h1>                           -->
+                              </div>
                             <!-- <div class="col-lg-3">
                                 <div class="panel panel-primary text-center no-boder">
                                     <div class="alert alert-success">
@@ -129,6 +136,11 @@
                                 </div>
                             </div>-->
                         </div> 
+                        @endif
+
+             
+
+                @endif 
 
 
 
@@ -138,4 +150,5 @@
             </div>
         </div>
     </div>
+</div>
 @endsection

@@ -1,19 +1,17 @@
 @extends('layouts.app')
-
-
 @section('content')
-
-
+<div class="container-fluid">
     <div class="row">
-        <div class="col-lg-12 margin-tb">
+        <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12">
             <div class="pull-left">
-                <h2>Create New Profile</h2>
+                <h2 style="color:#2471A3">Create New Profile</h2>
             </div>
             <div class="pull-right">
                 <a class="btn btn-primary" href="{{ route('Profile.index') }}"> Back</a>
             </div>
         </div>
     </div>
+</div>
 
 
     @if (count($errors) > 0)

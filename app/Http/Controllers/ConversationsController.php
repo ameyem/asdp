@@ -27,7 +27,7 @@ class ConversationsController extends Controller
         ->select('assign_tasks.*','admin_tasks.worktitle','admin_tasks.workdescription','admin_tasks.whatinitforme','admin_tasks.usercredits','admin_tasks.uploads')
         ->orderBy('assign_tasks.id','desc')->get();
             
-        return view('Conversations.index',compact('assign_tasks'));
+        return view('ConversationsMigrate.index',compact('assign_tasks'));
     }
 
     /**

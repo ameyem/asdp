@@ -24,13 +24,25 @@ class UserTasksController extends Controller
     public function index(Request $request)
     {
         
+        // $assign_tasks = DB::table('assign_tasks')
+        // ->join('admin_tasks','assign_tasks.task_id', '=', 'admin_tasks.id')
+        // ->select('assign_tasks.*','admin_tasks.worktitle','admin_tasks.workdescription','admin_tasks.whatinitforme','admin_tasks.usercredits','admin_tasks.uploads')
+        // ->where('assign_tasks.user_id',Auth::user()->id)->orderBy('assign_tasks.id','desc')->get();
         $assign_tasks = DB::table('assign_tasks')
-        ->join('admin_tasks','assign_tasks.task_id', '=', 'admin_tasks.id')
-        ->select('assign_tasks.*','admin_tasks.worktitle','admin_tasks.workdescription','admin_tasks.whatinitforme','admin_tasks.usercredits','admin_tasks.uploads')
-        ->where('assign_tasks.user_id',Auth::user()->id)->orderBy('assign_tasks.id','desc')->get();
+                            ->where('assign_tasks.user_id',Auth::user()->id)
+                           ->join('admin_tasks','assign_tasks.task_id', '=', 'admin_tasks.id')                          
+                           
+                           ->leftJoin('user_tasks','user_tasks.assigntask_id','assign_tasks.id')
+                           ->whereNull('user_tasks.id')
+                           ->select('assign_tasks.*'
+                           ,'admin_tasks.worktitle','admin_tasks.workdescription',
+                           'admin_tasks.whatinitforme','admin_tasks.usercredits','admin_tasks.uploads',
+                           'user_tasks.request_for')->latest('user_tasks.request_for')
+                           ->orderBy('assign_tasks.id','desc')
+                           ->get();
 
             
-        return view('UserTasks.index',compact('assign_tasks'));
+        return view('TaskMigrate.index',compact('assign_tasks'));
     }
     
     /**
@@ -98,6 +110,21 @@ class UserTasksController extends Controller
         ->select('user_tasks.*')
         ->where( 'assign_tasks.id',$id)->get();
         $assign_tasks = AssignTasks::find($id);
+        // $a = 'approved';
+        // $b = 'drop';
+        // $approved = [];
+        // $drop = [];
+        // foreach ($user_tasks as $i){
+        //     if($i == $a){
+        //         $approved = $a;
+        //     }
+        // }foreach ($user_tasks as $j){
+        //     if($j == $b)
+        //     {
+        //         $drop = $b;
+        //     }
+        // }
+        // ,$approved,$drop
         
         // echo($id);
         return view('UserTasks.show',compact('user_tasks','assign_tasks',$id));
