@@ -2,22 +2,36 @@
 
 namespace App\Http\Controllers;
 
-use App\iewprofile;
+use App\viewprofile;
 use App\profile;
 use App\User;
 use Auth;
 use DB;
+use App\Http\Controllers\Lava;
+use App\Http\Controllers\View;
+use App\Http\Controllers\ChartManager;
+// use Khill\Lavacharts\Support\JavascriptDate as Date;
 use Illuminate\Http\Request;
 
-class ViewprofileController extends Controller
+
+
+
+
+
+
+
+class ViewprofileController extends Controller 
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
+
+    
     public function index(Request $request)
     {  
+        
         $users = User::find(Auth::user()->id);
         return view('Viewprofile.index',compact('users'));
               
@@ -124,3 +138,5 @@ class ViewprofileController extends Controller
         //
     }
 }
+
+

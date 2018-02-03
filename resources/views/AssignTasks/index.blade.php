@@ -35,6 +35,7 @@
                         <th>Assigned Date</th>
                         <th>Completion Date</th>
                         <th width="280px">Action</th> 
+                        <th>Status</th>
                     </tr>
                     @foreach ($assign_tasks as $key => $task)
                         <tr>
@@ -43,8 +44,8 @@
                             <td>{{ $task->user_id }}</td>
                             <td>{{ $task->guide_id }}</td>
                             <td>{{ $task->reviewer_id}}</td>
-                            <td>{{ $task->assigned_date}}</td>
-                            <td>{{ $task->completion_date}}</td>
+                            <td>{{ $task->created_at}}</td>
+                            <td>{{ $task->updated_at}}</td>
                             <td>
                                 <!-- <a class="btn btn-info" href="{{ route('AssignTasks.show',$task->id) }}">Show</a> -->
                                 <!-- <a class="btn btn-primary btn-xs" href="{{ route('AssignTasks.edit',$task->id) }}">Edit</a> -->
@@ -52,6 +53,7 @@
                                 {!! Form::submit('Delete', ['class' => 'btn btn-danger']) !!}
                                 {!! Form::close() !!} -->
                             </td>
+                            <td>{{ $task->status}}</td>
                         </tr>
                     @endforeach
                 </table>

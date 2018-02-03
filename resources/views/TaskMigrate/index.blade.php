@@ -44,7 +44,7 @@
                         <th>Set By</th>
                         <th>Review By</th>
                         <th>Assigned Date</th>
-                        <th>Target Date</th>
+                        <th>Updated Date</th>
                         <th>File Link</th>                    
                         <th width="280px">Action</th>
                         <th>Status</th>
@@ -62,8 +62,8 @@
                         <td>{{ $task->usercredits}}</td>
                         <td>{{ $task->guide_id }}</td>
                         <td>{{ $task->reviewer_id}}</td>
-                        <td>{{ $task->assigned_date}}</td>
-                        <td>{{ $task->completion_date}}</td>
+                        <td>{{ $task->created_at}}</td>
+                        <td>{{ $task->updated_at}}</td>
                         @if ($task->uploads)
                         <td><a class="btn btn-default btn-xs" href="{{ $task->uploads }}" download="{{ $task->uploads }}">Download</a></td>
                         @else

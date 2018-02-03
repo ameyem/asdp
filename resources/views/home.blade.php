@@ -1,4 +1,5 @@
 <!-- @inject('request', 'Illuminate\Http\Request') -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 @extends('layouts.app')
 @section('content')
 <!--<h1>{{Auth::user()->name }}</h1>
@@ -42,7 +43,7 @@
                                         <h3>Assign Tasks</h3>
                                     </div></a>
                                     <div class="panel-footer">
-                                        <span class="panel-eyecandy-title">Total Users:
+                                        <span class="panel-eyecandy-title">Total Assigned Tasks:
                                         </span>
                                     </div>
                                 </div>
@@ -50,12 +51,12 @@
                             <div class="col-lg-3">
                                 <div class="panel panel-primary text-center no-boder">
                                 <a style="text-decoration:none;" href="{{ route('Profile.index') }}">
-                                    <div class="alert alert-success">
+                                    <div class="alert alert-warning">
                                         <i class="fa fa fa-floppy-o fa-3x"></i>
-                                        <h3>Profile</h3>
+                                        <h3>Profiles</h3>
                                     </div></a>
                                     <div class="panel-footer">
-                                        <span class="panel-eyecandy-title">New Data Uploaded
+                                        <span class="panel-eyecandy-title">Total Users:  
                                         </span>
                                     </div>
                                 </div>
@@ -63,17 +64,33 @@
                             <div class="col-lg-3">
                                 <div class="panel panel-primary text-center no-boder">
                                 <a style="text-decoration:none;" href="{{ route('TaskMigrate.index') }}">
-                                    <div class="alert alert-info">
+                                    <div class="alert alert-danger">
                                         <i class="fa fa-users fa-3x"></i>
-                                        <h3>Conversations</h3>
+                                        <h3>Users Tasks</h3>
                                     </div></a>
                                     <div class="panel-footer">
-                                        <span class="panel-eyecandy-title">New Data Uploaded
+                                        <span class="panel-eyecandy-title">Total Tasks Info:  
                                         </span>
                                     </div>
                                 </div>
                             </div>
                         </div>
+                    <!-- <div class="row">
+                        <div class="col-lg-3">
+                            <div class="panel panel-primary text-center no-boder">
+                                <a style="text-decoration:none;" href="{{ route('Charts.index') }}">
+                                    <div class="alert alert-success">
+                                        <i class="fa fa-cogs fa-3x"></i>
+                                       
+                                        <h3>Charts</h3>
+                                    </div></a>
+                                    <div class="panel-footer">
+                                        <span class="panel-eyecandy-title">Total Users:
+                                        </span>
+                                    </div>
+                            </div>
+                        </div>
+                    </div> -->
                     <!--end quick info section -->
                     
 
@@ -95,23 +112,22 @@
                                         </span>
                                     </div>
                                 </div>
-                                <!-- <h1>{{ route('UserTasks.index') }}</h1>
-                                <h1>{{ route('TaskMigrate.index') }}</h1>                           -->
                               </div>
-                            <!-- <div class="col-lg-3">
+                             <!-- <div class="col-lg-3">
                                 <div class="panel panel-primary text-center no-boder">
+                                <a style="text-decoration:none;" href="{{ route('Charts.index') }}">
                                     <div class="alert alert-success">
                                         <i class="fa fa-cogs fa-3x"></i>
                                        
-                                        <h3><a style="text-decoration:none;" href="{{ route('AssignTasks.index') }}">Assign Tasks</a></h3>
-                                    </div>
+                                        <h3>Charts</h3>
+                                    </div></a>
                                     <div class="panel-footer">
                                         <span class="panel-eyecandy-title">Total Users:
                                         </span>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="col-lg-3">
+                            </div> -->
+                            <!--<div class="col-lg-3">
                                 <div class="panel panel-primary text-center no-boder">
                                     <div class="alert alert-info">
                                         <i class="fa fa fa-floppy-o fa-3x"></i>
@@ -151,4 +167,23 @@
         </div>
     </div>
 </div>
+{!! Charts::assets() !!}
+<div class="app">
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-4">
+            {!! $chart->html() !!}
+        </div>
+        <div class="col-md-4">
+            {!! $chart1->html() !!}
+        </div>
+        
+    </div>
+</div>
+    
+</div>
+<!-- End Of Main Application -->
+{!! Charts::scripts() !!}
+{!! $chart->script() !!}
+{!! $chart1->script() !!}
 @endsection

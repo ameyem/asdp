@@ -48,8 +48,8 @@ class AssignTasksController extends Controller
             'user_id' => 'required',
             'guide_id' => 'required',
             'reviewer_id' => 'required',
-            'assigned_date' => 'required',
-            'completion_date' => 'required',
+            // 'assigned_date' => 'required',
+            // 'completion_date' => 'required',
         ]);
 
         AssignTasks::create($request->all());
@@ -101,8 +101,8 @@ class AssignTasksController extends Controller
             'user_id' => '',
             'guide_id' => '',
             'reviewer_id' => '',
-            'assigned_date' => '',
-            'completion_date' => '',
+            // 'assigned_date' => '',
+            // 'completion_date' => '',
         ]);
 
         

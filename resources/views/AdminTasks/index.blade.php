@@ -11,6 +11,24 @@
                 <a class="btn btn-success" href="{{ route('AdminTasks.create') }}"> Create New Task</a>
             </div>
         </div>
+        <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12">
+            <div class="pull-left">
+                <h1>
+                <a class="btn btn btn-lg" href="{{ route('AdminTasks.show','General')}}">General</a>
+                <a class="btn btn btn-lg" href="{{ route('AdminTasks.show','HTML') }}">HTML</a>
+                <a class="btn btn btn-lg" href="{{ route('AdminTasks.show','CSS') }}">CSS</a>
+                <a class="btn btn btn-lg" href="{{ route('AdminTasks.show','JAVASCRIPT') }}">JAVASCRIPT</a>
+                <a class="btn btn btn-lg" href="{{ route('AdminTasks.show','PHP') }}">PHP</a>
+                <a class="btn btn btn-lg" href="{{ route('AdminTasks.show','JAVA') }}"> JAVA</a>
+                <a class="btn btn btn-lg" href="{{ route('AdminTasks.show','C')}}">C</a>
+                <a class="btn btn btn-lg" href="{{ route('AdminTasks.show','C++') }}">C++</a>
+                <a class="btn btn btn-lg" href="{{ route('AdminTasks.show','PYTHON') }}">PYTHON</a>
+                <a class="btn btn btn-lg" href="{{ route('AdminTasks.show','Android') }}">Android</a>
+                <a class="btn btn btn-lg" href="{{ route('AdminTasks.show','Embedded') }}">Embedded</a>
+                <a class="btn btn btn-lg" href="{{ route('AdminTasks.show','concept') }}"> concept</a>
+                </h1>
+            </div>
+        </div>
     </div>
 </div>
 
@@ -38,7 +56,7 @@
                         <th>Guide</th>
                         <th>Reviewer</th>           
                         <th>Updated_At</th>
-                        <th>Created_At</th>
+                        <!-- <th>Created_At</th> -->
                         
                         <th width="280px">Action</th>
                         <th>File Link<th>
@@ -55,9 +73,9 @@
                         <td>{{ $task->guidecredits}}</td>
                         <td>{{ $task->reviewercredits}}</td>        
                         <td>{{ $task->updated_at}}</td>
-                        <td>{{ $task->created_at}}</td>
+                        <!-- <td>{{ $task->created_at}}</td> -->
                         <td>
-                            <a class="btn btn-info btn-xs" href="{{ route('AdminTasks.show',$task->id) }}">Show</a>
+                            <!-- <a class="btn btn-info btn-xs" href="{{ route('AdminTasks.show',$task->id) }}">Show</a> -->
                             <a class="btn btn-primary btn-xs" href="{{ route('AdminTasks.edit',$task->id) }}">Edit</a>
                             <a class="btn btn-default btn-xs" href="{{ route('AssignTasks.show',$task->id) }}">Assign Task</a>
 

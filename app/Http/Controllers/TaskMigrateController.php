@@ -70,6 +70,8 @@ class TaskMigrateController extends Controller
             'request_for' => 'required',
             'message' => '',
             'uploads' => '',
+            'created_at' => '',
+
         ]);
 
         $product = new UserTasks($request->file());
@@ -94,8 +96,12 @@ class TaskMigrateController extends Controller
 
         DB::table('assign_tasks')->where('id', $requestData['assigntask_id'])
         ->update(['status' => $requestData['request_for']]);
-     
+
         UserTasks::create($requestData);
+
+        DB::table('assign_tasks')->where('id', $requestData['assigntask_id'])
+        ->update(['updated_at' => date('Y-m-d H:i:s')]);
+
         return redirect()->route('TaskMigrate.index')
                         ->with('success','AdminTasks created successfully');
     }

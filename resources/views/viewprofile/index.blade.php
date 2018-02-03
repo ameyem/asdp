@@ -1,5 +1,13 @@
 @extends('layouts.app')
 @section('content')
+
+
+
+
+
+
+
+    
 <div class="pull-right">
       <a class="btn btn-success" href="{{ url('/') }}">Back</a>
                 

@@ -81,7 +81,7 @@
       
 
 
-        <div class="col-xs-12 col-sm-12 col-md-12">
+        <!-- <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group" class="form-control">
                 <strong>Assigned Date:</strong>
                 {!! Form::text('assigned_date', null, array('placeholder' => 'task assigned date','class' => 'form-control')) !!}
@@ -94,7 +94,7 @@
                 {!! Form::text('completion_date', null, array('placeholder' => 'Completion Date','class' => 'form-control')) !!}
                
             </div>
-        </div>
+        </div> -->
         
 
 

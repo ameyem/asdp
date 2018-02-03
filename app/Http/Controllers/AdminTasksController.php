@@ -2,6 +2,10 @@
 
 namespace App\Http\Controllers;
 use App\AdminTasks;
+use App\AssignTasks;
+use DB;
+use Auth;
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Storage;
@@ -94,11 +98,16 @@ class AdminTasksController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Request $request,$onskills)
     {
-        $admin_tasks = AdminTasks::find($id);
-        return view('AdminTasks.show',compact('admin_tasks'));
+        // $admin_tasks = AdminTasks::find($id);
+        // return view('AdminTasks.show',compact('admin_tasks'));
         // echo($id);
+
+        $admin_tasks = AdminTasks::orderBy('id','DESC')->where('admin_tasks.onskills',$onskills)->paginate(15);
+        return view('AdminTasks.index',compact('admin_tasks','profilepic'))
+            ->with('i', ($request->input('page', 1) - 1) * 15);
+           
     }
 
 
