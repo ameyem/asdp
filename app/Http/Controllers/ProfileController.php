@@ -45,7 +45,7 @@ class ProfileController extends Controller
         $this->validate($request, [
             'name' => '',
             'email' => '',
-            'number' => '',
+            'phone_number' => '',
             'dob' => '',
             'qualification' => '',
             'specialization' => '',
@@ -98,7 +98,7 @@ class ProfileController extends Controller
         $this->validate($request, [
             'name' => '',
             'email' => '',
-            'number' => '',
+            'phone_number' => '',
             'dob' => '',
             'qualification' => '',
             'specialization' => '',

@@ -44,7 +44,7 @@
                             <td>{{ ++$i }}</td> 
                             <td>{{ $details->name }}</td>
                             <td>{{ $details->email }}</td>
-                            <td>{{ $details->number }}</td>
+                            <td>{{ $details->phone_number }}</td>
                             <td>{{ $details->dob}}</td>
                             <td>{{ $details->qualification}}</td>
                             <td>{{ $details->specialization}}</td>

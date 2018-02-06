@@ -55,7 +55,7 @@
               <div class="form-group">
                 <label class="col-lg-3 control-label">Mobile Number:</label>
                 <div class="col-lg-8">
-                <p class="form-control-static">{{ $users->number }}</p>
+                <p class="form-control-static">{{ $users->phone_number }}</p>
                
                 </div>
               </div>

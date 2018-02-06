@@ -58,7 +58,7 @@ class ViewprofileController extends Controller
         $this->validate($request, [
             'name' => '',
             'email' => '',
-            'number' => '',
+            'phone_number' => '',
             'dob' => '',
             'qualification' => '',
             'specialization' => '',
@@ -110,7 +110,7 @@ class ViewprofileController extends Controller
         $this->validate($request, [
             'name' => '',
             'email' => '',
-            'number' => '',
+            'phone_number' => '',
             'dob' => '',
             'qualification' => '',
             'specialization' => '',

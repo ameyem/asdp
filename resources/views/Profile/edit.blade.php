@@ -45,14 +45,14 @@
     <div class="col-xs-12 col-sm-12 col-md-12">
         <div class="form-group">
             <strong>Mobile Number:</strong>
-            {!! Form::text('number', null, array('placeholder' => 'Mobile Number','class' => 'form-control')) !!}
+            {!! Form::text('phone_number', null, array('placeholder' => 'Mobile Number','class' => 'form-control')) !!}
         </div>
     </div>
 
     <div class="col-xs-12 col-sm-12 col-md-12">
         <div class="form-group">
             <strong>Date Of Birth:</strong>
-            {!! Form::text('dob', null, array('placeholder' => 'Date Of Birth','class' => 'form-control')) !!}
+            {!! Form::date('dob', null, array('placeholder' => 'Select date of birth','class' => 'form-control')) !!}
         </div>
     </div>
 
@@ -80,7 +80,7 @@
     <div class="col-xs-12 col-sm-12 col-md-12">
         <div class="form-group">
             <strong>Passed Out:</strong>
-            {!! Form::text('passout', null, array('placeholder' => 'Passed Out year','class' => 'form-control')) !!}
+            {!! Form::date('passout', null, array('placeholder' => 'Select Passed Out date','class' => 'form-control')) !!}
         </div>
     </div>
 
