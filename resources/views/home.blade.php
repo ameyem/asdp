@@ -176,8 +176,7 @@
         </div>
         <div class="col-md-4">
             {!! $chart1->html() !!}
-        </div>
-        
+        </div>   
     </div>
 </div>
     

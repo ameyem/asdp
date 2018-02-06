@@ -18,9 +18,9 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
         </a>
-        <h3>{{Auth::user()->name }}</h3> 
-        
-        </nav>
+         <h3 style="color:white">Welcome {{Auth::user()->name }} &nbsp;</h3>
+
+     </nav>
 
         
 </header>

@@ -7,7 +7,7 @@
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-primary">
                 <!-- <div class="panel-heading">{{ ucfirst(config('app.name')) }} Login</div> -->
-                <div class="panel-heading"><center><h2>Ameyem Skill Login</h2></center></div>
+                <div class="panel-heading"><center><h2>Ameyem Skills Login</h2></center></div>
                 <div class="panel-body">
                     
                     @if (count($errors) > 0)
