@@ -6,6 +6,10 @@ $this->get('login', 'Auth\LoginController@showLoginForm')->name('auth.login');
 $this->post('login', 'Auth\LoginController@login')->name('auth.login');
 $this->post('logout', 'Auth\LoginController@logout')->name('auth.logout');
 
+// Registration Routes...
+$this->get('register', 'Auth\RegisterController@showRegistrationForm')->name('auth.register');
+$this->post('register', 'Auth\RegisterController@register')->name('auth.register');
+
 // Change Password Routes...
 $this->get('change_password', 'Auth\ChangePasswordController@showChangePasswordForm')->name('auth.change_password');
 $this->patch('change_password', 'Auth\ChangePasswordController@changePassword')->name('auth.change_password');

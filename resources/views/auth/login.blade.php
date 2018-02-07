@@ -75,11 +75,22 @@
                                     Login
                                 </button>
                             </div>
-                        </div>
+                        </div>  
                     </form>
+
+                    <div class="form-group">
+                        <div class="col-md-6 col-md-offset-4">
+                            <h6>Don't have account Register Here</h6>
+                            <a href="{{ url('/register') }}" value="register">
+                            <button class="btn btn-success" style="margin-right: 15px;">Register</button></a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
+
+
+
 @endsection
