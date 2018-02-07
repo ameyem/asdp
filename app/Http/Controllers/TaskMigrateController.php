@@ -7,6 +7,7 @@ use App\AssignTasks;
 use DB;
 use Auth;
 use App\User;
+use App\Http\Kernel;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithoutMiddleware;
@@ -65,42 +66,90 @@ class TaskMigrateController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request, [
-            'assigntask_id' => 'required',
-            'request_for' => 'required',
-            'message' => '',
-            'uploads' => '',
-            'created_at' => '',
-
-        ]);
-
-        $product = new UserTasks($request->file());
-     
-        if($file = $request->hasFile('uploads')) {
-           
-           $file = $request->file('uploads');           
-           $fileName = $file->getClientOriginalName();
-           $destinationPath = public_path().'/uploads/';
-           $file->move($destinationPath,$fileName);
-
-           $file = public_path().'/uploads/'.$fileName;
-
-            $requestData = $request->all();
-            $requestData['uploads'] = $file;
-            // $product->uploads = $file;
-      
+        if(Auth::user()->id <= 3)
+        {
+            $this->validate($request, [
+                'assigntask_id' => 'required',
+                'request_for' => 'required',
+                'obtained_marks' => 'nullable',
+                'message' => '',
+                'uploads' => '',
+                'created_at' => '',
+    
+            ]);
+    
+            $product = new UserTasks($request->file());
          
-        }else{
-            $requestData = $request->all();
+            if($file = $request->hasFile('uploads')) {
+               
+               $file = $request->file('uploads');           
+               $fileName = $file->getClientOriginalName();
+               $destinationPath = public_path().'/uploads/';
+               $file->move($destinationPath,$fileName);
+    
+               $file = public_path().'/uploads/'.$fileName;
+    
+                $requestData = $request->all();
+                $requestData['uploads'] = $file;
+                // $product->uploads = $file;
+          
+             
+            }
+            else
+            {
+                $requestData = $request->all();
+            }
+
+            DB::table('assign_tasks')->where('id', $requestData['assigntask_id'])
+            ->update(['obtained_marks' => $requestData['obtained_marks']]);
         }
+        else{
+            $this->validate($request, [
+                'assigntask_id' => 'required',
+                'request_for' => 'required',
+                'message' => '',
+                'uploads' => '',
+                'created_at' => '',
+    
+            ]);
+    
+            $product = new UserTasks($request->file());
+         
+            if($file = $request->hasFile('uploads')) {
+               
+               $file = $request->file('uploads');           
+               $fileName = $file->getClientOriginalName();
+               $destinationPath = public_path().'/uploads/';
+               $file->move($destinationPath,$fileName);
+    
+               $file = public_path().'/uploads/'.$fileName;
+    
+                $requestData = $request->all();
+                $requestData['uploads'] = $file;
+                // $product->uploads = $file;
+          
+             
+            }
+            else
+            {
+                $requestData = $request->all();
+            }
+        }
+       
 
         DB::table('assign_tasks')->where('id', $requestData['assigntask_id'])
         ->update(['status' => $requestData['request_for']]);
 
-        UserTasks::create($requestData);
+        
 
+        UserTasks::create($requestData);
+        
+       
+        
         DB::table('assign_tasks')->where('id', $requestData['assigntask_id'])
         ->update(['updated_at' => date('Y-m-d H:i:s')]);
+
+        
 
         return redirect()->route('TaskMigrate.index')
                         ->with('success','AdminTasks created successfully');

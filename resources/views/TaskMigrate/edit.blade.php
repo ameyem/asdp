@@ -20,6 +20,7 @@
             <th>Message</th>
             <th>Files</th>
             <th>Date</th>
+            <th>Obtained Marks</th>
                         
         </tr>
         @foreach ($user_tasks as $task)
@@ -33,6 +34,7 @@
             <td>Nill</td>
             @endif
             <td>{{ $task->created_at }}</td>
+            <td>{{ $task->obtained_marks }}</td>
         </tr>
         
          @endforeach
@@ -84,6 +86,13 @@
                                                     '2' => ['drop' => 'drop'],
                                                     '3' => ['approved' => 'approved']],
                                                     array('class' => 'form-control')) !!}
+                                            </div>
+                                        </div>
+
+                                        <div class="col-xs-12 col-sm-12 col-md-12">
+                                            <div class="form-group">
+                                            <strong>Marks :</strong>
+                                                {!! Form::text('obtained_marks', null, array('placeholder' => 'if drop or approved only')) !!}
                                             </div>
                                         </div>
                                         @else

@@ -19,7 +19,9 @@ class CreateAssignTasksTable extends Migration
             $table->string('user_id');
             $table->string('guide_id');
             $table->string('reviewer_id');           
-            $table->string('status');
+            $table->string('status')->nullable();
+            $table->string('obtained_marks')->nullable();
+
             $table->timestamps();
         });
     }

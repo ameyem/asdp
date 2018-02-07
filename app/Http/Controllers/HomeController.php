@@ -94,6 +94,22 @@ class HomeController extends Controller
             ->dimensions(500, 300)
             ->responsive(false)
             ->lastByMonth(12, true);
+
+            // $assign_tasks1 = DB::table('assign_tasks')
+            // ->join('admin_tasks','assign_tasks.task_id', '=', 'admin_tasks.id')
+            // ->select('assign_tasks.obtained_marks')
+            // ->where('assign_tasks.user_id',Auth::user()->id)
+            // ->where('assign_tasks.status','approved')->get();
+            // // ->orderBy('assign_tasks.updated_at','asc')->get();
+
+
+            // $chart1 = Charts::database($assign_tasks1, 'line', 'highcharts')
+            // ->title('Status Bar')
+            // ->elementLabel("Tasks")
+            // ->labels('date()')
+            // ->dimensions(500, 300)
+            // ->responsive(false)
+            // ->lastByMonth(12, true);
              
         }
         
