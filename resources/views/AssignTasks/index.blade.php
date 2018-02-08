@@ -28,7 +28,7 @@
                 <table class="table table-striped">
                     <tr>
                         <th>No</th>
-                        <th>Task ID</th>
+                        <th>Assign Task ID</th>
                         <th>User ID</th>
                         <th>Guide Name</th>
                         <th>Reviewer Name</th>
@@ -40,7 +40,7 @@
                     @foreach ($assign_tasks as $key => $task)
                         <tr>
                             <td>{{ ++$i }}</td>
-                            <td>{{ $task->task_id }}</td>
+                            <td>{{ $task->id }}</td>
                             <td>{{ $task->user_id }}</td>
                             <td>{{ $task->guide_id }}</td>
                             <td>{{ $task->reviewer_id}}</td>
@@ -49,9 +49,9 @@
                             <td>
                                 <!-- <a class="btn btn-info" href="{{ route('AssignTasks.show',$task->id) }}">Show</a> -->
                                 <!-- <a class="btn btn-primary btn-xs" href="{{ route('AssignTasks.edit',$task->id) }}">Edit</a> -->
-                                <!-- {!! Form::open(['method' => 'DELETE','route' => ['AssignTasks.destroy', $task->id],'style'=>'display:inline']) !!}
-                                {!! Form::submit('Delete', ['class' => 'btn btn-danger']) !!}
-                                {!! Form::close() !!} -->
+                                {!! Form::open(['method' => 'DELETE','route' => ['AssignTasks.destroy', $task->id],'style'=>'display:inline']) !!}
+                                {!! Form::submit('Delete', ['class' => 'btn btn-danger btn-sm']) !!}
+                                {!! Form::close() !!}
                             </td>
                             <td>{{ $task->status}}</td>
                         </tr>

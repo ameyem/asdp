@@ -6,12 +6,31 @@
 <h1>{{Auth::user()->id }}</h1>
 <h2>{{Auth::user()->email }}</h2>  -->
 
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-10">
+            <div class="panel panel-primary">
+                <div style="color:white" class="panel-heading"><center>Welcome to Ameyem Skill Development Portal</center></div>
+
+                <div style="color:#003366"class="panel-body">
+                    <h3>ASDP Start date : {{ Auth::user()->created_at }}</h3>               
+                    <h3>Association with ASDP : {{ $days }} days </h3> 
+                    <h3>Completed tasks : {{ $completedtasks}}</h3>
+                    <h3>Total Credits : {{ $totalcredits}}</h3>
+                    <h3>Dropped Tasks : {{ $droptasks }}</h3>
+                
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
 
 <div class="container-fluid">
     <div class="row">
         <div class="col-md-10">
-            <div class="panel panel-default">
-                <div style="color:#2471A3" class="panel-heading">Welcome to Work Environment</div>
+            <div class="panel panel-primary">
+                <div style="color:white" class="panel-heading"><center>Welcome to Work Environment</center></div>
 
                 <div class="panel-body">
                    
@@ -29,7 +48,7 @@
                                         <h3>Admin Tasks</h3>
                                     </div></a> 
                                     <div class="panel-footer">
-                                        <span class="panel-eyecandy-title">Total Tasks:
+                                        <span class="panel-eyecandy-title">Total Tasks : {{ $totaltasks }}
                                         </span>
                                     </div>
                                 </div>
@@ -43,7 +62,7 @@
                                         <h3>Assign Tasks</h3>
                                     </div></a>
                                     <div class="panel-footer">
-                                        <span class="panel-eyecandy-title">Total Assigned Tasks:
+                                        <span class="panel-eyecandy-title">Total Assigned Tasks : {{ $totalassigntasks }}
                                         </span>
                                     </div>
                                 </div>
@@ -56,7 +75,7 @@
                                         <h3>Profiles</h3>
                                     </div></a>
                                     <div class="panel-footer">
-                                        <span class="panel-eyecandy-title">Total Users:  
+                                        <span class="panel-eyecandy-title">Total Users : {{ $totalusers }}
                                         </span>
                                     </div>
                                 </div>
@@ -69,7 +88,7 @@
                                         <h3>Users Tasks</h3>
                                     </div></a>
                                     <div class="panel-footer">
-                                        <span class="panel-eyecandy-title">Total Tasks Info:  
+                                        <span class="panel-eyecandy-title">Total Comments : {{ $totalcomments }}
                                         </span>
                                     </div>
                                 </div>
@@ -108,7 +127,7 @@
                                         <h3>User Tasks </h3>
                                     </div></a>
                                     <div class="panel-footer">
-                                        <span class="panel-eyecandy-title">Total Tasks:
+                                        <span class="panel-eyecandy-title">Total Tasks : {{ $totaltasks }}
                                         </span>
                                     </div>
                                 </div>
@@ -153,36 +172,43 @@
                             </div>-->
                         </div> 
                         @endif
-
-             
-
                 @endif 
-
-
-
-
                      <!-- end of Users Tasks info sectiopn -->
                 </div>
             </div>
         </div>
     </div>
 </div>
+
+
+
 {!! Charts::assets() !!}
 <div class="app">
-<div class="container-fluid">
-    <div class="row">
-        <div class="col-md-4">
-            {!! $chart->html() !!}
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-10">
+                <div class="panel panel-primary">
+                    <div style="color:white" class="panel-heading"><center>Welcome to Progress Chats</center></div>
+                        <div class="panel-body">
+                            <div class="col-md-3">
+                                {!! $chart->html() !!}
+                            </div>
+                            <div class="col-md-3">
+                                {!! $chart1->html() !!}
+                            </div>   
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="col-md-4">
-            {!! $chart1->html() !!}
-        </div>   
     </div>
 </div>
-    
-</div>
+
 <!-- End Of Main Application -->
 {!! Charts::scripts() !!}
 {!! $chart->script() !!}
 {!! $chart1->script() !!}
+<br>
+
+
 @endsection
