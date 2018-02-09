@@ -18,6 +18,7 @@ $this->patch('change_password', 'Auth\ChangePasswordController@changePassword')-
 
 
 Route::resource('AdminTasks','AdminTasksController');
+Route::get('AdminTasks/getDownload','AdminTasksController@getDownload');
 Route::resource('AssignTasks','AssignTasksController');
 Route::resource('Profile','ProfileController');
 Route::resource('viewprofile','ViewprofileController');
@@ -30,6 +31,8 @@ Route::resource('Charts','ChartController');
 
 
 
+//Download a file
+Route::get('/download/{file}', 'DownloadsController@download');
 
 
 

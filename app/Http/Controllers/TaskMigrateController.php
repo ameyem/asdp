@@ -87,7 +87,7 @@ class TaskMigrateController extends Controller
                $destinationPath = public_path().'/uploads/';
                $file->move($destinationPath,$fileName);
     
-               $file = public_path().'/uploads/'.$fileName;
+               $file = $fileName;
     
                 $requestData = $request->all();
                 $requestData['uploads'] = $file;
@@ -122,7 +122,7 @@ class TaskMigrateController extends Controller
                $destinationPath = public_path().'/uploads/';
                $file->move($destinationPath,$fileName);
     
-               $file = public_path().'/uploads/'.$fileName;
+               $file = $fileName;
     
                 $requestData = $request->all();
                 $requestData['uploads'] = $file;

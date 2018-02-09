@@ -77,7 +77,7 @@ class AdminTasksController extends Controller
            $destinationPath = public_path().'/uploads/';
            $file->move($destinationPath,$fileName);
 
-           $file = public_path().'/uploads/'.$fileName;
+           $file = $fileName;
 
             $requestData = $request->all();
             $requestData['uploads'] = $file;
@@ -154,7 +154,7 @@ class AdminTasksController extends Controller
            $destinationPath = public_path().'/uploads/';
            $file->move($destinationPath,$fileName);
 
-           $file = public_path().'/uploads/'.$fileName;
+           $file = $fileName;
 
             $requestData = $request->all();
             $requestData['uploads'] = $file;
@@ -182,6 +182,12 @@ class AdminTasksController extends Controller
         return redirect()->route('AdminTasks.index')
                         ->with('success','AdminTasks deleted successfully');
     }
+
+    // public function getDownload($file_name)
+    // {
+    //     $file_path = public_path('/uploads/'.$file_name);
+    //     return response()->download($file_path);
+    // }
 
 
 }
