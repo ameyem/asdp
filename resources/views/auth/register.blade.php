@@ -10,6 +10,17 @@
                     <form class="form-horizontal" role="form" method="POST" action="{{ url('/register') }}">
                         {{ csrf_field() }}
 
+                        
+                        
+                        <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
+                            <label for="name" class="col-md-4 control-label"> Institute Name</label>
+
+                            <div class="col-md-6">
+                                <input id="institutes_id" type="text" class="form-control" name="institutes_id" required>
+                            </div>
+                        </div>
+
+                        
                         <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
                             <label for="name" class="col-md-4 control-label"> Full Name</label>
 
@@ -57,6 +68,22 @@
 
                             <div class="col-md-6">
                                 <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="password-confirm" class="col-md-4 control-label">Mobile Number</label>
+
+                            <div class="col-md-6">
+                                <input id="password-phone_number" type="text" class="form-control" name="phone_number" required>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="password-confirm" class="col-md-4 control-label">Role</label>
+
+                            <div class="col-md-6">
+                                <input id="role_id" type="text" class="form-control" name="role_id" required>
                             </div>
                         </div>
 
