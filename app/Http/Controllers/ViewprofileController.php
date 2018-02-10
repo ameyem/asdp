@@ -14,12 +14,6 @@ use App\Http\Controllers\ChartManager;
 use Illuminate\Http\Request;
 
 
-
-
-
-
-
-
 class ViewprofileController extends Controller 
 {
     /**
@@ -118,10 +112,33 @@ class ViewprofileController extends Controller
             'passout' => '',
             'collegeaddress' => '',
             'homeaddress' => '',
+            'profilepic' => '',
         ]);
 
+        $product = new User($request->file());
+     
+        if($file = $request->hasFile('profilepic') && $request->file('profilepic')->isValid()) {
+           
+           $file = $request->file('profilepic');           
+           $fileName = $file->getClientOriginalName();
+           $destinationPath = public_path().'/profilepic/';
+           $file->move($destinationPath,$fileName);
 
-        User::find($id)->update($request->all());
+           $file = $fileName;
+
+            $requestData = $request->all();
+            $requestData['profilepic'] = $file;
+            // $product->uploads = $file;        
+        }
+        else
+        {
+            $requestData = $request->all();
+        }
+     
+       
+
+
+        User::find($id)->update($requestData);
         return redirect()->route('viewprofile.index')
                         ->with('success','Profile updated successfully');
     

@@ -18,7 +18,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
         </a>
-         <h3 style="color:white">Welcome {{Auth::user()->name }} &nbsp;</h3>
+         <h4 style="color:white">Welcome {{Auth::user()->name }} &nbsp;</h4>
 
      </nav>
 

@@ -42,7 +42,7 @@ class HomeController extends Controller
             //Total Assigned Tasks of all Users
             $assign_tasks = DB::table('assign_tasks')
             ->join('admin_tasks','assign_tasks.task_id', '=', 'admin_tasks.id')
-            ->orderBy('assign_tasks.created_at','desc')->get();
+            ->orderBy('assign_tasks.updated_at','desc')->get();
 
             $assign_chart = Charts::database($assign_tasks, 'line', 'highcharts')
             ->title('Assigned Tasks')
@@ -56,7 +56,7 @@ class HomeController extends Controller
             $completedtasks = DB::table('assign_tasks')
             ->join('admin_tasks','assign_tasks.task_id', '=', 'admin_tasks.id')
             ->where('assign_tasks.status','approved')
-            ->orderBy('assign_tasks.created_at','desc')->get();
+            ->orderBy('assign_tasks.updated_at','desc')->get();
 
             $completed_chart = Charts::database($completedtasks, 'line', 'highcharts')
             ->title('Completed Tasks')
@@ -72,17 +72,17 @@ class HomeController extends Controller
             $progress = DB::table('assign_tasks')
             ->join('admin_tasks','assign_tasks.task_id', '=', 'admin_tasks.id')
             ->where('assign_tasks.status','approved')
-            ->orderBy('assign_tasks.created_at','desc')->select('assign_tasks.created_at','assign_tasks.obtained_marks')->get()->toArray();
-             
-            $datearray=array_column($progress,'created_at');
-            $marksarray=array_column($progress,'obtained_marks');
+            ->orderBy('assign_tasks.created_at','desc')->select('assign_tasks.created_at','assign_tasks.obtained_marks')->get()->toArray();                 
+                 
+            $datearray = array_column($progress,'created_at');
+            $marksarray = array_column($progress,'obtained_marks');
 
             $progress_chart = Charts::create('line', 'highcharts')
-            ->title('My nice chart')
-            ->elementLabel('My nice label')
-            ->labels($datearray)
+            ->title('Progress Chart')
+            ->elementLabel('Date')
+            ->labels(array_reverse($datearray))
             ->values($marksarray)
-            ->dimensions(1000,500)
+            ->dimensions(500,300)
             ->responsive(false);
 
             
@@ -124,7 +124,7 @@ class HomeController extends Controller
                         $assign_tasks = DB::table('assign_tasks')
                         ->join('admin_tasks','assign_tasks.task_id', '=', 'admin_tasks.id')
                         ->where('assign_tasks.user_id',Auth::user()->id)
-                        ->orderBy('assign_tasks.created_at','desc')->get();
+                        ->orderBy('assign_tasks.updated_at')->get();
 
                         $assign_chart = Charts::database($assign_tasks, 'line', 'highcharts')
                         ->title('Assigned Tasks')
@@ -139,7 +139,7 @@ class HomeController extends Controller
                         ->join('admin_tasks','assign_tasks.task_id', '=', 'admin_tasks.id')
                         ->where('assign_tasks.user_id',Auth::user()->id)
                         ->where('assign_tasks.status','approved')
-                        ->orderBy('assign_tasks.created_at','desc')->get();
+                        ->orderBy('assign_tasks.updated_at')->get();
                         
                         $completed_chart = Charts::database($completedtasks, 'line', 'highcharts')
                         ->title('Completed Tasks')
@@ -156,12 +156,25 @@ class HomeController extends Controller
                         ->where('assign_tasks.user_id',Auth::user()->id)
                         ->where('assign_tasks.status','approved')
                         ->orderBy('assign_tasks.created_at','desc')->select('assign_tasks.created_at','assign_tasks.obtained_marks')->get()->toArray();
+
+                        if (empty($progress)) 
+                        {
+                         $progress_chart =  Charts::create('line', 'highcharts')
+                         ->title('Example Progress Chart')
+                         ->elementLabel('date')
+                         ->labels(['First', 'Second', 'Third'])
+                         ->values([5,10,20])
+                         ->dimensions(500,300)
+                         ->responsive(false);
+                        }
+                        else{
+
                         
                         $datearray = array_column($progress,'created_at');
                         for($i=0;$i<count($datearray);$i++)
                         {
                             $date = new \DateTime($datearray[$i]);
-                            $dt[$i] = $date->format('d-m-Y');
+                            $dt[$i] = $date->format('y M d');
                         }
                        
 
@@ -175,11 +188,12 @@ class HomeController extends Controller
                        
                         $progress_chart = Charts::create('line', 'highcharts')
                         ->title('Progress Chart')
-                        ->elementLabel('My nice label')
+                        ->elementLabel('Date')
                         ->labels(array_reverse($dt))
                         ->values($count_array)
                         ->dimensions(500,300)
                         ->responsive(false);
+                    } 
 
             //for count the total droped tasks
             $droptasks = DB::table('assign_tasks')

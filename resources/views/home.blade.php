@@ -12,16 +12,16 @@
             <div class="panel panel-primary">
                 <div style="color:white" class="panel-heading"><center>Welcome to Ameyem Skill Development Portal</center></div>
 
-                <div style="color:#003366"class="panel-body">
+                <div style="color:#786e03" class="panel-body">
                     <div class="row">
-                        <div class="col-lg-4">
+                        <div class="col-lg-5">
                             <h3>ASDP Start date : {{ Auth::user()->created_at }}</h3>               
                             <h3>Association with ASDP : {{ $days }} days </h3> 
                             <h3>Completed tasks : {{ $completedtasks}}</h3>
                             <h3>Total Credits : {{ $totalcredits}}</h3>
                             <h3>Dropped Tasks : {{ $droptasks }}</h3>
                         </div>
-                        <div class="col-lg-6">
+                        <div class="col-lg-5">
                                 {!! $progress_chart->html() !!}
                                 
                         </div>
@@ -150,10 +150,10 @@
                     <div style="color:white" class="panel-heading"><center>Welcome to Progress Chats</center></div>
                         <div class="panel-body">
                            
-                            <div class="col-md-3">
+                            <div class="col-md-4">
                                 {!! $assign_chart->html() !!}
                             </div>
-                            <div class="col-md-3">
+                            <div class="col-md-4">
                                 {!! $completed_chart->html() !!}
                             </div> 
                             <!-- <div class="col-md-3">

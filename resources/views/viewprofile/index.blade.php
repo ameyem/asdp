@@ -19,8 +19,8 @@
           <div class="col-md-4 col-sm-6 col-xs-12">
             <div class="text-center">
               <img src="http://www.skills.ameyem.com/images/logo.png" class="avatar img-circle img-thumbnail" alt="avatar">
-              <h6>Upload a different photo...</h6>
-              <input type="file" class="text-center center-block well well-sm">
+              <!-- <h6>Upload a different photo...</h6>
+              <input type="file" class="text-center center-block well well-sm"> -->
             </div>
           </div>
           <!-- edit form column -->
