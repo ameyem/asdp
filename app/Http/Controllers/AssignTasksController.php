@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\AssignTasks;
-use Illuminate\Http\Request;
 use DB;
+use Auth;
 use App\User;
 use App\AdminTasks;
+use App\AssignTasks;
+use Illuminate\Http\Request;
 
 class AssignTasksController extends Controller
 {
@@ -17,7 +18,9 @@ class AssignTasksController extends Controller
      */
     public function index(Request $request)
     {
-        $assign_tasks = AssignTasks::orderBy('id','DESC')->paginate(15);
+        $assign_tasks = AssignTasks::orderBy('id','DESC')
+        ->where('assign_tasks.institutes_id',Auth::user()->institutes_id)
+        ->paginate(15);
         return view('AssignTasks.index',compact('assign_tasks'))
             ->with('i', ($request->input('page', 1) - 1) * 15);
     }
@@ -29,10 +32,7 @@ class AssignTasksController extends Controller
      */
     public function create()
     {
-        // $users = User::all();
-        // // $works = DB::table('admin_tasks')->select('id')->get();
-        // $works = AdminTasks::find($id);
-        // return view('AssignTasks.create',compact('users','works'));
+        // 
     }
 
     /**
@@ -48,6 +48,7 @@ class AssignTasksController extends Controller
             'user_id' => 'required',
             'guide_id' => 'required',
             'reviewer_id' => 'required',
+            'institutes_id' => '',
             // 'assigned_date' => 'required',
             // 'completion_date' => 'required',
         ]);
@@ -65,8 +66,11 @@ class AssignTasksController extends Controller
      */
     public function show($id)
     {
-        $users = User::all();
-        // $works = DB::table('admin_tasks')->select('id')->get();
+        $users = DB::table('users')
+                ->where('users.institutes_id',Auth::User()->institutes_id)
+                ->select('users.*')
+                ->get();
+      
         $works = AdminTasks::find($id);
         return view('AssignTasks.create',compact('users','works',$id));
     }
@@ -94,21 +98,8 @@ class AssignTasksController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $users = User::all();
-        $works = AdminTasks::all();
-        $this->validate($request, [
-            'task_id' => '',
-            'user_id' => '',
-            'guide_id' => '',
-            'reviewer_id' => '',
-            // 'assigned_date' => '',
-            // 'completion_date' => '',
-        ]);
-
         
-        AssignTasks::find($id)->update($request->all());
-        return redirect()->route('AssignTasks.index',compact('users','works'))
-                        ->with('success','AssignTasks updated successfully');
+        //              
     }
 
     /**

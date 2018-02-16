@@ -15,7 +15,7 @@
         <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12">
             <div class="pull-left">
                 <h1>
-                <!-- <a class="btn btn btn-lg" value='' href="{{ route('UserTasks.index')}}">All Tasks</a> -->
+                
                 <a class="btn btn-primary btn-lg" href="{{ route('TaskMigrate.index') }}">To get Started</a>
                 <a class="btn btn-info btn-lg" value='review' href="{{ route('TaskMigrate.show','review') }}">For Reviewed</a>
                 <a class="btn btn-warning btn-lg" value='redo' href="{{ route('TaskMigrate.show','redo') }}">To be Refined</a>

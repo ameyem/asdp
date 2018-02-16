@@ -49,21 +49,12 @@
 </div>
 <div class="col-xs-12 col-sm-12 col-md-12">
     <div class="form-group">
-        <strong>On Skills or Language:</strong>
-        {!! Form::select('onskills', [
-        'General' => ['General' => 'General'],
-        'HTML' => ['HTML' => 'HTML'],
-        'CSS' => ['CSS' => 'CSS'],
-        'JAVASCRIPT' => ['JAVASCRIPT' => 'JAVASCRIPT'],
-        'PHP' => ['PHP' => 'PHP'],
-        'JAVA' => ['JAVA' => 'JAVA'],
-        'C' => ['C' => 'C'],
-        'C++' => ['C++' => 'C++'],
-        'Python' => ['PYTHON' => 'Python'],
-        'Android' => ['Android' => 'Android'],
-        'Embedded' => ['Embedded' => 'Embedded'],
-        'Concept' => ['concept' => 'Concept']],
-        array('class' => 'form-control')) !!}
+    <strong>Subject or Language:</strong>
+        <select name="subject" class="form-control">
+            @foreach ($subjects as $subject)
+                <option value="{{$subject->subject}}">{{$subject->subject}}</option>                
+            @endforeach
+        </select>
         
     </div>
 </div>
@@ -98,14 +89,14 @@
         {!! Form::selectRange('number', 1, 10) !!}
     </div>
 </div>
-<div class="col-xs-12 col-sm-12 col-md-12">
+<!-- <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                     
             <strong>  Select file to Upload:</strong><br>
                 {!! Form::file('uploads') !!}
                 
         </div>
-    </div> 
+    </div>  -->
 
         <div class="col-xs-12 col-sm-12 col-md-12 text-center">
                 <button type="submit" class="btn btn-primary">Submit</button>

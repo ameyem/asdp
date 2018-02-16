@@ -14,19 +14,10 @@
         <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12">
             <div class="pull-left">
                 <h1>
-                <a class="btn btn btn-lg" href="{{ route('AdminTasks.show','General')}}">General</a>
-                <a class="btn btn btn-lg" href="{{ route('AdminTasks.show','HTML') }}">HTML</a>
-                <a class="btn btn btn-lg" href="{{ route('AdminTasks.show','CSS') }}">CSS</a>
-                <a class="btn btn btn-lg" href="{{ route('AdminTasks.show','JAVASCRIPT') }}">JAVASCRIPT</a>
-                <a class="btn btn btn-lg" href="{{ route('AdminTasks.show','PHP') }}">PHP</a>
-                <a class="btn btn btn-lg" href="{{ route('AdminTasks.show','JAVA') }}"> JAVA</a>
-                <a class="btn btn btn-lg" href="{{ route('AdminTasks.show','C')}}">C</a>
-                <a class="btn btn btn-lg" href="{{ route('AdminTasks.show','C++') }}">C++</a>
-                <a class="btn btn btn-lg" href="{{ route('AdminTasks.show','PYTHON') }}">PYTHON</a>
-                <a class="btn btn btn-lg" href="{{ route('AdminTasks.show','Android') }}">Android</a>
-                <a class="btn btn btn-lg" href="{{ route('AdminTasks.show','Embedded') }}">Embedded</a>
-                <a class="btn btn btn-lg" href="{{ route('AdminTasks.show','concept') }}"> concept</a>
-                </h1>
+                @foreach ($subjects as $subject)            
+                    <a class="btn btn btn-lg" href="{{ route('AdminTasks.show',$subject->subject)}}">{{$subject->subject}}</a>
+                @endforeach
+               </h1>
             </div>
         </div>
     </div>
@@ -48,7 +39,7 @@
                     <tr>
                         <th>No</th>
                         <th>Work Nature</th>
-                        <th>On Skills or Language</th>
+                        <th>Subjects or Language</th>
                         <th>Work Title</th>
                         <th>Work Description</th>
                         <th>What In IT For Me</th>
@@ -65,7 +56,7 @@
                     <tr>
                         <td>{{ ++$i }}</td>
                         <td>{{ $task->worknature }}</td>
-                        <td>{{ $task->onskills }}</td>
+                        <td>{{ $task->subject }}</td>
                         <td>{{ $task->worktitle }}</td>
                         <td>{{ $task->workdescription}}</td>
                         <td>{{ $task->whatinitforme}}</td>

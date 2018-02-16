@@ -66,7 +66,6 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {   
-        $institute = institute::all();
         return User::create([
             'institutes_id' =>  $data['institutes_id'],
             'name' => $data['name'],
@@ -74,6 +73,6 @@ class RegisterController extends Controller
             'password' => bcrypt($data['password']),
             'phone_number' => $data['phone_number'],
             'role_id' => $data['role_id'],
-        ])->compact('institute');
+        ]);
     }
 }

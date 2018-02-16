@@ -77,7 +77,7 @@
                                         </div>
                                     </div>
 
-                                    @if(Auth::user()->id <= 3) 
+                                    @if(Auth::user()->role_id <= 5) 
                                         <div class="col-xs-12 col-sm-12 col-md-12">
                                             <div class="form-group">
                                                 <strong>Request For:</strong>

@@ -31,8 +31,18 @@
 
     {!! Form::open(array('route' => 'AdminTasks.store','method' => 'POST','files' => true)) !!}
     <div class="row">
+    <h3 style="color:red;">Don't change Task Assign User ID values</h3>
 
     <!-- {{ csrf_field() }} -->
+        <div class="col-xs-12 col-sm-12 col-md-12">
+            <div class="form-group">
+                <strong>Task Assign User ID:</strong>
+                    {!! Form::text('user_id', Auth::user()->id) !!}
+            
+            </div>
+        </div>
+
+
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>Work Nature:</strong>
@@ -45,26 +55,18 @@
                 array('class' => 'form-control')) !!}
                 
 
-                
+            
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
-                <strong>On Skills or Language:</strong>
-                {!! Form::select('onskills', [
-                'General' => ['General' => 'General'],
-                'HTML' => ['HTML' => 'HTML'],
-                'CSS' => ['CSS' => 'CSS'],
-                'JAVASCRIPT' => ['JAVASCRIPT' => 'JAVASCRIPT'],
-                'PHP' => ['PHP' => 'PHP'],
-                'JAVA' => ['JAVA' => 'JAVA'],
-                'C' => ['C' => 'C'],
-                'C++' => ['C++' => 'C++'],
-                'Python' => ['PYTHON' => 'Python'],
-                'Android' => ['Android' => 'Android'],
-                'Embedded' => ['Embedded' => 'Embedded'],
-                'Concept' => ['concept' => 'Concept']],
-                array('class' => 'form-control')) !!}
+                <strong>Subject or Language:</strong>
+                <select name="subject" class="form-control">
+                     @foreach ($subjects as $subject)
+                        <option value="{{$subject->subject}}">{{$subject->subject}}</option>                
+                     @endforeach
+                </select>
+                
                 
             </div>
         </div>

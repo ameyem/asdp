@@ -14,7 +14,10 @@ use App\User;
 use App\UserTasks;
 use App\AdminTasks;
 use App\AssignTasks;
+use App\Role;
+use App\Institutes;
 use App\Http\Controllers\DateTime;
+
 
 
 class HomeController extends Controller
@@ -37,11 +40,12 @@ class HomeController extends Controller
     public function index()
     {
             
-        if(Auth::user()->id <= 3)
+        if(Auth::user()->role_id <= 5)
         {
             //Total Assigned Tasks of all Users
             $assign_tasks = DB::table('assign_tasks')
             ->join('admin_tasks','assign_tasks.task_id', '=', 'admin_tasks.id')
+            ->where('assign_tasks.institutes_id',Auth::user()->institutes_id)
             ->orderBy('assign_tasks.updated_at','desc')->get();
 
             $assign_chart = Charts::database($assign_tasks, 'line', 'highcharts')
@@ -56,6 +60,7 @@ class HomeController extends Controller
             $completedtasks = DB::table('assign_tasks')
             ->join('admin_tasks','assign_tasks.task_id', '=', 'admin_tasks.id')
             ->where('assign_tasks.status','approved')
+            ->where('assign_tasks.institutes_id',Auth::user()->institutes_id)
             ->orderBy('assign_tasks.updated_at','desc')->get();
 
             $completed_chart = Charts::database($completedtasks, 'line', 'highcharts')
@@ -67,37 +72,38 @@ class HomeController extends Controller
 
 
 
-            // Pregress Line graph all tasks
+            // Pregress Line graph all Registerd user Count
 
-            $progress = DB::table('assign_tasks')
-            ->join('admin_tasks','assign_tasks.task_id', '=', 'admin_tasks.id')
-            ->where('assign_tasks.status','approved')
-            ->orderBy('assign_tasks.created_at','desc')->select('assign_tasks.created_at','assign_tasks.obtained_marks')->get()->toArray();                 
-                 
-            $datearray = array_column($progress,'created_at');
-            $marksarray = array_column($progress,'obtained_marks');
-
-            $progress_chart = Charts::create('line', 'highcharts')
-            ->title('Progress Chart')
+            $progress = DB::table('users')
+                ->where('users.institutes_id',Auth::user()->institutes_id)   
+                ->select('users.*')->get();        
+            $progress_chart = Charts::create($progress,'pie', 'highcharts')
+            ->view('custom.line.chart.view')
+            ->title('Registered Users Chart')
             ->elementLabel('Date')
-            ->labels(array_reverse($datearray))
-            ->values($marksarray)
             ->dimensions(500,300)
             ->responsive(false);
-
             
 
-
-                //for count the total droped tasks
+            //for count the total droped tasks
 
             $droptasks = DB::table('assign_tasks')
             ->join('admin_tasks','assign_tasks.task_id', '=', 'admin_tasks.id')
             ->where('assign_tasks.status','drop')
+            ->where('assign_tasks.institutes_id',Auth::user()->institutes_id)
             ->orderBy('assign_tasks.created_at','desc')->get();
 
-            $totaltasks = AdminTasks::count();
-            $totalassigntasks = AssignTasks::count();
-            $totalusers = User::count();
+
+            $admin_tasks = AdminTasks::orderBy('id','DESC')
+                            ->where('admin_tasks.user_id',Auth::user()->id);                           
+            $totaltasks = $admin_tasks->count();
+
+            $totalassigntasks = $assign_tasks->count();
+
+            $users = User::orderBy('id','asc')
+                    ->where('users.institutes_id',Auth::user()->institutes_id);
+            $totalusers = $users->count();
+
             $totalcomments = UserTasks::count();
 
             $totalcredits = $completedtasks->sum('obtained_marks');
@@ -110,12 +116,9 @@ class HomeController extends Controller
             $datetime2 = new \DateTime($tdate);
             $interval = $datetime1->diff($datetime2);
             $days = $interval->format('%a');//now do whatever you like with $days
-        
-            
 
 
-          
-           
+
         }
         else
         {      
@@ -174,7 +177,7 @@ class HomeController extends Controller
                         for($i=0;$i<count($datearray);$i++)
                         {
                             $date = new \DateTime($datearray[$i]);
-                            $dt[$i] = $date->format('y M d');
+                            $dt[$i] = $date->format('d M y'); 
                         }
                        
 
@@ -214,12 +217,11 @@ class HomeController extends Controller
             $datetime2 = new \DateTime($tdate);
             $interval = $datetime1->diff($datetime2);
             $days = $interval->format('%a');//now do whatever you like with $days
-        
           
              
         }
         
-        return view('home', ['assign_chart' => $assign_chart,'completed_chart' => $completed_chart,'progress_chart' => $progress_chart])->with(compact('totaltasks','totalassigntasks','totalusers','totalcomments','totalcredits','days','completedtasks','droptasks'));
+        return view('home', ['assign_chart' => $assign_chart,'completed_chart' => $completed_chart,'progress_chart' => $progress_chart])->with(compact('progress','totaltasks','totalassigntasks','totalusers','totalcomments','totalcredits','days','completedtasks','droptasks'));
         // return view('home');
 
     }

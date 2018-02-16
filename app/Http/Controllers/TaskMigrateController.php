@@ -24,10 +24,11 @@ class TaskMigrateController extends Controller
      */
     public function index(Request $request)
     {
-        if(Auth::user()->id <= 3)
+        if(Auth::user()->role_id <= 5)
         {
             $assign_tasks = DB::table('assign_tasks')
             ->join('admin_tasks','assign_tasks.task_id', '=', 'admin_tasks.id')
+            ->where('assign_tasks.institutes_id',Auth::user()->institutes_id)
             ->select('assign_tasks.*','admin_tasks.worktitle','admin_tasks.workdescription','admin_tasks.whatinitforme','admin_tasks.usercredits','admin_tasks.uploads')
             ->whereNull('assign_tasks.status')->orderBy('assign_tasks.task_id','desc')->get();    
         }
@@ -66,7 +67,7 @@ class TaskMigrateController extends Controller
      */
     public function store(Request $request)
     {
-        if(Auth::user()->id <= 3)
+        if(Auth::user()->role_id <= 5)
         {
             $this->validate($request, [
                 'assigntask_id' => 'required',
@@ -164,11 +165,12 @@ class TaskMigrateController extends Controller
     public function show($cop_str)
     {
  
-        if(Auth::user()->id <= 3)
+        if(Auth::user()->role_id <= 5)
         {
             $assign_tasks = DB::table('assign_tasks')
             ->join('admin_tasks','assign_tasks.task_id', '=', 'admin_tasks.id')
             ->where('assign_tasks.status',$cop_str)
+            ->where('assign_tasks.institutes_id',Auth::user()->institutes_id)
             ->select('assign_tasks.*','admin_tasks.worktitle','admin_tasks.workdescription','admin_tasks.whatinitforme','admin_tasks.usercredits','admin_tasks.uploads')
             ->orderBy('assign_tasks.task_id','desc')->get();
            

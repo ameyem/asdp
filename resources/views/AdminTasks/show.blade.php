@@ -26,8 +26,8 @@
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
-                <strong>On Skills or Language:</strong>
-                {!! $admin_tasks->onskills !!}                
+                <strong>Subject or Language:</strong>
+                {!! $admin_tasks->subject !!}                
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">

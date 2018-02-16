@@ -1,11 +1,13 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\AdminTasks;
-use App\AssignTasks;
+
 use DB;
 use Auth;
 use App\User;
+use App\subject;
+use App\AdminTasks;
+use App\AssignTasks;
 use Illuminate\Http\Request;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Storage;
@@ -24,8 +26,16 @@ class AdminTasksController extends Controller
      */
     public function index(Request $request)
     {
-        $admin_tasks = AdminTasks::orderBy('id','DESC')->paginate(15);
-        return view('AdminTasks.index',compact('admin_tasks','profilepic'))
+        
+        $admin_tasks = AdminTasks::orderBy('id','DESC')
+                        ->where('admin_tasks.user_id',Auth::user()->id)
+                        ->paginate(15);
+
+        $subjects = DB::table('subjects')
+                    ->where('subjects.institutes_id',Auth::user()->institutes_id)
+                    ->select('subjects.*')->get();
+
+        return view('AdminTasks.index',compact('admin_tasks','subjects'))
             ->with('i', ($request->input('page', 1) - 1) * 15);
     }
 
@@ -37,7 +47,11 @@ class AdminTasksController extends Controller
      */
     public function create()
     {
-        return view('AdminTasks.create');
+        $subjects = DB::table('subjects')
+                    ->where('subjects.institutes_id',Auth::user()->institutes_id)
+                    ->select('subjects.*')->get();
+
+        return view('AdminTasks.create',compact('subjects'));
     }
 
 
@@ -57,8 +71,9 @@ class AdminTasksController extends Controller
         
         
         $this->validate($request, [
+            'user_id' => 'required',
             'worknature' => 'required',
-            'onskills' => 'required',
+            'subject' => 'required',
             'worktitle' => 'required',
             'workdescription' => 'required',
             'whatinitforme' => 'required',
@@ -70,7 +85,7 @@ class AdminTasksController extends Controller
           
         $product = new AdminTasks($request->file());
      
-        if($file = $request->hasFile('uploads')) {
+        if($file = $request->hasFile('uploads') && $request->file('uploads')->isValid()) {
            
            $file = $request->file('uploads');           
            $fileName = $file->getClientOriginalName();
@@ -82,7 +97,9 @@ class AdminTasksController extends Controller
             $requestData = $request->all();
             $requestData['uploads'] = $file;
             // $product->uploads = $file;        
-        }else{
+        }
+        else
+        {
             $requestData = $request->all();
         }
      
@@ -98,14 +115,23 @@ class AdminTasksController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Request $request,$onskills)
+    public function show(Request $request,$subject)
     {
         // $admin_tasks = AdminTasks::find($id);
         // return view('AdminTasks.show',compact('admin_tasks'));
         // echo($id);
 
-        $admin_tasks = AdminTasks::orderBy('id','DESC')->where('admin_tasks.onskills',$onskills)->paginate(15);
-        return view('AdminTasks.index',compact('admin_tasks','profilepic'))
+        $admin_tasks = AdminTasks::orderBy('id','DESC')
+                        ->where('admin_tasks.subject',$subject)
+                        ->where('admin_tasks.user_id',Auth::user()->id)
+                        ->paginate(15);
+
+        $subjects = DB::table('subjects')
+                    ->where('subjects.institutes_id',Auth::user()->institutes_id)
+                    ->select('subjects.*')->get();
+
+
+        return view('AdminTasks.index',compact('subjects','admin_tasks'))
             ->with('i', ($request->input('page', 1) - 1) * 15);
            
     }
@@ -120,7 +146,11 @@ class AdminTasksController extends Controller
     public function edit($id)
     {
         $admin_tasks = AdminTasks::find($id);
-        return view('AdminTasks.edit',compact('admin_tasks'));
+        
+        $subjects = DB::table('subjects')
+                    ->where('subjects.institutes_id',Auth::user()->institutes_id)
+                    ->select('subjects.*')->get();
+        return view('AdminTasks.edit',compact('admin_tasks','subjects'));
     }
 
 
@@ -135,7 +165,7 @@ class AdminTasksController extends Controller
     {
         $this->validate($request, [
             'worknature' => '',
-            'onskills' => '',
+            'subject' => '',
             'worktitle' => '',
             'workdescription' => '',
             'whatinitforme' => '',
@@ -183,11 +213,7 @@ class AdminTasksController extends Controller
                         ->with('success','AdminTasks deleted successfully');
     }
 
-    // public function getDownload($file_name)
-    // {
-    //     $file_path = public_path('/uploads/'.$file_name);
-    //     return response()->download($file_path);
-    // }
+    
 
 
 }

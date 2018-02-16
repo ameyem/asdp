@@ -7,6 +7,8 @@ use App\User;
 use Auth;
 use DB;
 use Illuminate\Http\Request;
+use App\AdminTasks;
+use App\AssignTasks;
 
 class ProfileController extends Controller
 {
@@ -17,7 +19,10 @@ class ProfileController extends Controller
      */
     public function index(Request $request)
     {
-        $users = User::orderBy('id','asc')->paginate(15);
+        $users = User::orderBy('id','asc')
+        ->where('users.institutes_id',Auth::user()->institutes_id)
+        ->paginate(15);
+        
         return view('Profile.index',compact('users'))
             ->with('i', ($request->input('page', 1) - 1) * 15);
             

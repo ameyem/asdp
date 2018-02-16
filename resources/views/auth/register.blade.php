@@ -16,7 +16,17 @@
                             <label for="name" class="col-md-4 control-label"> Institute Name</label>
 
                             <div class="col-md-6">
-                                <input id="institutes_id" type="text" class="form-control" name="institutes_id" required>
+                            
+                            <select name="institutes_id" class="form-control">
+                            <?php 
+                            use App\institute;
+                            $institutes = institute::all(); ?>
+                                @foreach ($institutes as $institute)
+                                    <option value="{{$institute->id}}">{{$institute->name}} </option>                
+                                @endforeach
+                                 
+                            
+                            </select>
                             </div>
                         </div>
 
@@ -83,7 +93,29 @@
                             <label for="password-confirm" class="col-md-4 control-label">Role</label>
 
                             <div class="col-md-6">
-                                <input id="role_id" type="text" class="form-control" name="role_id" required>
+
+                            <select name="role_id" class="form-control">
+                            <?php 
+                            use Spatie\Permission\Models\Role;
+                            use Spatie\Permission\Models\Permission;
+                            use Illuminate\Http\Request;
+                            use Illuminate\Support\Facades\Gate;
+                            use App\Http\Controllers\Controller;
+                            use App\Http\Requests\Admin\StoreRolesRequest;
+                            use App\Http\Requests\Admin\UpdateRolesRequest;
+                            $roles = Role::all(); ?>
+                                @foreach ($roles as $role)
+
+                                    @if($role->id >= 3)
+                                    <option value="{{$role->id}}">{{$role->name}} </option>   
+                                    @endif             
+                                @endforeach
+                                 
+                            
+                            </select>
+
+
+                                <!-- <input id="role_id" type="text" class="form-control" name="role_id" required> -->
                             </div>
                         </div>
 

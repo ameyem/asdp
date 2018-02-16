@@ -117,11 +117,11 @@ class ViewprofileController extends Controller
 
         $product = new User($request->file());
      
-        if($file = $request->hasFile('profilepic') && $request->file('profilepic')->isValid()) {
+        if($file = $request->hasFile('profilepic')) {
            
            $file = $request->file('profilepic');           
            $fileName = $file->getClientOriginalName();
-           $destinationPath = public_path().'/profilepic/';
+           $destinationPath = public_path().'/uploads/';
            $file->move($destinationPath,$fileName);
 
            $file = $fileName;
@@ -138,7 +138,7 @@ class ViewprofileController extends Controller
        
 
 
-        User::find($id)->update($requestData);
+        User::find($id)->update($request->all());
         return redirect()->route('viewprofile.index')
                         ->with('success','Profile updated successfully');
     
