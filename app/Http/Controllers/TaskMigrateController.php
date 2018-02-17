@@ -28,7 +28,7 @@ class TaskMigrateController extends Controller
         {
             $assign_tasks = DB::table('assign_tasks')
             ->join('admin_tasks','assign_tasks.task_id', '=', 'admin_tasks.id')
-            ->where('assign_tasks.institutes_id',Auth::user()->institutes_id)
+            ->where('assign_tasks.assign_user_id',Auth::user()->id)
             ->select('assign_tasks.*','admin_tasks.worktitle','admin_tasks.workdescription','admin_tasks.whatinitforme','admin_tasks.usercredits','admin_tasks.uploads')
             ->whereNull('assign_tasks.status')->orderBy('assign_tasks.task_id','desc')->get();    
         }
@@ -170,7 +170,7 @@ class TaskMigrateController extends Controller
             $assign_tasks = DB::table('assign_tasks')
             ->join('admin_tasks','assign_tasks.task_id', '=', 'admin_tasks.id')
             ->where('assign_tasks.status',$cop_str)
-            ->where('assign_tasks.institutes_id',Auth::user()->institutes_id)
+            ->where('assign_tasks.assign_user_id',Auth::user()->id)
             ->select('assign_tasks.*','admin_tasks.worktitle','admin_tasks.workdescription','admin_tasks.whatinitforme','admin_tasks.usercredits','admin_tasks.uploads')
             ->orderBy('assign_tasks.task_id','desc')->get();
            

@@ -19,7 +19,8 @@ class AssignTasksController extends Controller
     public function index(Request $request)
     {
         $assign_tasks = AssignTasks::orderBy('id','DESC')
-        ->where('assign_tasks.institutes_id',Auth::user()->institutes_id)
+        ->where('assign_tasks.assign_user_id',Auth::user()->id)
+        
         ->paginate(15);
         return view('AssignTasks.index',compact('assign_tasks'))
             ->with('i', ($request->input('page', 1) - 1) * 15);
@@ -45,12 +46,12 @@ class AssignTasksController extends Controller
     {
         $this->validate($request, [
             'task_id' => 'required',
+            'assign_user_id' => 'required',
             'user_id' => 'required',
             'guide_id' => 'required',
             'reviewer_id' => 'required',
             'institutes_id' => '',
-            // 'assigned_date' => 'required',
-            // 'completion_date' => 'required',
+          
         ]);
 
         AssignTasks::create($request->all());
@@ -83,10 +84,10 @@ class AssignTasksController extends Controller
      */
     public function edit($id)
     {
-        $assign_tasks = AssignTasks::find($id);
-        $users = User::all();
-        $works = AdminTasks::all();
-        return view('AssignTasks.edit',compact('assign_tasks','users','works'));
+        // $assign_tasks = AssignTasks::find($id);
+        // $users = User::all();
+        // $works = AdminTasks::all();
+        // return view('AssignTasks.edit',compact('assign_tasks','users','works'));
     }
 
     /**

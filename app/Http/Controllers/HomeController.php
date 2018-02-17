@@ -45,7 +45,7 @@ class HomeController extends Controller
             //Total Assigned Tasks of all Users
             $assign_tasks = DB::table('assign_tasks')
             ->join('admin_tasks','assign_tasks.task_id', '=', 'admin_tasks.id')
-            ->where('assign_tasks.institutes_id',Auth::user()->institutes_id)
+            ->where('assign_tasks.assign_user_id',Auth::user()->id)
             ->orderBy('assign_tasks.updated_at','desc')->get();
 
             $assign_chart = Charts::database($assign_tasks, 'line', 'highcharts')
@@ -60,7 +60,7 @@ class HomeController extends Controller
             $completedtasks = DB::table('assign_tasks')
             ->join('admin_tasks','assign_tasks.task_id', '=', 'admin_tasks.id')
             ->where('assign_tasks.status','approved')
-            ->where('assign_tasks.institutes_id',Auth::user()->institutes_id)
+            ->where('assign_tasks.assign_user_id',Auth::user()->id)
             ->orderBy('assign_tasks.updated_at','desc')->get();
 
             $completed_chart = Charts::database($completedtasks, 'line', 'highcharts')
@@ -74,23 +74,56 @@ class HomeController extends Controller
 
             // Pregress Line graph all Registerd user Count
 
-            $progress = DB::table('users')
-                ->where('users.institutes_id',Auth::user()->institutes_id)   
-                ->select('users.*')->get();        
-            $progress_chart = Charts::create($progress,'pie', 'highcharts')
-            ->view('custom.line.chart.view')
-            ->title('Registered Users Chart')
+            $progress = DB::table('assign_tasks')
+            ->join('admin_tasks','assign_tasks.task_id', '=', 'admin_tasks.id')
+            ->where('assign_tasks.assign_user_id',Auth::user()->id)
+            ->where('assign_tasks.status','approved')
+            ->orderBy('assign_tasks.updated_at','desc')->select('assign_tasks.updated_at','assign_tasks.obtained_marks')->get()->toArray();
+
+            if (empty($progress)) 
+            {
+             $progress_chart =  Charts::create('line', 'highcharts')
+             ->title('Example Progress Chart')
+             ->elementLabel('date')
+             ->labels(['First', 'Second', 'Third'])
+             ->values([5,10,20])
+             ->dimensions(500,300)
+             ->responsive(false);
+            }
+            else{
+
+            
+            $datearray = array_column($progress,'updated_at');
+            for($i=0;$i<count($datearray);$i++)
+            {
+                $date = new \DateTime($datearray[$i]);
+                $dt[$i] = $date->format('d M y'); 
+            }
+           
+
+            $marksarray = array_column($progress,'obtained_marks');
+
+            $count_array[0] = $marksarray[0];
+            for($i=1;$i<count($marksarray);$i++)
+            {
+                $count_array[$i] = $count_array[$i-1] + $marksarray[$i];
+            }
+           
+            $progress_chart = Charts::create('line', 'highcharts')
+            ->title('Progress Chart')
             ->elementLabel('Date')
+            ->labels(array_reverse($dt))
+            ->values($count_array)
             ->dimensions(500,300)
             ->responsive(false);
-            
+        } 
 
             //for count the total droped tasks
 
             $droptasks = DB::table('assign_tasks')
             ->join('admin_tasks','assign_tasks.task_id', '=', 'admin_tasks.id')
             ->where('assign_tasks.status','drop')
-            ->where('assign_tasks.institutes_id',Auth::user()->institutes_id)
+            ->where('assign_tasks.assign_user_id',Auth::user()->id)
             ->orderBy('assign_tasks.created_at','desc')->get();
 
 
@@ -116,6 +149,9 @@ class HomeController extends Controller
             $datetime2 = new \DateTime($tdate);
             $interval = $datetime1->diff($datetime2);
             $days = $interval->format('%a');//now do whatever you like with $days
+
+            $role = DB::table('roles')->where('roles.id',Auth::User()->role_id)->select('roles.name')->get();
+            $institute_name = DB::table('institutes')->where('institutes.id',Auth::User()->institutes_id)->select('institutes.name')->get();
 
 
 
@@ -158,7 +194,7 @@ class HomeController extends Controller
                         ->join('admin_tasks','assign_tasks.task_id', '=', 'admin_tasks.id')
                         ->where('assign_tasks.user_id',Auth::user()->id)
                         ->where('assign_tasks.status','approved')
-                        ->orderBy('assign_tasks.created_at','desc')->select('assign_tasks.created_at','assign_tasks.obtained_marks')->get()->toArray();
+                        ->orderBy('assign_tasks.updated_at','desc')->select('assign_tasks.updated_at','assign_tasks.obtained_marks')->get()->toArray();
 
                         if (empty($progress)) 
                         {
@@ -173,7 +209,7 @@ class HomeController extends Controller
                         else{
 
                         
-                        $datearray = array_column($progress,'created_at');
+                        $datearray = array_column($progress,'updated_at');
                         for($i=0;$i<count($datearray);$i++)
                         {
                             $date = new \DateTime($datearray[$i]);
@@ -203,7 +239,7 @@ class HomeController extends Controller
             ->join('admin_tasks','assign_tasks.task_id', '=', 'admin_tasks.id')
             ->where('assign_tasks.user_id',Auth::user()->id)
             ->where('assign_tasks.status','drop')
-            ->orderBy('assign_tasks.created_at','desc')->get();
+            ->orderBy('assign_tasks.updated_at','desc')->get();
 
            
             $totaltasks = $assign_tasks->count();
@@ -217,11 +253,14 @@ class HomeController extends Controller
             $datetime2 = new \DateTime($tdate);
             $interval = $datetime1->diff($datetime2);
             $days = $interval->format('%a');//now do whatever you like with $days
+
+            $role = DB::table('roles')->where('roles.id',Auth::User()->role_id)->select('roles.name')->get();
+            $institute_name = DB::table('institutes')->where('institutes.id',Auth::User()->institutes_id)->select('institutes.name')->get();
           
              
         }
         
-        return view('home', ['assign_chart' => $assign_chart,'completed_chart' => $completed_chart,'progress_chart' => $progress_chart])->with(compact('progress','totaltasks','totalassigntasks','totalusers','totalcomments','totalcredits','days','completedtasks','droptasks'));
+        return view('home', ['assign_chart' => $assign_chart,'completed_chart' => $completed_chart,'progress_chart' => $progress_chart])->with(compact('totaltasks','totalassigntasks','totalusers','totalcomments','totalcredits','days','completedtasks','droptasks','institute_name','role'));
         // return view('home');
 
     }

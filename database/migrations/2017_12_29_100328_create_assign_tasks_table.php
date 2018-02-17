@@ -15,7 +15,7 @@ class CreateAssignTasksTable extends Migration
     {
         Schema::create('assign_tasks', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('institutes_id');
+            $table->string('assign_user_id');
             $table->string('task_id');
             $table->string('user_id');
             $table->string('guide_id');

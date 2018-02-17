@@ -6,30 +6,22 @@
 <!--<h1>{{Auth::user()->id }}</h1>
 <h2>{{Auth::user()->email }}</h2>  -->
 
- <?php
-// use App\Role;
-// use App\User;
-// $role =  DB::table('roles')
-//             ->join('users','roles.id','=','users.role_id')
-//             ->where('roles.id',Auth::user()->role_id,Auth::user()->id)
-//             ->select('roles.name')->get();
-// use App\institute;
-// $institute = DB::table('institutes')
-//                 ->join('users','institutes.id', '=','users.institutes_id')
-//                 ->where('institutes.id',Auth::user()->institutes_id,Auth::user()->id)
-//                 ->select('institutes.name')->get(); ?>
-
-
-
 <div class="container-fluid">
     <div class="row">
         <div class="col-md-10">
             <div class="panel panel-primary">
-                <div style="color:white" class="panel-heading"><center>Welcome to Ameyem Skill Development Portal</center></div>
+                <div style="color:white" class="panel-heading"><center>Welcome to Ameyem Skills Development Portal</center></div>
 
                 <div style="color:#786e03" class="panel-body">
                     <div class="row">
                         <div class="col-lg-5">
+                        @foreach($role as $roles)
+                            <h3 style="color:red"> Role : {{$roles->name}} </h3> 
+                        @endforeach
+                        @foreach($institute_name as $i_name )
+                            <h3 style="color:green"> In {{ $i_name->name }} </h3>
+                        @endforeach
+
                             <h3>ASDP Start date : {{ Auth::user()->created_at }}</h3>               
                             <h3>Association with ASDP : {{ $days }} days </h3> 
                             <h3>Completed tasks : {{ $completedtasks}}</h3>
@@ -37,7 +29,7 @@
                             <h3>Dropped Tasks : {{ $droptasks }}</h3>
                         </div>
                         <div class="col-lg-5">
-                                {!! $progress_chart->html() !!}
+                            {!! $progress_chart->html() !!}
                                 
                         </div>
                     </div>
@@ -47,139 +39,27 @@
     </div>
 </div>
 
-
-<div class="container-fluid">
-    <div class="row">
-        <div class="col-md-10">
-            <div class="panel panel-primary">
-                <div style="color:white" class="panel-heading"><center>Welcome to Work Environment</center></div>
-
-                <div class="panel-body">
-                   
-                @if(Auth::check())
-                @if(Auth::user()->role_id <= 5) 
-                  {{csrf_field()}} 
-                   
-                    <!--quick info section -->
-                        <div class="row">
-                            <div class="col-lg-3">
-                                <div class="panel panel-primary text-center no-boder">
-                                <a style="text-decoration:none;" href="{{ route('AdminTasks.index') }}">
-                                    <div class="alert alert-success">                                     
-                                        <i class="fa fa-pencil-square-o fa-3x"></i>
-                                        <h3>Admin Tasks</h3>
-                                    </div>
-                                </a> 
-                                    <div class="panel-footer">
-                                        <span class="panel-eyecandy-title">Total Tasks : {{ $totaltasks }}
-                                        </span>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="col-lg-3">
-                                <div class="panel panel-primary text-center no-boder">
-                                <a style="text-decoration:none;" href="{{ route('AssignTasks.index') }}">
-                                    <div class="alert alert-info">
-                                        <i class="fa fa-cogs fa-3x"></i>
-                                       
-                                        <h3>Assign Tasks</h3>
-                                    </div>
-                                </a>
-                                    <div class="panel-footer">
-                                        <span class="panel-eyecandy-title">Total Assigned Tasks : {{ $totalassigntasks }}
-                                        </span>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="col-lg-3">
-                                <div class="panel panel-primary text-center no-boder">
-                                <a style="text-decoration:none;" href="{{ route('Profile.index') }}">
-                                    <div class="alert alert-warning">
-                                        <i class="fa fa fa-floppy-o fa-3x"></i>
-                                        <h3>Profiles</h3>
-                                    </div>
-                                </a>
-                                    <div class="panel-footer">
-                                        <span class="panel-eyecandy-title">Total Users : {{ $totalusers }}
-                                        </span>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="col-lg-3">
-                                <div class="panel panel-primary text-center no-boder">
-                                <a style="text-decoration:none;" href="{{ route('TaskMigrate.index') }}">
-                                    <div class="alert alert-danger">
-                                        <i class="fa fa-users fa-3x"></i>
-                                        <h3>Users Tasks</h3>
-                                    </div>
-                                </a>
-                                    <div class="panel-footer">
-                                        <span class="panel-eyecandy-title">Total Comments : 
-                                        </span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    
-                    <!--end quick info section -->
-                    
-
-                    <!-- Users Tasks info sectiopn -->
-                    @else
-
-
-                 
-                    <div class="row">
-                            <div class="col-lg-3">
-                                <div class="panel panel-primary text-center no-boder">
-                                <a style="text-decoration:none;" href="{{ route('TaskMigrate.index') }}">
-                                    <div class="alert alert-info">                                     
-                                        <i class="fa fa-pencil-square-o fa-3x"></i>
-                                        <h3>User Tasks </h3>
-                                    </div></a>
-                                    <div class="panel-footer">
-                                        <span class="panel-eyecandy-title">Total Tasks : {{ $totaltasks }}
-                                        </span>
-                                    </div>
-                                </div>
-                              </div>
-                            
-                        </div> 
-                        @endif
-                @endif 
-                     <!-- end of Users Tasks info sectiopn -->
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-
-
 {!! Charts::assets() !!}
 <div class="app">
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-10">
                 <div class="panel panel-primary">
-                    <div style="color:white" class="panel-heading"><center>Welcome to Progress Chats</center></div>
-                        <div class="panel-body">
-                           
-                            <div class="col-md-4">
-                                {!! $assign_chart->html() !!}
-                            </div>
-                            <div class="col-md-4">
-                                {!! $completed_chart->html() !!}
-                            </div> 
-                            <!-- <div class="col-md-3">
-                                {!! $progress_chart->html() !!}
-                            </div>  -->
-                            
-                        </div>
+                    <div style="color:white" class="panel-heading">
+                        <center>Welcome to Progress Chats</center>
                     </div>
+                    <div class="panel-body">
+                           
+                        <div class="col-md-4">
+                            {!! $assign_chart->html() !!}
+                        </div>
+                        <div class="col-md-4">
+                            {!! $completed_chart->html() !!}
+                        </div> 
+                            
+                            
+                    </div>
+                    
                 </div>
             </div>
         </div>
@@ -192,7 +72,121 @@
 {!! $completed_chart->script() !!}
 {!! $progress_chart->script() !!}
 
-<br>
+
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-10">
+            <div class="panel panel-primary">
+                <div style="color:white" class="panel-heading"><center>Welcome to Work Environment</center></div>
+
+                <div class="panel-body">
+                   
+                    @if(Auth::check())
+                    @if(Auth::user()->role_id <= 5) 
+                    {{csrf_field()}} 
+                    
+                        <!--quick info section -->
+                            <div class="row">
+                                <div class="col-lg-3">
+                                    <div class="panel panel-primary text-center no-boder">
+                                    <a style="text-decoration:none;" href="{{ route('AdminTasks.index') }}">
+                                        <div class="alert alert-success">                                     
+                                            <i class="fa fa-pencil-square-o fa-3x"></i>
+                                            <h3>Admin Tasks</h3>
+                                        </div>
+                                    </a> 
+                                        <div class="panel-footer">
+                                            <span class="panel-eyecandy-title">Total Tasks : {{ $totaltasks }}
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-3">
+                                    <div class="panel panel-primary text-center no-boder">
+                                    <a style="text-decoration:none;" href="{{ route('AssignTasks.index') }}">
+                                        <div class="alert alert-info">
+                                            <i class="fa fa-cogs fa-3x"></i>
+                                        
+                                            <h3>Assign Tasks</h3>
+                                        </div>
+                                    </a>
+                                        <div class="panel-footer">
+                                            <span class="panel-eyecandy-title">Total Assigned Tasks : {{ $totalassigntasks }}
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-3">
+                                    <div class="panel panel-primary text-center no-boder">
+                                    <a style="text-decoration:none;" href="{{ route('Profile.index') }}">
+                                        <div class="alert alert-warning">
+                                            <i class="fa fa fa-floppy-o fa-3x"></i>
+                                            <h3>Profiles</h3>
+                                        </div>
+                                    </a>
+                                        <div class="panel-footer">
+                                            <span class="panel-eyecandy-title">Total Users : {{ $totalusers }}
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-3">
+                                    <div class="panel panel-primary text-center no-boder">
+                                    <a style="text-decoration:none;" href="{{ route('TaskMigrate.index') }}">
+                                        <div class="alert alert-danger">
+                                            <i class="fa fa-users fa-3x"></i>
+                                            <h3>Users Tasks</h3>
+                                        </div>
+                                    </a>
+                                        <div class="panel-footer">
+                                            <span class="panel-eyecandy-title">Total Comments : 
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        
+                        <!--end quick info section -->
+                        
+
+                        <!-- Users Tasks info sectiopn -->
+                        @else
+
+
+                    
+                        <div class="row">
+                            <div class="col-lg-3">
+                                <div class="panel panel-primary text-center no-boder">
+                                    <a style="text-decoration:none;" href="{{ route('TaskMigrate.index') }}">
+                                        <div class="alert alert-info">                                     
+                                            <i class="fa fa-pencil-square-o fa-3x"></i>
+                                            <h3>User Tasks </h3>
+                                        </div>
+                                    </a>
+                                    <div class="panel-footer">
+                                        <span class="panel-eyecandy-title">Total Tasks : {{ $totaltasks }}
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>                               
+                        </div> 
+                    @endif
+                    @endif 
+                
+                     <!-- end of Users Tasks info sectiopn -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
 
 
 @endsection

@@ -28,7 +28,8 @@ class AdminTasksController extends Controller
     {
         
         $admin_tasks = AdminTasks::orderBy('id','DESC')
-                        ->where('admin_tasks.user_id',Auth::user()->id)
+                        ->where('admin_tasks.institutes_id',Auth::user()->institutes_id)
+                        ->where('admin_tasks.user_id',Auth::user()->id) 
                         ->paginate(15);
 
         $subjects = DB::table('subjects')
@@ -71,6 +72,7 @@ class AdminTasksController extends Controller
         
         
         $this->validate($request, [
+            'institutes_id' =>'required',
             'user_id' => 'required',
             'worknature' => 'required',
             'subject' => 'required',

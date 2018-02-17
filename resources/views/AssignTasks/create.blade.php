@@ -29,7 +29,7 @@
     <div class="row">
 
 
-        <div class="col-xs-12 col-sm-12 col-md-12">
+        <div class="col-xs-12 col-sm-12 col-md-12" style="display:none">
             <div class="form-group">
                 <strong>Task Name:</strong>
                 {!! Form::text('task_id', $works->id,array('class' => 'form-control')) !!}
@@ -37,10 +37,10 @@
             </div>
         </div>
 
-        <div class="col-xs-12 col-sm-12 col-md-12">
+        <div class="col-xs-12 col-sm-12 col-md-12" style="display:none">
             <div class="form-group">
-                <strong>Institute Name :</strong>
-                {!! Form::text('institutes_id',Auth::user()->institutes_id ,array('class' => 'form-control')) !!}
+                <strong>Assign Task Teacher ID :</strong>
+                {!! Form::text('assign_user_id',Auth::user()->id ,array('class' => 'form-control')) !!}
   
             </div>
         </div>

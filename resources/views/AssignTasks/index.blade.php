@@ -34,7 +34,7 @@
                         <th>Reviewer Name</th>
                         <th>Assigned Date</th>
                         <th>Completion Date</th>
-                        <th width="280px">Action</th> 
+                        <!-- <th width="280px">Action</th>  -->
                         <th>Status</th>
                     </tr>
                     @foreach ($assign_tasks as $key => $task)
@@ -46,13 +46,13 @@
                             <td>{{ $task->reviewer_id}}</td>
                             <td>{{ $task->created_at}}</td>
                             <td>{{ $task->updated_at}}</td>
-                            <td>
-                                <!-- <a class="btn btn-info" href="{{ route('AssignTasks.show',$task->id) }}">Show</a> -->
-                                <!-- <a class="btn btn-primary btn-xs" href="{{ route('AssignTasks.edit',$task->id) }}">Edit</a> -->
+                           <!--  <td>
+                                <a class="btn btn-info" href="{{ route('AssignTasks.show',$task->id) }}">Show</a> 
+                                <a class="btn btn-primary btn-xs" href="{{ route('AssignTasks.edit',$task->id) }}">Edit</a> 
                                 {!! Form::open(['method' => 'DELETE','route' => ['AssignTasks.destroy', $task->id],'style'=>'display:inline']) !!}
                                 {!! Form::submit('Delete', ['class' => 'btn btn-danger btn-sm']) !!}
-                                {!! Form::close() !!}
-                            </td>
+                                {!! Form::close() !!} 
+                            </td>-->
                             <td>{{ $task->status}}</td>
                         </tr>
                     @endforeach

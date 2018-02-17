@@ -8,7 +8,7 @@
     <div class="row">
         <div class="col-lg-12 margin-tb">
             <div class="pull-left">
-                <h2>Create New Task</h2>
+                <h2><u>Create New Task</u></h2><br>
             </div>
             <div class="pull-right">
                 <a class="btn btn-primary" href="{{ route('AdminTasks.index') }}"> Back</a>
@@ -31,17 +31,25 @@
 
     {!! Form::open(array('route' => 'AdminTasks.store','method' => 'POST','files' => true)) !!}
     <div class="row">
-    <h3 style="color:red;">Don't change Task Assign User ID values</h3>
 
     <!-- {{ csrf_field() }} -->
-        <div class="col-xs-12 col-sm-12 col-md-12">
+        
+        
+        <div class="col-xs-12 col-sm-12 col-md-12" style='display:none'>
             <div class="form-group">
-                <strong>Task Assign User ID:</strong>
+                <strong>Institute ID:</strong>
+                    {!! Form::text('institutes_id', Auth::user()->institutes_id) !!}
+            
+            </div>
+        </div>
+        
+        <div class="col-xs-12 col-sm-12 col-md-12" style='display:none'>
+            <div class="form-group">
+                <strong>Assign Task Teacher ID:</strong>
                     {!! Form::text('user_id', Auth::user()->id) !!}
             
             </div>
         </div>
-
 
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">

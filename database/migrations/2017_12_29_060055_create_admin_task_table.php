@@ -15,6 +15,7 @@ class CreateAdminTaskTable extends Migration
     {
         Schema::create('admin_tasks', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('institutes_id');
             $table->string('user_id');
             $table->string('worknature');
             $table->string('subject');
