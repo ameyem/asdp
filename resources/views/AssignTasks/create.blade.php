@@ -50,7 +50,7 @@
                 <strong>User Name</strong>
                 <select name="user_id" class="form-control">
                      @foreach ($users as $user)
-                        <option value="{{$user->id}}">{{$user->id}} . {{$user->name}} , {{$user->email}}</option>                
+                        <option value="{{$user->id}}">{{$user->name}} , {{$user->email}}</option>                
                      @endforeach
                 </select>
            
@@ -61,8 +61,8 @@
             <div class="form-group">
                 <strong>Guide Name</strong>
                 <select name="guide_id" class="form-control">
-                     @foreach ($users as $user)
-                        <option value="{{$user->name}}">{{$user->id}} . {{$user->name}} , {{$user->email}}</option>                
+                     @foreach ($teachers as $teacher)
+                        <option value="{{$teacher->name}}">{{$teacher->name}} , {{$teacher->email}}</option>                
                      @endforeach
                 </select>    
             </div>
@@ -72,8 +72,8 @@
             <div class="form-group">
                 <strong>Reviewer Name</strong>
                 <select name="reviewer_id" class="form-control">
-                     @foreach ($users as $user)
-                        <option value="{{$user->name}}">{{$user->id}} . {{$user->name}} , {{$user->email}}</option>                
+                     @foreach ($teachers as $teacher)
+                        <option value="{{$teacher->name}}">{{$teacher->name}} , {{$teacher->email}}</option>                
                      @endforeach
                 </select>
          

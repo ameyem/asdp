@@ -137,7 +137,13 @@ class HomeController extends Controller
                     ->where('users.institutes_id',Auth::user()->institutes_id);
             $totalusers = $users->count();
 
-            $totalcomments = UserTasks::count();
+            // $totalcomments = UserTasks::count();
+            // $totalcomments = DB::table('user_tasks')
+            // ->where('user_tasks.assigntask_id','assign_tasks.task_id')
+                            
+            // ->join('admin_tasks','assign_tasks.task_id', '=', 'admin_tasks.id')
+            //                 ->where('assign_tasks.assign_user_id',Auth::user()->id)
+            //                 ->count();
 
             $totalcredits = $completedtasks->sum('obtained_marks');
             $completedtasks = $completedtasks->count();
