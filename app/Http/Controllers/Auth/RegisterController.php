@@ -55,6 +55,8 @@ class RegisterController extends Controller
             'password' => 'required|string|min:6|confirmed',
             'phone_number' => 'required',
             'role_id' => 'required',
+            'branch_id' => '',
+            'batch_id' => '',
         ]);
     }
 
@@ -73,6 +75,8 @@ class RegisterController extends Controller
             'password' => bcrypt($data['password']),
             'phone_number' => $data['phone_number'],
             'role_id' => $data['role_id'],
+            'branch_id' => $data['branch_id'],
+            'batch_id' => $data['batch_id'],
         ]);
     }
 }

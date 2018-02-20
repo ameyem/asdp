@@ -9,6 +9,7 @@ use App\AdminTasks;
 use App\AssignTasks;
 use Illuminate\Http\Request;
 
+
 class AssignTasksController extends Controller
 {
     /**
@@ -44,20 +45,29 @@ class AssignTasksController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request, [
-            'task_id' => 'required',
-            'assign_user_id' => 'required',
-            'user_id' => 'required',
-            'guide_id' => 'required',
-            'reviewer_id' => 'required',
-            'institutes_id' => '',
-          
-        ]);
+        $ids[] = $request->user_id;
+        $request->user_id=$ids[0];
+        for($i=0;$i<count($ids[0]);$i++)    {
+        
 
-        AssignTasks::create($request->all());
+        $record = [
+            'task_id' => $request->task_id,
+            'assign_user_id' => $request->assign_user_id,
+            'user_id' =>$ids[0][$i],
+            'guide_id' => $request->guide_id,
+            'reviewer_id' => $request->reviewer_id,
+
+        ];
+        
+        
+      AssignTasks::create( $record );
+          
+    }
+
         return redirect()->route('AssignTasks.index')
             ->with('success','Task Assigned Successfully');
-    }
+    
+}
 
     /**
      * Display the specified resource.
@@ -72,6 +82,7 @@ class AssignTasksController extends Controller
                 ->where('users.role_id','<>',5)
                 ->select('users.*')
                 ->get();
+
         $teachers = DB::table('users')
                 ->where('users.institutes_id',Auth::User()->institutes_id)        
                 ->where('users.role_id',Auth::User()->role_id)
@@ -90,10 +101,7 @@ class AssignTasksController extends Controller
      */
     public function edit($id)
     {
-        // $assign_tasks = AssignTasks::find($id);
-        // $users = User::all();
-        // $works = AdminTasks::all();
-        // return view('AssignTasks.edit',compact('assign_tasks','users','works'));
+        //
     }
 
     /**
@@ -121,4 +129,13 @@ class AssignTasksController extends Controller
         return redirect()->route('AssignTasks.index')
                         ->with('success','AssignTasks deleted successfully');
     }
+
+    public function render($request, Exception $exception)
+{
+    if ($exception instanceof CustomException) {
+        return response()->view('errors.custom', [], 500);
+    }
+
+    return parent::render($request, $exception);
+}
 }

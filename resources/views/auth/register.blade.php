@@ -90,7 +90,7 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="password-confirm" class="col-md-4 control-label">Role</label>
+                            <label for="role_name" class="col-md-4 control-label">Role</label>
 
                             <div class="col-md-6">
 
@@ -110,14 +110,45 @@
                                     <option value="{{$role->id}}">{{$role->name}} </option>   
                                     @endif             
                                 @endforeach
-                                 
-                            
                             </select>
-
-
-                                <!-- <input id="role_id" type="text" class="form-control" name="role_id" required> -->
                             </div>
                         </div>
+
+                        <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
+                            <label for="branch_id" class="col-md-4 control-label">Branch Name</label>
+
+                            <div class="col-md-6">
+                            
+                            <select name="branch_id" class="form-control">
+                            <?php 
+                            use App\Branch;
+                            $branch = Branch::all(); ?>
+                                @foreach ($branch as $branches)
+                                    <option value="{{$branches->id}}">{{$branches->name}} </option>                
+                                @endforeach
+                            </select>
+                            </div>
+                        </div>
+
+
+                        <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
+                            <label for="batch_id" class="col-md-4 control-label">Batch Starting Year</label>
+
+                            <div class="col-md-6">
+                            
+                            <select name="batch_id" class="form-control">
+                            <?php 
+                            use App\batch;
+                            $batch = batch::all(); ?>
+                                @foreach ($batch as $batches)
+                                    <option value="{{$batches->id}}">{{$batches->name}} </option>                
+                                @endforeach
+                            </select>
+                            </div>
+                        </div>
+
+
+
 
                         <div class="form-group">
                             <div class="col-md-6 col-md-offset-4">

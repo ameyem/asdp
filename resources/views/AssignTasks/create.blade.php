@@ -4,9 +4,6 @@
 
     <div class="row">
         <div class="col-lg-12 margin-tb">
-            <div class="pull-left">
-                <h2>New Task Assignment</h2>
-            </div>
             <div class="pull-right">
                 <a class="btn btn-primary" href="{{ route('AdminTasks.index') }}"> Back</a>
             </div>
@@ -25,88 +22,127 @@
     @endif
 
 
-    {!! Form::open(array('route' => 'AssignTasks.store','method'=>'POST')) !!}
-    <div class="row">
+<div class="app">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-10">
+                <div class="panel panel-primary">
+                    <div style="color:white" class="panel-heading">
+                        <center>Task Details</center>
+                    </div>
+                    <div class="panel-body" style="color:green">
 
-
-        <div class="col-xs-12 col-sm-12 col-md-12" style="display:none">
-            <div class="form-group">
-                <strong>Task Name:</strong>
-                {!! Form::text('task_id', $works->id,array('class' => 'form-control')) !!}
-  
-            </div>
-        </div>
-
-        <div class="col-xs-12 col-sm-12 col-md-12" style="display:none">
-            <div class="form-group">
-                <strong>Assign Task Teacher ID :</strong>
-                {!! Form::text('assign_user_id',Auth::user()->id ,array('class' => 'form-control')) !!}
-  
-            </div>
-        </div>
-
-        <div class="col-xs-12 col-sm-12 col-md-12">
-            <div class="form-group">
-                <strong>User Name</strong>
-                <select name="user_id" class="form-control">
-                     @foreach ($users as $user)
-                        <option value="{{$user->id}}">{{$user->name}} , {{$user->email}}</option>                
-                     @endforeach
-                </select>
-           
-            </div>
-        </div>
-        
-        <div class="col-xs-12 col-sm-12 col-md-12">
-            <div class="form-group">
-                <strong>Guide Name</strong>
-                <select name="guide_id" class="form-control">
-                     @foreach ($teachers as $teacher)
-                        <option value="{{$teacher->name}}">{{$teacher->name}} , {{$teacher->email}}</option>                
-                     @endforeach
-                </select>    
-            </div>
-        </div>
-
-        <div class="col-xs-12 col-sm-12 col-md-12">
-            <div class="form-group">
-                <strong>Reviewer Name</strong>
-                <select name="reviewer_id" class="form-control">
-                     @foreach ($teachers as $teacher)
-                        <option value="{{$teacher->name}}">{{$teacher->name}} , {{$teacher->email}}</option>                
-                     @endforeach
-                </select>
-         
+                    <table class="table table-striped">
+                    <tr>
+                        <th>Assign Task Id</th>
+                        <th>Work Nature </th>
+                        <th>Work Title</th>
+                        <th>Work Description</th>
+                    </tr>
+                    
+                    <tr>
+                        <td>{{ $works->id }}</td>
+                        <td>{{ $works->worknature }}</td>
+                        <td>{{ $works->worktitle }}</td>
+                        <td>{{ $works->workdescription }}</td>
                             
+                    </tr>
+                   
+                </table>
+                    
+
+                    </div>
+                    
+                 </div>
             </div>
         </div>
-      
-
-
-        <!-- <div class="col-xs-12 col-sm-12 col-md-12">
-            <div class="form-group" class="form-control">
-                <strong>Assigned Date:</strong>
-                {!! Form::text('assigned_date', null, array('placeholder' => 'task assigned date','class' => 'form-control')) !!}
-             
-            </div>
-        </div>
-        <div class="col-xs-12 col-sm-12 col-md-12">
-            <div class="form-group">
-                <strong>Completion Date:</strong>
-                {!! Form::text('completion_date', null, array('placeholder' => 'Completion Date','class' => 'form-control')) !!}
-               
-            </div>
-        </div> -->
-        
-
-
-        <div class="col-xs-12 col-sm-12 col-md-12 text-center">
-                <button type="submit" class="btn btn-primary">Submit</button>
-        </div>
-
-
     </div>
-    {!! Form::close() !!}
+</div>
+
+
+
+
+<div class="app">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-10">
+                <div class="panel panel-primary">
+                    <div style="color:white" class="panel-heading">
+                        <center>Welcome to New Assign Task Environment</center>
+                    </div>
+                        <div class="panel-body">
+
+                            {!! Form::open(array('route' => 'AssignTasks.store','method'=>'POST')) !!}
+                            <div class="row">
+
+
+                                <div class="col-xs-12 col-sm-12 col-md-12" style="display:none">
+                                    <div class="form-group">
+                                        <strong>Task Name:</strong>
+                                        {!! Form::text('task_id', $works->id,array('class' => 'form-control')) !!}
+                        
+                                    </div>
+                                </div>
+
+                                <div class="col-xs-12 col-sm-12 col-md-12" style="display:none">
+                                    <div class="form-group">
+                                        <strong>Assign Task Teacher ID :</strong>
+                                        {!! Form::text('assign_user_id',Auth::user()->id ,array('class' => 'form-control')) !!}
+                        
+                                    </div>
+                                </div>
+
+                                <div class="col-xs-12 col-sm-12 col-md-12">
+                                    <div class="form-group">
+                                        <strong>User Name</strong><br>
+                                        <!-- <select name="user_id" class="form-control"> -->
+                                            @foreach ($users as $key => $user)
+                                                <input type ="checkbox" name='user_id[]' value = "{{ $user->id}}">{{$user->name}}.{{$user->email}}<br>                                                <!-- <option value="{{$user->id}}">{{$user->name}} , {{$user->email}}</option>                 -->
+                                            @endforeach
+                                        <!-- </select> -->
+                                
+                                    </div>
+                                </div>
+                                
+                                <div class="col-xs-12 col-sm-12 col-md-12">
+                                    <div class="form-group">
+                                        <strong>Guide Name</strong>
+                                        <select name="guide_id" class="form-control">
+                                            @foreach ($teachers as $teacher)
+                                                <option value="{{$teacher->name}}">{{$teacher->name}} , {{$teacher->email}}</option>                
+                                            @endforeach
+                                        </select>    
+                                    </div>
+                                </div>
+
+                                <div class="col-xs-12 col-sm-12 col-md-12">
+                                    <div class="form-group">
+                                        <strong>Reviewer Name</strong>
+                                        <select name="reviewer_id" class="form-control">
+                                            @foreach ($teachers as $teacher)
+                                                <option value="{{$teacher->name}}">{{$teacher->name}} , {{$teacher->email}}</option>                
+                                            @endforeach
+                                        </select>
+                                
+                                                    
+                                    </div>
+                                </div>
+
+                                <div class="col-xs-12 col-sm-12 col-md-12 text-center">
+                                        <button type="submit" class="btn btn-primary">Submit</button>
+                                </div>
+
+
+                            </div>
+                            {!! Form::close() !!}
+
+                        </div>
+                    
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
 
 

@@ -23,6 +23,7 @@ Route::resource('Profile','ProfileController');
 Route::resource('viewprofile','ViewprofileController');
 Route::resource('TaskMigrate','TaskMigrateController');
 Route::resource('Charts','ChartController');
+Route::resource('Subject','SubjectController');
 
 
 
@@ -47,4 +48,7 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'admin', 'as' => 'admin.'], 
     Route::resource('users', 'Admin\UsersController');
     Route::post('users_mass_destroy', ['uses' => 'Admin\UsersController@massDestroy', 'as' => 'users.mass_destroy']);
 
+
+   
 });
+

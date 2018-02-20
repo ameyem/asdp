@@ -20,6 +20,8 @@ class CreateUsersTable extends Migration
             $table->string('remember_token')->nullable();
             $table->string('institutes_id')->nullable();
             $table->string('role_id')->nullable();
+            $table->string('branch_id')->nullable();
+            $table->string('batch_id')->nullable();
             $table->string('phone_number')->nullable();
             $table->string('dob')->nullable();  
             $table->string('qualification')->nullable();  

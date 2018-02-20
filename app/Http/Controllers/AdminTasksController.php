@@ -8,6 +8,7 @@ use App\User;
 use App\subject;
 use App\AdminTasks;
 use App\AssignTasks;
+use App\work_nature;
 use Illuminate\Http\Request;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Storage;
@@ -51,8 +52,10 @@ class AdminTasksController extends Controller
         $subjects = DB::table('subjects')
                     ->where('subjects.institutes_id',Auth::user()->institutes_id)
                     ->select('subjects.*')->get();
+        $work_nature = DB::table('work_nature')->get();
 
-        return view('AdminTasks.create',compact('subjects'));
+
+        return view('AdminTasks.create',compact('subjects','work_nature'));
     }
 
 
@@ -132,6 +135,7 @@ class AdminTasksController extends Controller
                     ->where('subjects.institutes_id',Auth::user()->institutes_id)
                     ->select('subjects.*')->get();
 
+        
 
         return view('AdminTasks.index',compact('subjects','admin_tasks'))
             ->with('i', ($request->input('page', 1) - 1) * 15);

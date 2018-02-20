@@ -4,13 +4,18 @@
     <div class="row">
         <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12">
             <div class="pull-left">
-                <h2>Admin Tasks</h2>
+                <h4 style="color:green">Add New Subject
+                <p>
+                    <a href="{{ route('Subject.index') }}" class="btn btn-success btn-xs">Add</a>
+                </p>
+                </h4>          
             </div>
             <div class="pull-right">
                 <a class="btn btn-success" href="{{ url('/') }}">Back</a>
                 <a class="btn btn-success" href="{{ route('AdminTasks.create') }}"> Create New Task</a>
             </div>
         </div>
+
         <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12">
             <div class="pull-left">
                 <h1>
@@ -31,12 +36,14 @@
 @endif
 
 
+
+
 <div class="container-fluid">
     <div class="row">
         <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12">
             <div class="table-responsive">
                 <table class="table table-striped">
-                    <tr>
+                    <tr style="color:#660033">
                         <th>No</th>
                         <th>Work Nature</th>
                         <th>Subjects or Language</th>
@@ -68,7 +75,7 @@
                         <td>
                             <!-- <a class="btn btn-info btn-xs" href="{{ route('AdminTasks.show',$task->id) }}">Show</a> -->
                             <a class="btn btn-primary btn-xs" href="{{ route('AdminTasks.edit',$task->id) }}">Edit</a>
-                            <a class="btn btn-default btn-xs" href="{{ route('AssignTasks.show',$task->id) }}">Assign Task</a>
+                            <a class="btn btn-success btn-xs" href="{{ route('AssignTasks.show',$task->id) }}">Assign Task</a>
 
                             {!! Form::open(['method' => 'DELETE','route' => ['AdminTasks.destroy', $task->id],'style'=>'display:inline']) !!}
                             {!! Form::submit('Delete', ['class' => 'btn btn-danger btn-xs']) !!} 
