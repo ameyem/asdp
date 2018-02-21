@@ -47,22 +47,32 @@ class AssignTasksController extends Controller
     {
         $ids[] = $request->user_id;
         $request->user_id=$ids[0];
-        for($i=0;$i<count($ids[0]);$i++)    {
+        for($i=0;$i<count($ids[0]);$i++)    
+        {
+            try 
+            {
+                $record = [
+                    'task_id' => $request->task_id,
+                    'assign_user_id' => $request->assign_user_id,
+                    'user_id' =>$ids[0][$i],
+                    'guide_id' => $request->guide_id,
+                    'reviewer_id' => $request->reviewer_id,
+
+                ];    
+                AssignTasks::create( $record );
+                
+            }
+            catch (Exception $e)
+            {
+                render($e);
+
+                return false;
+            }
         
 
-        $record = [
-            'task_id' => $request->task_id,
-            'assign_user_id' => $request->assign_user_id,
-            'user_id' =>$ids[0][$i],
-            'guide_id' => $request->guide_id,
-            'reviewer_id' => $request->reviewer_id,
-
-        ];
-        
-        
-      AssignTasks::create( $record );
-          
-    }
+                   
+                    
+        }
 
         return redirect()->route('AssignTasks.index')
             ->with('success','Task Assigned Successfully');

@@ -24,9 +24,10 @@
     <div class="row">
         <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12">
             <div class="table-responsive">
-                <table class="table table-striped">
+                <table class="table table-striped" style="color:#2471A3">
                     <tr>
-                        <th>No</th>
+                        <th>Sr.No</th>
+                        <th>ID</th>
                         <th>Name</th><br>
                         <th>Email</th>
                         <th>Mobile Number</th>
@@ -41,7 +42,8 @@
                     </tr>
                     @foreach ($users as $key => $details)
                         <tr>
-                            <td>{{ ++$i }}</td> 
+                            <td>{{ ++$i }}</td>
+                            <td>{{ $details->id }}</td> 
                             <td>{{ $details->name }}</td>
                             <td>{{ $details->email }}</td>
                             <td>{{ $details->phone_number }}</td>

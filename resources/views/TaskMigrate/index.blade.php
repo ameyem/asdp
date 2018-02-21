@@ -36,7 +36,7 @@
                 <table class="table table-striped">
                     <tr style="color:#2471A3">
                         <th>User ID</th>
-                        <th>Assign Task Id</th> 
+                        <th>Task Id</th> 
                         <th>Work Title</th>
                         <th>Work Description</th>
                         <th>What In IT For Me</th>
@@ -55,7 +55,7 @@
                     
                     <tr style="color:454545">
                         <td>{{ $task->user_id}}</td>
-                        <td>{{ $task->id }}</td> 
+                        <td>{{ $task->task_id }}</td> 
                         <td>{{ $task->worktitle }}</td>
                         <td>{{ $task->workdescription }}</td>
                         <td>{{ $task->whatinitforme }}</td>

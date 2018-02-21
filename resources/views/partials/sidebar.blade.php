@@ -55,18 +55,7 @@
             
             @endcan
 
-            <!-- <li class="{{ $request->segment(1) == 'home' ? 'active' : '' }}">
-                <a href="{{ url('/') }}">
-                    <i class="fa fa-wrench"></i>
-                    <span class="title">User Dash Board</span>
-                </a>
-            </li>  -->
-            <li class="{{ $request->segment(1) == 'home' ? 'active' : '' }}">
-                <a href="{{ route('viewprofile.index') }}">
-                    <i class="fa fa-wrench"></i>
-                    <span class="title">Profile</span>
-                </a>
-            </li>
+            
 
             <li class="{{ $request->segment(1) == 'change_password' ? 'active' : '' }}">
                 <a href="{{ route('auth.change_password') }}">

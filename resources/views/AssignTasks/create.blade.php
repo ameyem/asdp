@@ -34,7 +34,7 @@
 
                     <table class="table table-striped">
                     <tr>
-                        <th>Assign Task Id</th>
+                        <th>Task Id</th>
                         <th>Work Nature </th>
                         <th>Work Title</th>
                         <th>Work Description</th>
@@ -94,17 +94,17 @@
 
                                 <div class="col-xs-12 col-sm-12 col-md-12">
                                     <div class="form-group">
-                                        <strong>User Name</strong><br>
+                                        <strong style="color:green">User Name</strong><br>
                                         <!-- <select name="user_id" class="form-control"> -->
                                             @foreach ($users as $key => $user)
-                                                <input type ="checkbox" name='user_id[]' value = "{{ $user->id}}">{{$user->name}}.{{$user->email}}<br>                                                <!-- <option value="{{$user->id}}">{{$user->name}} , {{$user->email}}</option>                 -->
+                                                <input type ="checkbox" name='user_id[]' value = "{{ $user->id}}.{{$user->name}}">{{ $user->id}} . {{$user->name}} , {{$user->email}}<br>                                                <!-- <option value="{{$user->id}}">{{$user->name}} , {{$user->email}}</option>                 -->
                                             @endforeach
                                         <!-- </select> -->
                                 
                                     </div>
                                 </div>
                                 
-                                <div class="col-xs-12 col-sm-12 col-md-12">
+                                <div class="col-xs-12 col-sm-12 col-md-12" style="color:green">
                                     <div class="form-group">
                                         <strong>Guide Name</strong>
                                         <select name="guide_id" class="form-control">
@@ -115,7 +115,7 @@
                                     </div>
                                 </div>
 
-                                <div class="col-xs-12 col-sm-12 col-md-12">
+                                <div class="col-xs-12 col-sm-12 col-md-12" style="color:green">
                                     <div class="form-group">
                                         <strong>Reviewer Name</strong>
                                         <select name="reviewer_id" class="form-control">

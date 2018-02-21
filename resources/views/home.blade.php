@@ -6,71 +6,7 @@
 <!--<h1>{{Auth::user()->id }}</h1>
 <h2>{{Auth::user()->email }}</h2>  -->
 
-<div class="container-fluid">
-    <div class="row">
-        <div class="col-md-10">
-            <div class="panel panel-primary">
-                <div style="color:white" class="panel-heading"><center>Welcome to Ameyem Skills Development Portal</center></div>
 
-                <div style="color:#786e03" class="panel-body">
-                    <div class="row">
-                        <div class="col-lg-5">
-                        @foreach($role as $roles)
-                            <h3 style="color:red"> Role : {{$roles->name}} </h3> 
-                        @endforeach
-                        @foreach($institute_name as $i_name )
-                            <h3 style="color:green"> In {{ $i_name->name }} </h3>
-                        @endforeach
-
-                            <h3>ASDP Start date : {{ Auth::user()->created_at }}</h3>               
-                            <h3>Association with ASDP : {{ $days }} days </h3> 
-                            <h3>Completed tasks : {{ $completedtasks}}</h3>
-                            <h3>Total Credits : {{ $totalcredits}}</h3>
-                            <h3>Dropped Tasks : {{ $droptasks }}</h3>
-                        </div>
-                        <div class="col-lg-5">
-                            {!! $progress_chart->html() !!}
-                                
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-{!! Charts::assets() !!}
-<div class="app">
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-md-10">
-                <div class="panel panel-primary">
-                    <div style="color:white" class="panel-heading">
-                        <center>Welcome to Progress Chats</center>
-                    </div>
-                    <div class="panel-body">
-                           
-                        <div class="col-md-4">
-                            {!! $assign_chart->html() !!}
-                        </div>
-                        <div class="col-md-4">
-                            {!! $completed_chart->html() !!}
-                        </div> 
-                            
-                            
-                    </div>
-                    
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- End Of Main Application -->
-{!! Charts::scripts() !!}
-{!! $assign_chart->script() !!}
-{!! $completed_chart->script() !!}
-{!! $progress_chart->script() !!}
 
 
 
@@ -174,7 +110,25 @@
                                     </div>
                                 </div>
                             </div>                               
-                        </div> 
+                       
+
+                            
+                            <div class="col-lg-3">
+                                <div class="panel panel-primary text-center no-boder">
+                                    <a style="text-decoration:none;" href="{{ route('viewprofile.index') }}">
+                                        <div class="alert alert-warning">
+                                            <i class="fa fa-cogs fa-3x"></i>
+                                            
+                                            <h3>Profile</h3>
+                                        </div>
+                                    </a>
+                                        <div class="panel-footer">
+                                            <span class="panel-eyecandy-title">See And Update your profile
+                                            </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     @endif
                     @endif 
                 
@@ -184,6 +138,74 @@
         </div>
     </div>
 </div>
+
+
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-10">
+            <div class="panel panel-primary">
+                <div style="color:white" class="panel-heading"><center>Welcome to Ameyem Skills Development Portal</center></div>
+
+                <div style="color:#786e03" class="panel-body">
+                    <div class="row">
+                        <div class="col-lg-5">
+                        @foreach($role as $roles)
+                            <h3 style="color:red"> Role : {{$roles->name}} </h3> 
+                        @endforeach
+                        @foreach($institute_name as $i_name )
+                            <h3 style="color:green"> In {{ $i_name->name }} </h3>
+                        @endforeach
+
+                            <h3>ASDP Start date : {{ Auth::user()->created_at }}</h3>               
+                            <h3>Association with ASDP : {{ $days }} days </h3> 
+                            <h3>Completed tasks : {{ $completedtasks}}</h3>
+                            <h3>Total Credits : {{ $totalcredits}}</h3>
+                            <h3>Dropped Tasks : {{ $droptasks }}</h3>
+                        </div>
+                        <div class="col-lg-5">
+                            {!! $progress_chart->html() !!}
+                                
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{!! Charts::assets() !!}
+<div class="app">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-10">
+                <div class="panel panel-primary">
+                    <div style="color:white" class="panel-heading">
+                        <center>Welcome to Progress Chats</center>
+                    </div>
+                    <div class="panel-body">
+                           
+                        <div class="col-md-4">
+                            {!! $assign_chart->html() !!}
+                        </div>
+                        <div class="col-md-4">
+                            {!! $completed_chart->html() !!}
+                        </div> 
+                            
+                            
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- End Of Main Application -->
+{!! Charts::scripts() !!}
+{!! $assign_chart->script() !!}
+{!! $completed_chart->script() !!}
+{!! $progress_chart->script() !!}
 
 
 

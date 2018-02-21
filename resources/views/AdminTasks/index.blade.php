@@ -45,6 +45,7 @@
                 <table class="table table-striped">
                     <tr style="color:#660033">
                         <th>No</th>
+                        <th>Task ID</th>
                         <th>Work Nature</th>
                         <th>Subjects or Language</th>
                         <th>Work Title</th>
@@ -60,8 +61,9 @@
                         <th>File Link<th>
                     </tr>
                     @foreach ($admin_tasks as $key => $task)
-                    <tr>
+                    <tr style="color:#2471A3">
                         <td>{{ ++$i }}</td>
+                        <td>{{ $task->id }}</td>
                         <td>{{ $task->worknature }}</td>
                         <td>{{ $task->subject }}</td>
                         <td>{{ $task->worktitle }}</td>

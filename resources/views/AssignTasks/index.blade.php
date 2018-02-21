@@ -25,10 +25,10 @@
     <div class="row">
         <div class="col-sm-12 col-xs-12 col-md-12 col-lg-12">
             <div class="table-responsive">
-                <table class="table table-striped">
+                <table class="table table-striped" style="color:#2471A3">
                     <tr>
                         <th>No</th>
-                        <th>Assign Task ID</th>
+                        <th>Task ID</th>
                         <th>User ID</th>
                         <th>Guide Name</th>
                         <th>Reviewer Name</th>
@@ -40,7 +40,7 @@
                     @foreach ($assign_tasks as $key => $task)
                         <tr>
                             <td>{{ ++$i }}</td>
-                            <td>{{ $task->id }}</td>
+                            <td>{{ $task->task_id }}</td>
                             <td>{{ $task->user_id }}</td>
                             <td>{{ $task->guide_id }}</td>
                             <td>{{ $task->reviewer_id}}</td>
