@@ -7,8 +7,8 @@
 
         <li class="{{ $request->segment(1) == 'home' ? 'active' : '' }}">
                 <a href="{{ url('/') }}">
-                    <i class="fa fa-wrench"></i>
-                    <span class="title">Dash Board</span>
+                    <i class="fa fa-home"></i>
+                    <span class="title">HOME</span>
                 </a>
             </li>
             

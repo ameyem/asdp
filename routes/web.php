@@ -7,7 +7,8 @@ $this->post('login', 'Auth\LoginController@login')->name('auth.login');
 $this->post('logout', 'Auth\LoginController@logout')->name('auth.logout');
 
 // Registration Routes...
-$this->get('register', 'Auth\RegisterController@showRegistrationForm')->name('auth.register');
+// $this->get('register1', 'Auth\RegisterController@showRegistrationForm')->name('auth.register1');
+$this->get('register', function () { return view('auth\register'); });
 $this->post('register', 'Auth\RegisterController@register')->name('auth.register');
 
 // Change Password Routes...

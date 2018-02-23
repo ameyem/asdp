@@ -49,14 +49,16 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
+            
+            'role_id' => 'required',
             'institutes_id' => 'required',
+            'branch_id' => '',
+            'batch_id' => '',            
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:6|confirmed',
             'phone_number' => 'required',
-            'role_id' => 'required',
-            'branch_id' => '',
-            'batch_id' => '',
+            
         ]);
     }
 
@@ -68,15 +70,16 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {   
-        return User::create([
+        return User::create([            
+            'role_id' => $data['role_id'],
             'institutes_id' =>  $data['institutes_id'],
+            'branch_id' => $data['branch_id'],
+            'batch_id' => $data['batch_id'],
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
             'phone_number' => $data['phone_number'],
-            'role_id' => $data['role_id'],
-            'branch_id' => $data['branch_id'],
-            'batch_id' => $data['batch_id'],
+            
         ]);
     }
 }

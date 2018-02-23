@@ -29,7 +29,7 @@
                                     <a style="text-decoration:none;" href="{{ route('AdminTasks.index') }}">
                                         <div class="alert alert-success">                                     
                                             <i class="fa fa-pencil-square-o fa-3x"></i>
-                                            <h3>Admin Tasks</h3>
+                                            <h3>Create New Tasks</h3>
                                         </div>
                                     </a> 
                                         <div class="panel-footer">
@@ -45,7 +45,7 @@
                                         <div class="alert alert-info">
                                             <i class="fa fa-cogs fa-3x"></i>
                                         
-                                            <h3>Assign Tasks</h3>
+                                            <h3>Assigned Tasks</h3>
                                         </div>
                                     </a>
                                         <div class="panel-footer">
@@ -75,7 +75,7 @@
                                     <a style="text-decoration:none;" href="{{ route('TaskMigrate.index') }}">
                                         <div class="alert alert-danger">
                                             <i class="fa fa-users fa-3x"></i>
-                                            <h3>Users Tasks</h3>
+                                            <h3>Tasks Progress</h3>
                                         </div>
                                     </a>
                                         <div class="panel-footer">
