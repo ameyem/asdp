@@ -34,7 +34,7 @@ class AdminTasksController extends Controller
                         ->paginate(15);
 
         $subjects = DB::table('subjects')
-                    ->where('subjects.institutes_id',Auth::user()->institutes_id)
+                    ->where('subjects.user_id',Auth::user()->id)
                     ->select('subjects.*')->get();
 
         return view('AdminTasks.index',compact('admin_tasks','subjects'))
@@ -50,7 +50,7 @@ class AdminTasksController extends Controller
     public function create()
     {
         $subjects = DB::table('subjects')
-                    ->where('subjects.institutes_id',Auth::user()->institutes_id)
+                    ->where('subjects.user_id',Auth::user()->id)
                     ->select('subjects.*')->get();
         $work_nature = DB::table('work_nature')->get();
 
@@ -132,7 +132,7 @@ class AdminTasksController extends Controller
                         ->paginate(15);
 
         $subjects = DB::table('subjects')
-                    ->where('subjects.institutes_id',Auth::user()->institutes_id)
+                    ->where('subjects.user_id',Auth::user()->id)
                     ->select('subjects.*')->get();
 
         
@@ -154,7 +154,7 @@ class AdminTasksController extends Controller
         $admin_tasks = AdminTasks::find($id);
         
         $subjects = DB::table('subjects')
-                    ->where('subjects.institutes_id',Auth::user()->institutes_id)
+                    ->where('subjects.user_id',Auth::user()->id)
                     ->select('subjects.*')->get();
         return view('AdminTasks.edit',compact('admin_tasks','subjects'));
     }

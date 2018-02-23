@@ -19,7 +19,6 @@ class SubjectController extends Controller
     {
         $this->validate($request, [
             'user_id' => 'required',
-            'institutes_id' => 'required',
             'subject' => 'required',
             ]);
 
