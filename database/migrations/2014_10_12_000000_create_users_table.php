@@ -18,20 +18,20 @@ class CreateUsersTable extends Migration
             $table->string('email');
             $table->string('password');
             $table->string('remember_token')->nullable();
-            $table->string('institutes_id')->nullable();
-            $table->string('role_id')->nullable();
-            $table->string('branch_id')->nullable();
-            $table->string('batch_id')->nullable();
+            $table->integer('institutes_id')->nullable();
+            $table->integer('role_id')->nullable();
+            $table->integer('branch_id')->nullable();
+            $table->integer('batch_id')->nullable();
             $table->string('phone_number')->nullable();
-            $table->string('dob')->nullable();  
+            $table->date('dob')->nullable();  
             $table->string('qualification')->nullable();  
             $table->string('specialization')->nullable();  
-            $table->string('passout')->nullable();  
-            $table->string('collegeaddress')->nullable();  
-            $table->string('homeaddress')->nullable();
+            $table->float('marks');
+            $table->date('passout')->nullable();  
+            $table->text('collegeaddress')->nullable();  
+            $table->text('homeaddress')->nullable();
             $table->string('profilepic')->nullable();  
             $table->timestamps();
-
         });
     }
 

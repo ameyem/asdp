@@ -15,16 +15,16 @@ class CreateAdminTaskTable extends Migration
     {
         Schema::create('admin_tasks', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('institutes_id');
+            $table->integer('institutes_id');
             $table->string('user_id');
             $table->string('worknature');
             $table->string('subject');
             $table->string('worktitle');
-            $table->string('workdescription');
+            $table->text('workdescription');
             $table->string('whatinitforme');
-            $table->decimal('usercredits');
-            $table->decimal('guidecredits');
-            $table->decimal('reviewercredits');
+            $table->float('usercredits');
+            $table->float('guidecredits');
+            $table->float('reviewercredits');
             $table->string('uploads')->nullable(); 
             $table->timestamps();
 

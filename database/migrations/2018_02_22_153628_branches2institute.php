@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateUserTasksTable extends Migration
+class Branches2institute extends Migration
 {
     /**
      * Run the migrations.
@@ -13,18 +13,13 @@ class CreateUserTasksTable extends Migration
      */
     public function up()
     {
-        Schema::create('user_tasks', function (Blueprint $table) {
+        Schema::create('branches2institutes', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('assigntask_id');
-            $table->string('request_for');
-            $table->string('message');
-            $table->string('uploads')->nullable();
-            $table->string('obtained_marks')->nullable();
+            $table->integer('institute_id')->unsigned();
+            $table->integer('branch_id')->unsigned();
             $table->timestamps();
         });
-    }  
-
-
+    }
 
     /**
      * Reverse the migrations.
@@ -33,6 +28,6 @@ class CreateUserTasksTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('user_tasks');
+        Schema::dropIfExists('branches2institutes');
     }
 }
