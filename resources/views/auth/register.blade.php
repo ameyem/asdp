@@ -1,5 +1,6 @@
 @extends('layouts.auth')
 
+
 @section('content')
 
 <div class="container">
@@ -8,33 +9,14 @@
             <div class="panel panel-primary">
                 <div class="panel-heading"><center><h2>Ameyem Skills Registration</h2></center></div>
                 <div class="panel-body">
+
+
+                
                 
                     <form class="form-horizontal" role="form" method="POST" action="{{ url('/register') }}">
                         {{ csrf_field() }}
 
                         
-                        
-                        <div class="form-group">
-                            <label for="role_name" class="col-md-4 control-label">Role</label>
-
-                            <div class="col-md-6">
-
-                            <select name="role_id" class="form-control">
-                            <?php 
-                            use Spatie\Permission\Models\Role;
-                            
-                            $roles = Role::all(); ?>
-                                @foreach ($roles as $role)
-
-                                    @if($role->id >= 3)
-                                    <option value="{{$role->id}}">{{$role->name}} </option>   
-                                    @endif             
-                                @endforeach
-                                
-                            </select>
-                            </div>
-                        </div>
-
                         <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
                             <label for="name" class="col-md-4 control-label"> Institute Name</label>
 
@@ -44,28 +26,66 @@
                             <?php 
                             use App\institute;
                             $institutes = institute::all(); ?>
+                            <option value="" disabled="disabled" selected="selected">Select Your Institute</option>
                                 @foreach ($institutes as $institute)
                                     <option value="{{$institute->id}}">{{$institute->name}} </option>                
                                 @endforeach
                                 
                             </select>
+                            <!-- <h6>Don't have in this list </h6> -->
+                            <a href="{{ route('institutes.index') }}" class="btn btn-success btn-xs">Add New</a> 
+                            <!-- Here We are adding New Institute deatails, Controller is going to -->
+                            
+                           
                             </div>
                             
                         </div>
 
-                        <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
+                        
+                        <div class="form-group">
+                            <label for="role_name" class="col-md-4 control-label">Role</label>
+
+                            <div id="role_id" class="col-md-6">
+
+                            <select name="role_id" id="role" class="form-control">
+                            <?php 
+                            use Spatie\Permission\Models\Role;
+                            
+                            $roles = Role::all(); ?>
+                            <option value="" disabled="disabled" selected="selected">Select Your Role</option>
+                                @foreach ($roles as $role)
+
+                                    @if($role->id >= 3)
+                                    
+                                    <option value="{{$role->id}}">{{$role->name}} </option>   
+                                    @endif             
+                                @endforeach
+                                
+                            </select>
+                            </div>
+                        </div>
+                        
+
+                        <div id="bb" style="display:none">
+                        <div class="form-group{{ $errors->has('branch_id') ? ' has-error' : '' }}">
                             <label for="branch_id" class="col-md-4 control-label">Branch Name</label>
 
                             <div class="col-md-6">
                             
-                            <select name="branch_id" class="form-control">
+                            <select id='branch_id' name="branch_id" class="form-control">
                             <?php 
                             use App\Branch;
                             $branch = Branch::all(); ?>
+                            <option value="" disabled="disabled" selected="selected">Select Your Branch</option>
                                 @foreach ($branch as $branches)
                                     <option value="{{$branches->id}}">{{$branches->name}} </option>                
                                 @endforeach
                             </select>
+                            @if ($errors->has('branch_id'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('branch_id') }}</strong>
+                                    </span>
+                                @endif
                             </div>
                         </div>
 
@@ -75,16 +95,27 @@
 
                             <div class="col-md-6">
                             
-                            <select name="batch_id" class="form-control">
+                            <select id='batch_id' name="batch_id" class="form-control">
                             <?php 
                             use App\batch;
                             $batch = batch::all(); ?>
+                            <option value="" disabled="disabled" selected="selected">Select Your Batch</option>
                                 @foreach ($batch as $batches)
                                     <option value="{{$batches->id}}">{{$batches->name}} </option>                
                                 @endforeach
                             </select>
+                            @if ($errors->has('batch_id'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('batch_id') }}</strong>
+                                    </span>
+                                @endif
                             </div>
                         </div>
+
+                        </div>
+
+                     
+              
                         
                         <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
                             <label for="name" class="col-md-4 control-label"> Full Name</label>

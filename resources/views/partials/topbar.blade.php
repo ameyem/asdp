@@ -18,7 +18,13 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
         </a>
-         <h4 style="color:white;">Welcome {{Auth::user()->name }} &nbsp;</h4>
+        @if (Auth::user())
+        <h4 style="color:white;">Welcome {{Auth::user()->name}}  &nbsp;</h4>
+        @else
+        <h4 style="color:white;">Welcome User  &nbsp;</h4>
+
+        @endif
+         
 
      </nav>
 

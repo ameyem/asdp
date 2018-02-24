@@ -107,11 +107,11 @@
                                 <div class="form-group">
                                     <strong>Reserved Credits For:</strong><br>
                                     <strong>User:</strong>
-                                    {!! Form::selectRange('usercredits', 1, 10) !!}
+                                    {!! Form::selectRange('usercredits', 5, 10) !!}
                                     <strong>Guide:</strong>
-                                    {!! Form::selectRange('guidecredits', 1, 10) !!}
+                                    {!! Form::selectRange('guidecredits', 2, 5) !!}
                                     <strong>Reviewer:</strong>
-                                    {!! Form::selectRange('reviewercredits', 1, 10) !!}
+                                    {!! Form::selectRange('reviewercredits', 2, 5) !!}
                                 </div>
                             </div>
 

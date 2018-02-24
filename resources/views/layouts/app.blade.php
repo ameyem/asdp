@@ -13,6 +13,7 @@
 @include('partials.topbar')
 @include('partials.sidebar')
 
+
 <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
         <!-- Main content -->
@@ -54,5 +55,6 @@
 {!! Form::close() !!}
 
 @include('partials.javascripts')
+
 </body>
 </html>

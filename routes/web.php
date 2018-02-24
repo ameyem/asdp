@@ -25,6 +25,7 @@ Route::resource('viewprofile','ViewprofileController');
 Route::resource('TaskMigrate','TaskMigrateController');
 Route::resource('Charts','ChartController');
 Route::resource('Subject','SubjectController');
+Route::resource('institutes','InstitutesController');
 
 
 

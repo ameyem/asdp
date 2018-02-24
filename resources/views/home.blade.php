@@ -6,10 +6,6 @@
 <!--<h1>{{Auth::user()->id }}</h1>
 <h2>{{Auth::user()->email }}</h2>  -->
 
-
-
-
-
 <div class="container-fluid">
     <div class="row">
         <div class="col-md-10">
@@ -147,7 +143,7 @@
             <div class="panel panel-primary">
                 <div style="color:white" class="panel-heading"><center>Welcome to Ameyem Skills Development Portal</center></div>
 
-                <div style="color:#786e03" class="panel-body">
+                <div class="panel-body">
                     <div class="row">
                         <div class="col-lg-5">
                         @foreach($role as $roles)
@@ -206,9 +202,6 @@
 {!! $assign_chart->script() !!}
 {!! $completed_chart->script() !!}
 {!! $progress_chart->script() !!}
-
-
-
 
 
 

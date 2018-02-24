@@ -7,6 +7,7 @@
 
 <body class="page-header-fixed">
 
+
     <div style="margin-top: 10%;"></div>
 
     <div class="container-fluid">
@@ -19,6 +20,7 @@
     </div>
 
     @include('partials.javascripts')
+
 
 </body>
 </html>

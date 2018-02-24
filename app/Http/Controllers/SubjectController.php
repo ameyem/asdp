@@ -11,6 +11,7 @@ class SubjectController extends Controller
     {
         return view('Subject.index');
     }
+    
     public function create()
     {
         return view('Subject.create');
@@ -27,5 +28,7 @@ class SubjectController extends Controller
         return redirect()->route('AdminTasks.index')
                         ->with('success','Subject created successfully');
     }
+
+
 
 }
