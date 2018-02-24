@@ -75,8 +75,8 @@
                                         </div>
                                     </a>
                                         <div class="panel-footer">
-                                            <span class="panel-eyecandy-title">Total Comments : 
-                                            <!-- {{ $totalcomments}} -->
+                                            <span class="panel-eyecandy-title">Total Comments : {{ $totalcomments }}
+                                            
                                             </span>
                                         </div>
                                     </div>

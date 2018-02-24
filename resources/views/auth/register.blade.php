@@ -3,6 +3,20 @@
 
 @section('content')
 
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+<script type="text/javascript">
+    $(function () {
+        $("#role").change(function () {
+            if ($(this).val() == "6") {
+                $("#bb").show();
+            } else {
+                $("#bb").hide();
+            }
+        });
+    });
+</script>
+
+
 <div class="container">
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
@@ -10,9 +24,6 @@
                 <div class="panel-heading"><center><h2>Ameyem Skills Registration</h2></center></div>
                 <div class="panel-body">
 
-
-                
-                
                     <form class="form-horizontal" role="form" method="POST" action="{{ url('/register') }}">
                         {{ csrf_field() }}
 

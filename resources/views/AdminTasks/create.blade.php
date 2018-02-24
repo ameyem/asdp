@@ -60,7 +60,7 @@
                                 </div>
                             </div>
 
-                            <div class="col-xs-12 col-sm-12 col-md-12" style="color:green">
+                            <div class="col-xs-12 col-sm-12 col-md-12" style="color:#006699">
                                 <div class="form-group">
                                     <strong>Work Nature:</strong>
                                     <select name="worknature" class="form-control">
@@ -71,7 +71,7 @@
                                 
                                 </div>
                             </div>
-                            <div class="col-xs-12 col-sm-12 col-md-12" style="color:green">
+                            <div class="col-xs-12 col-sm-12 col-md-12" style="color:#006699">
                                 <div class="form-group">
                                     <strong>Subject or Language:</strong>
                                     <select name="subject" class="form-control">
@@ -83,7 +83,7 @@
                                     
                                 </div>
                             </div>
-                            <div class="col-xs-12 col-sm-12 col-md-12" style="color:green">
+                            <div class="col-xs-12 col-sm-12 col-md-12" style="color:#006699">
                                 <div class="form-group">
                                     <strong>Work Title:</strong>
                                     {!! Form::text('worktitle', null, array('placeholder' => 'Work Title','class' => 'form-control')) !!}
@@ -91,19 +91,19 @@
                             </div>
 
 
-                            <div class="col-xs-12 col-sm-12 col-md-12" style="color:green">
+                            <div class="col-xs-12 col-sm-12 col-md-12" style="color:#006699">
                                 <div class="form-group">
                                     <strong>Work Description:</strong>
                                     {!! Form::textarea('workdescription', null, array('placeholder' => 'Work Description','class' => 'form-control')) !!}
                                 </div>
                             </div>
-                            <div class="col-xs-12 col-sm-12 col-md-12" style="color:green">
+                            <div class="col-xs-12 col-sm-12 col-md-12" style="color:#006699">
                                 <div class="form-group">
                                     <strong>What In IT For Me:</strong>
                                     {!! Form::text('whatinitforme', null, array('placeholder' => 'What they gain','class' => 'form-control')) !!}
                                 </div>
                             </div>
-                            <div class="col-xs-12 col-sm-12 col-md-12" style="color:green">
+                            <div class="col-xs-12 col-sm-12 col-md-12" style="color:#006699">
                                 <div class="form-group">
                                     <strong>Reserved Credits For:</strong><br>
                                     <strong>User:</strong>
@@ -115,7 +115,7 @@
                                 </div>
                             </div>
 
-                            <div class="col-xs-12 col-sm-12 col-md-12" style="color:green">
+                            <div class="col-xs-12 col-sm-12 col-md-12" style="color:#006699">
                                 <div class="form-group">
                                         
                                 <strong>  Select file to Upload:</strong><br>

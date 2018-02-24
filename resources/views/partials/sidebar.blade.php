@@ -5,7 +5,7 @@
     <section class="sidebar">
         <ul class="sidebar-menu">
 
-        <li class="{{ $request->segment(1) == 'home' ? 'active' : '' }}">
+            <li class="{{ $request->segment(1) == 'home' ? 'active' : '' }}">
                 <a href="{{ url('/') }}">
                     <i class="fa fa-home"></i>
                     <span class="title">HOME</span>

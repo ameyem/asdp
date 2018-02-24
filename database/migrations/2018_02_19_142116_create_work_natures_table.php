@@ -13,7 +13,7 @@ class CreateWorkNaturesTable extends Migration
      */
     public function up()
     {
-        Schema::create('work_natures', function (Blueprint $table) {
+        Schema::create('work_nature', function (Blueprint $table) {
             $table->increments('id');
             $table->string('work_nature');
             $table->timestamps();

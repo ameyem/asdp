@@ -42,23 +42,21 @@ class HomeController extends Controller
             
         if(Auth::user()->role_id <= 5)
         {
-            //Total Assigned Tasks of all Users
+            //Total Assigned Tasks of all Users assigned by teacher
             $assign_tasks = DB::table('assign_tasks')
-            ->join('admin_tasks','assign_tasks.task_id', '=', 'admin_tasks.id')
             ->where('assign_tasks.assign_user_id',Auth::user()->id)
             ->orderBy('assign_tasks.updated_at','desc')->get();
 
             $assign_chart = Charts::database($assign_tasks, 'line', 'highcharts')
             ->title('Assigned Tasks')
             ->elementLabel("Tasks")
-            ->dimensions(350, 300)
+            ->dimensions(0, 300)
             ->responsive(false)
-            ->lastByMonth(10, true);
+            ->lastByMonth(12, true);
             
             
-            // Total Completed Tasks of all Users
+            // Total Completed Tasks of all Users assigned by teacher
             $completedtasks = DB::table('assign_tasks')
-            ->join('admin_tasks','assign_tasks.task_id', '=', 'admin_tasks.id')
             ->where('assign_tasks.status','approved')
             ->where('assign_tasks.assign_user_id',Auth::user()->id)
             ->orderBy('assign_tasks.updated_at','desc')->get();
@@ -66,16 +64,15 @@ class HomeController extends Controller
             $completed_chart = Charts::database($completedtasks, 'line', 'highcharts')
             ->title('Completed Tasks')
             ->elementLabel("Tasks")
-            ->dimensions(350, 300)
+            ->dimensions(0, 300)
             ->responsive(false)
-            ->lastByMonth(10, true);
+            ->lastByMonth(12, true);
 
 
 
             // Pregress Line graph all Registerd user Count
 
-            $progress = DB::table('assign_tasks')
-            ->join('admin_tasks','assign_tasks.task_id', '=', 'admin_tasks.id')
+            $progress = DB::table('assign_tasks') 
             ->where('assign_tasks.assign_user_id',Auth::user()->id)
             ->where('assign_tasks.status','approved')
             ->orderBy('assign_tasks.updated_at','desc')->select('assign_tasks.updated_at','assign_tasks.obtained_marks')->get()->toArray();
@@ -87,7 +84,7 @@ class HomeController extends Controller
              ->elementLabel('date')
              ->labels(['First', 'Second', 'Third'])
              ->values([5,10,20])
-             ->dimensions(500,300)
+             ->dimensions(0,300)
              ->responsive(false);
             }
             else{
@@ -114,14 +111,13 @@ class HomeController extends Controller
             ->elementLabel('Date')
             ->labels(array_reverse($dt))
             ->values($count_array)
-            ->dimensions(500,300)
+            ->dimensions(0,300)
             ->responsive(false);
         } 
 
-            //for count the total droped tasks
+            //Total droped tasks of Students 
 
             $droptasks = DB::table('assign_tasks')
-            ->join('admin_tasks','assign_tasks.task_id', '=', 'admin_tasks.id')
             ->where('assign_tasks.status','drop')
             ->where('assign_tasks.assign_user_id',Auth::user()->id)
             ->orderBy('assign_tasks.created_at','desc')->get();
@@ -137,10 +133,10 @@ class HomeController extends Controller
                     ->where('users.institutes_id',Auth::user()->institutes_id);
             $totalusers = $users->count();
 
-            // $totalcomments = UserTasks::count();
+            // Total comments of Teacher assigned tasks
             $totalcomments = DB::table('user_tasks')
-            ->join('assign_tasks','user_tasks.assigntask_id','assign_tasks.task_id')
-            // ->where('assign_tasks.assign_user_id','assign_tasks.task_id')
+            ->join('assign_tasks','user_tasks.assigntask_id','assign_tasks.id')
+            ->join('users','assign_tasks.assign_user_id','users.id')
             ->where('assign_tasks.assign_user_id',Auth::User()->id)
             ->count();
 
@@ -163,24 +159,22 @@ class HomeController extends Controller
         }
         else
         {      
-             //Total Assigned Tasks of all Users
+             //Student Total Assigned Tasks of all Users
            
                         $assign_tasks = DB::table('assign_tasks')
-                        ->join('admin_tasks','assign_tasks.task_id', '=', 'admin_tasks.id')
                         ->where('assign_tasks.user_id',Auth::user()->id)
                         ->orderBy('assign_tasks.updated_at')->get();
 
                         $assign_chart = Charts::database($assign_tasks, 'line', 'highcharts')
                         ->title('Assigned Tasks')
                         ->elementLabel("Tasks")
-                        ->dimensions(350, 300)
+                        ->dimensions(0, 300)
                         ->responsive(false)
                         ->lastByMonth(10, true);
 
-             // Total Completed Tasks of all Users
+             // Student Total Completed Tasks of all Users
 
                         $completedtasks = DB::table('assign_tasks')
-                        ->join('admin_tasks','assign_tasks.task_id', '=', 'admin_tasks.id')
                         ->where('assign_tasks.user_id',Auth::user()->id)
                         ->where('assign_tasks.status','approved')
                         ->orderBy('assign_tasks.updated_at')->get();
@@ -188,15 +182,14 @@ class HomeController extends Controller
                         $completed_chart = Charts::database($completedtasks, 'line', 'highcharts')
                         ->title('Completed Tasks')
                         ->elementLabel("Tasks")
-                        ->dimensions(350, 300)
+                        ->dimensions(0, 300)
                         ->responsive(false)
                         ->lastByMonth(10, true);
 
 
-            // Pregress Line graph all tasks
+            // Student Pregress Line graph all tasks
 
                         $progress = DB::table('assign_tasks')
-                        ->join('admin_tasks','assign_tasks.task_id', '=', 'admin_tasks.id')
                         ->where('assign_tasks.user_id',Auth::user()->id)
                         ->where('assign_tasks.status','approved')
                         ->orderBy('assign_tasks.updated_at','desc')->select('assign_tasks.updated_at','assign_tasks.obtained_marks')->get()->toArray();
@@ -208,7 +201,7 @@ class HomeController extends Controller
                          ->elementLabel('date')
                          ->labels(['First', 'Second', 'Third'])
                          ->values([5,10,20])
-                         ->dimensions(500,300)
+                         ->dimensions(0,300)
                          ->responsive(false);
                         }
                         else{
@@ -235,13 +228,12 @@ class HomeController extends Controller
                         ->elementLabel('Date')
                         ->labels(array_reverse($dt))
                         ->values($count_array)
-                        ->dimensions(500,300)
+                        ->dimensions(0,300)
                         ->responsive(false);
                     } 
 
-            //for count the total droped tasks
+            //Student total droped tasks
             $droptasks = DB::table('assign_tasks')
-            ->join('admin_tasks','assign_tasks.task_id', '=', 'admin_tasks.id')
             ->where('assign_tasks.user_id',Auth::user()->id)
             ->where('assign_tasks.status','drop')
             ->orderBy('assign_tasks.updated_at','desc')->get();
@@ -257,7 +249,7 @@ class HomeController extends Controller
             $datetime1 = new \DateTime($fdate);
             $datetime2 = new \DateTime($tdate);
             $interval = $datetime1->diff($datetime2);
-            $days = $interval->format('%a');//now do whatever you like with $days
+            $days = $interval->format('%a');//Its counts all days
 
             $role = DB::table('roles')->where('roles.id',Auth::User()->role_id)->select('roles.name')->get();
             $institute_name = DB::table('institutes')->where('institutes.id',Auth::User()->institutes_id)->select('institutes.name')->get();
@@ -266,7 +258,6 @@ class HomeController extends Controller
         }
         
         return view('home', ['assign_chart' => $assign_chart,'completed_chart' => $completed_chart,'progress_chart' => $progress_chart])->with(compact('totaltasks','totalassigntasks','totalusers','totalcomments','totalcredits','days','completedtasks','droptasks','institute_name','role'));
-        // return view('home');
 
     }
 
